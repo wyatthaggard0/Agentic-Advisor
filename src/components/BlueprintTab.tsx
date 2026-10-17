@@ -204,24 +204,27 @@ export function BlueprintTab(props: {
       )}
 
       <div className="bp-grid">
-        <div className="terms">
-          {termsShown.map((t) => (
-            <div key={t.term} className={`term${t.status === "in-progress" ? " prog" : ""}${t.term.startsWith("Summer") ? " summer" : ""}`}>
-              <header><b>{t.term}</b><span>{t.hours} hrs</span></header>
-              {t.status === "in-progress" && <div className="st">In progress · from transcript</div>}
-              {t.term.startsWith("Summer") && <div className="st" style={{ background: "var(--warn-soft)" }}>Summer · optional trade-off</div>}
-              {t.hold && <div className="st">{t.hold}</div>}
-              {t.lines.map((l, i) => (
-                <button key={`${l.code}-${i}`} className={`cc${l.slot ? " slot" : ""}${l.added === "swap" ? " swap" : ""}${comparison?.added.includes(l.code) ? " new" : ""}`} onClick={() => setDrawer({ line: l, term: t.term })}>
-                  <div className="top2">
-                    <span className="code">{l.slot ? `${l.credits} hrs` : l.code}</span>
-                    <span className={`conf ${l.confidence}`} title={l.confidenceNote}>{l.confidence}</span>
-                  </div>
-                  <div className="t">{l.title}</div>
-                  <div className="req">{l.requirement}</div>
-                </button>
-              ))}
-            </div>
+        <div className="years">
+          {academicYears(termsShown).map((y) => (
+            <section key={y.label} className="year">
+              <h4 className="year-h">
+                {y.label}
+                <span>{y.hours} hrs</span>
+              </h4>
+              <div className="year-row">
+                {[y.fall, y.spring].map((t, i) =>
+                  t ? (
+                    <TermCard key={t.term} t={t} onOpen={(l) => setDrawer({ line: l, term: t.term })} added={comparison?.added ?? []} />
+                  ) : (
+                    <div key={i} className="term empty">
+                      <header><b>{i === 0 ? `Fall ${y.start}` : `Spring ${y.start + 1}`}</b></header>
+                      <span className="hint">{i === 0 ? "Before this plan" : "After graduation"}</span>
+                    </div>
+                  ),
+                )}
+              </div>
+              {y.summer && <TermCard t={y.summer} summer onOpen={(l) => setDrawer({ line: l, term: y.summer!.term })} added={comparison?.added ?? []} />}
+            </section>
           ))}
         </div>
 
@@ -350,6 +353,56 @@ function CourseDrawer({ studentId, line, term, onClose }: { studentId: string; l
           )}
           <div><span>Source</span><span className="src">{line.source}</span>{info?.source ? <span className="src">{String(info.source)}</span> : null}</div>
         </div>
+      </div>
+    </div>
+  );
+}
+
+type PlanTermT = Plan["terms"][number];
+
+/** Groups terms into academic years: Fall Y and Spring Y+1 side by side, with that year's summer below. */
+function academicYears(terms: PlanTermT[]) {
+  const years = new Map<number, { start: number; fall?: PlanTermT; spring?: PlanTermT; summer?: PlanTermT }>();
+  for (const t of terms) {
+    const [season, yr] = t.term.split(" ");
+    const start = season === "Fall" ? Number(yr) : Number(yr) - 1;
+    if (!years.has(start)) years.set(start, { start });
+    const y = years.get(start)!;
+    if (season === "Fall") y.fall = t;
+    else if (season === "Spring") y.spring = t;
+    else y.summer = t;
+  }
+  return [...years.values()]
+    .sort((a, b) => a.start - b.start)
+    .map((y) => ({
+      ...y,
+      label: `${y.start}–${String(y.start + 1).slice(2)} academic year`,
+      hours: [y.fall, y.spring, y.summer].reduce((n, t) => n + (t?.hours ?? 0), 0),
+    }));
+}
+
+function TermCard({ t, onOpen, added, summer }: { t: PlanTermT; onOpen: (l: PlanLine) => void; added: string[]; summer?: boolean }) {
+  return (
+    <div className={`term${t.status === "in-progress" ? " prog" : ""}${summer ? " summer" : ""}`}>
+      <header>
+        <b>{t.term}</b>
+        <span>{t.hours} hrs</span>
+      </header>
+      {t.status === "in-progress" && <div className="st">In progress · from transcript</div>}
+      {summer && <div className="st summer-st">Summer · optional trade-off</div>}
+      {t.hold && <div className="st">{t.hold}</div>}
+      <div className="cl-list">
+        {t.lines.map((l, i) => (
+          <button key={`${l.code}-${i}`} className={`cl${l.slot ? " slot" : ""}${l.added === "swap" ? " swap" : ""}${added.includes(l.code) ? " new" : ""}`} onClick={() => onOpen(l)}>
+            <span className="cl-code">{l.slot ? "Choose" : l.code}</span>
+            <span className="cl-main">
+              <span className="cl-title">{l.title}</span>
+              {l.requirement !== l.title && <span className="cl-req">{l.requirement}</span>}
+            </span>
+            <span className="cl-hrs">{l.credits}</span>
+            <span className={`conf ${l.confidence}`} title={`${CONF_LABEL[l.confidence] ?? l.confidence}: ${l.confidenceNote}`} />
+          </button>
+        ))}
       </div>
     </div>
   );

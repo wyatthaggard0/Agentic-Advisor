@@ -874,6 +874,10 @@ export function buildPlan(ds: Dataset, student: Student, opts: PlanOptions = {})
   for (const s of unplacedSlots) unplaced.push({ code: s.id, credits: s.credits, reason: `${s.name}: no room within ${maxLoad} hours per term` });
 
   // ---------- Assemble ----------
+  const coreFor = (code: string) => {
+    const cats = coreAssignments.filter((a) => a.code === code).map((a) => a.slotName);
+    return cats.length ? `TCU Core: ${cats.join(" + ")}` : undefined;
+  };
   const terms: PlanTerm[] = [];
   if (student.inProgress.length) {
     terms.push({
@@ -889,12 +893,16 @@ export function buildPlan(ds: Dataset, student: Student, opts: PlanOptions = {})
           credits: ip.credits ?? credit(ip.code),
           slot: false,
           requirementId: "in-progress",
-          requirement: appliedCompleted.get(ip.code)?.join(" + ") ?? "Counts toward total hours",
+          requirement: appliedCompleted.get(ip.code)?.join(" + ") ?? coreFor(ip.code) ?? "Counts toward total hours",
           programs: used,
           source: "Student schedule",
           confidence: "in-progress" as Confidence,
           confidenceNote: "Enrolled this term",
-          why: appliedCompleted.has(ip.code) ? `Applied to ${appliedCompleted.get(ip.code)!.join(" and ")}.` : "In progress; counts toward total hours.",
+          why: appliedCompleted.has(ip.code)
+            ? `Applied to ${appliedCompleted.get(ip.code)!.join(" and ")}.`
+            : coreFor(ip.code)
+              ? `In progress; fills ${coreFor(ip.code)}.`
+              : "In progress; counts toward total hours.",
         };
       }),
     });
