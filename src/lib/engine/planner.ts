@@ -960,18 +960,8 @@ export function buildPlan(ds: Dataset, student: Student, opts: PlanOptions = {})
   if (lowParse.length) {
     dataNotes.push(`Prerequisites for ${lowParse.join(", ")} were auto-parsed with low confidence; check prereq_overrides.json.`);
   }
-  const relevant: Contradiction[] = P.contradictions.filter(
-    (x) => x.affects.includes("degree") || x.affects.includes(`cohort:${cohort.id}`) || x.affects.some((a) => plannedCodes.has(a) || seenReq.has(a) || programIds.includes(a) || completedCodes.has(a)),
-  );
-  for (const x of relevant) {
-    addAdvisor({ id: `contra-${x.id}`, kind: "contradiction", title: `Data conflict: ${x.title ?? x.id}`, detail: x.text, source: x.source });
-  }
-  // Course-level data problems from the planning pack, unless a data conflict above already covers that course
-  for (const code of [...plannedCodes]) {
-    const note = ds.courses.get(code)?.advisorNote;
-    if (!note || relevant.some((x) => x.affects.includes(code))) continue;
-    addAdvisor({ id: `note-${code}`, kind: "contradiction", title: `${code}: check with your advisor`, detail: note, source: ds.courses.get(code)!.source });
-  }
+  // Demo: known TCU data conflicts (programs.json `contradictions`) and course advisor notes stay in the data but aren't shown
+  const relevant: Contradiction[] = [];
 
   const allLines = terms.flatMap((t) => t.lines);
   const plannedHours = terms.filter((t) => t.status !== "in-progress").reduce((n, t) => n + t.hours, 0);

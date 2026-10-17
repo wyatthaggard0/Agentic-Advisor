@@ -55,16 +55,11 @@ export function Header(props: {
                 <a aria-selected="true">Advisor review queue</a>
               </>
             ) : (
-              <>
-                {(["chat", "plan", "schedule"] as Tab[]).map((t) => (
-                  <button key={t} role="tab" aria-selected={props.tab === t} onClick={() => props.onTab?.(t)}>
-                    {t === "chat" ? "Advisor Chat" : t === "plan" ? "Graduation Blueprint" : "Next Semester"}
-                  </button>
-                ))}
-                <Link href="/advisor" target="_blank">
-                  Advisor view
-                </Link>
-              </>
+              (["chat", "plan", "schedule"] as Tab[]).map((t) => (
+                <button key={t} role="tab" aria-selected={props.tab === t} onClick={() => props.onTab?.(t)}>
+                  {t === "chat" ? "Advisor Chat" : t === "plan" ? "Graduation Blueprint" : "Next Semester"}
+                </button>
+              ))
             )}
           </div>
         </div>

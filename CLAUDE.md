@@ -13,7 +13,7 @@ Prototype for the **Neeley AI Forward competition (Advanced Track)**, case "The 
 
 - Never invent courses, section times, requirements or approvals. Unknowns are labeled, not guessed.
 - Every plan line carries the requirement it fills, its source, and an availability label: `confirmed` / `historical` / `assumed` / `advisor`.
-- Contradictions in TCU data are shown to the student and the advisor, never silently resolved. They live in `programs.json` `contradictions`.
+- Contradictions in TCU data are recorded in `programs.json` `contradictions` (useful for Part 1 findings). For the demo the planner does not show them in the app.
 - Never say a student is "cleared to graduate" or registered. Advisor review and my.tcu.edu registration are separate steps. What-if plans never change the official record.
 - Career suggestions are possibilities to explore. Employers are examples to research, not openings or TCU partnerships.
 - Sample data is always labeled as sample in the UI, the exports and the files.
