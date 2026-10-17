@@ -236,6 +236,8 @@ export interface Student {
   holds?: { term: string; type: "study-abroad" | "neeley-fellows" | "internship"; note: string }[];
   survey?: Survey;
   preferences?: SchedulePrefs;
+  /** Core courses the student swapped in (prefer) or out (avoid) on the Blueprint */
+  coreChoices?: { prefer: string[]; avoid: string[] };
 }
 
 export type StudentYear = "incoming" | "freshman" | "sophomore" | "junior" | "senior";
@@ -286,6 +288,16 @@ export interface PlanLine {
   why: string;
   prereqNote?: string;
   added?: "prereq" | "coreq" | "requirement" | "elective" | "swap";
+  /** Suggested TCU Core pick: the categories it fills and other courses that fill the same ones */
+  core?: { categories: string[]; alternatives: CoreAlternative[] };
+}
+
+export interface CoreAlternative {
+  code: string;
+  title: string;
+  /** Core category names this course carries */
+  categories: string[];
+  offered: boolean;
 }
 
 export interface PlanTerm {

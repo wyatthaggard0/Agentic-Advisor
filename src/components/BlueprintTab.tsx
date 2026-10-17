@@ -20,6 +20,8 @@ export function BlueprintTab(props: {
   programOptions: { id: string; name: string; kind: string }[];
   setPrograms: (p: string[]) => void;
   onSchedule: () => void;
+  /** Swap a suggested TCU Core course for another that fills the same categories; no args resets */
+  onCoreSwap: (from?: string, to?: string) => void;
   toast: (m: string) => void;
 }) {
   const { studentId, state } = props;
@@ -30,6 +32,7 @@ export function BlueprintTab(props: {
   const [drawer, setDrawer] = useState<{ line: PlanLine; term: string } | null>(null);
   const [confirm, setConfirm] = useState(false);
   const [sending, setSending] = useState(false);
+  const [editing, setEditing] = useState<string | null>(null);
 
   const load = useCallback(async () => {
     setError("");
@@ -154,14 +157,21 @@ export function BlueprintTab(props: {
           {(["major", "minor", "certificate"] as const).map((kind) => {
             const opts = props.programOptions.filter((p) => p.kind === kind);
             if (!opts.length) return null;
+            // Only what the student has, with Change / Add opening the full list
+            const chosen = opts.filter((p) => state.programs.includes(p.id));
+            const open = editing === kind;
             return (
               <div className="progs" key={kind}>
                 <span className="lab">{kind === "major" ? "Majors" : kind === "minor" ? "Minors" : "Certificates"}</span>
-                {opts.map((p) => (
+                {(open ? opts : chosen).map((p) => (
                   <button key={p.id} className="prog" aria-pressed={state.programs.includes(p.id)} onClick={() => toggle(p.id)}>
                     {p.name.replace(/ \(major not chosen\)$/, "")}
                   </button>
                 ))}
+                {!open && !chosen.length && <span className="none">None yet</span>}
+                <button className="btn small prog-edit" aria-expanded={open} onClick={() => setEditing(open ? null : kind)}>
+                  {open ? "Done" : chosen.length ? "Change" : "Add"}
+                </button>
               </div>
             );
           })}
@@ -250,20 +260,20 @@ export function BlueprintTab(props: {
                 </span>
                 {review.status === "approved" && (
                   <>
-                    <span>Next: build your Spring schedule, then register on my.tcu.edu during your window. Approval of a plan doesn&rsquo;t register you or clear you to graduate.</span>
-                    <button className="btn small primary" onClick={props.onSchedule}>Build next-semester schedule</button>
+                    <span>Changed something since? Send the updated plan to your advisor. Approval of a plan doesn&rsquo;t register you or clear you to graduate.</span>
+                    <button className="btn small primary" onClick={() => setConfirm(true)}>Send to advisor for review</button>
                   </>
                 )}
                 <button className="linkbtn" style={{ justifySelf: "start", fontSize: 12 }} onClick={resetReview}>Reset demo review</button>
               </div>
             )}
             {plan.advisorItems.map((a) => (
-              <div key={a.id} className={`flag ${a.kind}`}>
+              <details key={a.id} className={`flag ${a.kind}`}>
+                <summary><b>{a.title}</b></summary>
                 <span className="k">{a.kind.replace("-", " ")}</span>
-                <b>{a.title}</b>
                 <span>{a.detail}</span>
                 {a.source ? <small>Source: {a.source}</small> : null}
-              </div>
+              </details>
             ))}
           </div>
 
@@ -281,7 +291,10 @@ export function BlueprintTab(props: {
                   </div>
                 ))}
               </div>
-              <small className="hint">{plan.coreLabel}. Suggested Core courses are examples; any approved course in the category works.</small>
+              <small className="hint">{plan.coreLabel}. Suggested Core courses are examples; open one in the plan to swap in another course that fills the same categories.</small>
+              {state.student.coreChoices?.prefer.length ? (
+                <button className="linkbtn" style={{ justifySelf: "start", fontSize: 12 }} onClick={() => props.onCoreSwap()}>Undo my Core swaps</button>
+              ) : null}
             </div>
           ) : null}
 
@@ -300,7 +313,19 @@ export function BlueprintTab(props: {
         </aside>
       </div>
 
-      {drawer && <CourseDrawer studentId={studentId} line={drawer.line} term={drawer.term} onClose={() => setDrawer(null)} />}
+      {drawer && (
+        <CourseDrawer
+          studentId={studentId}
+          line={drawer.line}
+          term={drawer.term}
+          onClose={() => setDrawer(null)}
+          onSwap={(to) => {
+            props.onCoreSwap(drawer.line.code, to);
+            setDrawer(null);
+            props.toast(`Swapped ${drawer.line.code} for ${to}. Your plan is rebuilding.`);
+          }}
+        />
+      )}
 
       {confirm && (
         <div className="scrim modal-scrim" onClick={(e) => e.target === e.currentTarget && setConfirm(false)}>
@@ -320,7 +345,7 @@ export function BlueprintTab(props: {
   );
 }
 
-function CourseDrawer({ studentId, line, term, onClose }: { studentId: string; line: PlanLine; term: string; onClose: () => void }) {
+function CourseDrawer({ studentId, line, term, onClose, onSwap }: { studentId: string; line: PlanLine; term: string; onClose: () => void; onSwap: (to: string) => void }) {
   const [info, setInfo] = useState<Record<string, unknown> | null>(null);
   useEffect(() => {
     if (line.slot) return;
@@ -351,6 +376,22 @@ function CourseDrawer({ studentId, line, term, onClose }: { studentId: string; l
               {info?.prerequisiteText ? <div><span>Catalog text</span><em>{String(info.prerequisiteText)}</em></div> : null}
             </>
           )}
+          {line.core?.alternatives.length ? (
+            <div>
+              <span>Other courses that fill this slot</span>
+              <ul className="alts">
+                {line.core.alternatives.map((a) => (
+                  <li key={a.code}>
+                    <div>
+                      <b><span className="mono">{a.code}</span> {a.title}</b>
+                      <small>{a.categories.join(", ")} · {a.offered ? "Sections posted" : "No sections posted yet"}</small>
+                    </div>
+                    <button className="btn small" onClick={() => onSwap(a.code)}>Use this</button>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ) : null}
           <div><span>Source</span><span className="src">{line.source}</span>{info?.source ? <span className="src">{String(info.source)}</span> : null}</div>
         </div>
       </div>

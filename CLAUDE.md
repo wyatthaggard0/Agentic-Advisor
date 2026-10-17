@@ -85,9 +85,9 @@ Parsing rules that matter:
     - Both stages also get **Programs & pathways**: double majors, minors, certificates, and Neeley programs (TIP Board, Fellows, NLP, Educational Investment Fund, the Consultative Selling/Sales certificate), plus a double-majoring rule box. These come from `careers.json` `pathways` and are filtered by year and by what the student already has. Pathways the planner models show their real effect on the plan (graduation date and hours).
     - Match % is an explainable formula in `src/lib/careers.ts`: picked interest areas, free-text words, location fit, and company focus. It isn't AI output and isn't a hiring prediction.
 - **Graduation Blueprint:**
-  - Semester grid with a drawer per course.
-  - Program what-if toggles and a comparison table.
-  - The 10 checks and advisor items.
+  - Semester grid with a drawer per course. Suggested Core courses list other courses that fill the same categories; "Use this" swaps one in (`student.coreChoices`).
+  - Program what-ifs: each row shows only the student's programs, with Change / Add opening the full list. Comparison table.
+  - The 10 checks and advisor items (collapsed to their titles).
   - Send for advisor review.
   - **Download Excel** in Neeley's degree-plan worksheet format (`src/lib/export/degreePlanXlsx.ts`, modeled on `Example Download Excel Sheet.xlsx`; never copy that file's personal data).
 - **Next Semester:** section schedule. It's a preview until the advisor approves; after approval it uses real sections.
@@ -113,6 +113,7 @@ npm test                            # demo plans + checks
 npm run check                       # independent re-check from raw files (no engine code)
 npx tsx scripts/export-smoke.ts     # Excel export totals vs plan
 npx tsx scripts/survey-smoke.ts     # survey -> planner + recommendations
+npx tsx scripts/core-swap-smoke.ts  # swap a suggested Core course for an alternative
 npx tsc --noEmit                    # typecheck
 ```
 

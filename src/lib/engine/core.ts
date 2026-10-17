@@ -8,7 +8,7 @@
 
 import type { Dataset } from "./load";
 import { courseTitle } from "./load";
-import type { CoreAssignment, Course, Requirement } from "./types";
+import type { CoreAlternative, CoreAssignment, Course, Requirement } from "./types";
 
 export const CORE_NAMES: Record<string, string> = {
   MTH: "Mathematics", NSC: "Natural Sciences", OCO: "Oral Communication", WCO: "Written Communication", WEM: "Writing Emphasis",
@@ -29,12 +29,16 @@ export interface CoreInput {
   available: (c: Course) => boolean;
   /** Undecided students: Writing Emphasis will come from the major they pick */
   wemFromMajor: boolean;
+  /** Student's own Core swaps: preferred courses win, avoided ones are never picked */
+  prefer?: string[];
+  avoid?: string[];
 }
 
 export interface CorePick {
   code: string;
   categories: string[];
   interest: string[];
+  alternatives: CoreAlternative[];
 }
 
 export interface CoreResult {
@@ -109,6 +113,7 @@ export function assignCore(ds: Dataset, req: Requirement, input: CoreInput): Cor
     (c) =>
       c.core?.length &&
       !taken.has(c.code) &&
+      !input.avoid?.includes(c.code) &&
       c.level >= 1 &&
       c.level <= 4 &&
       !SKIP_SUBJECTS.includes(c.subject) &&
@@ -137,12 +142,35 @@ export function assignCore(ds: Dataset, req: Requirement, input: CoreInput): Cor
         (hasSections(c.code) ? 2 : 0) +
         (c.level === 1 ? 2 : c.level === 2 ? 1 : 0) +
         (c.prereqs.length ? -1 : 0) +
-        (c.credits === 3 ? 1 : 0);
+        (c.credits === 3 ? 1 : 0) +
+        (input.prefer?.includes(c.code) ? 100 : 0);
       if (!best || score > best.score || (score === best.score && c.code < best.c.code)) best = { c, cats, score, interest };
     }
     if (!best) break;
-    picks.push({ code: best.c.code, categories: best.cats, interest: best.interest });
+    picks.push({ code: best.c.code, categories: best.cats, interest: best.interest, alternatives: [] });
     for (const slot of best.cats) take(slot, { source: "planned", code: best.c.code, title: courseTitle(best.c, best.c.code) });
+  }
+
+  // Other courses that fill the same categories, for the student to swap in
+  for (const p of picks) {
+    const solo = p.categories.find((t) => t === "OCO" || t === "WCO");
+    p.alternatives = pool
+      .filter((c) => !picks.some((q) => q.code === c.code) && p.categories.every((t) => c.core!.includes(t)))
+      .filter((c) => (solo ? true : !c.core!.some((t) => t === "OCO" || t === "WCO")))
+      .filter((c) => !p.categories.includes("WEM") || c.level >= 3)
+      .map((c) => {
+        const text = `${courseTitle(c, c.code)} ${c.description}`.toLowerCase();
+        const interest = input.interests.filter((k) => k.length > 2 && text.includes(k.toLowerCase())).length;
+        return { c, rank: (hasSections(c.code) ? 10 : 0) + Math.min(3, interest) * 2 + (c.level <= 2 ? 1 : 0) };
+      })
+      .sort((a, b) => b.rank - a.rank || a.c.code.localeCompare(b.c.code))
+      .slice(0, 6)
+      .map(({ c }) => ({
+        code: c.code,
+        title: courseTitle(c, c.code),
+        categories: c.core!.filter((t) => CORE_NAMES[t]).map((t) => CORE_NAMES[t]),
+        offered: hasSections(c.code),
+      }));
   }
 
   const openList = [...open.entries()].filter(([, n]) => n > 0).map(([slot, count]) => ({ slot, count }));

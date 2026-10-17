@@ -43,4 +43,5 @@ export const patchOf = (s: Student) => ({
   completed: s.completed,
   inProgress: s.inProgress,
   targetGradTerm: s.targetGradTerm,
+  coreChoices: s.coreChoices,
 });

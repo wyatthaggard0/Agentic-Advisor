@@ -30,6 +30,7 @@ interface Need {
   why: string;
   source: string;
   choiceReq?: string;
+  core?: PlanLine["core"];
 }
 
 interface SlotNeed {
@@ -446,6 +447,8 @@ export function buildPlan(ds: Dataset, student: Student, opts: PlanOptions = {})
       interests,
       available: (c) => c.prereqs.every((g) => g.some((r) => reachable.has(r.code))),
       wemFromMajor: programIds.includes("BBA-UNDECIDED"),
+      prefer: student.coreChoices?.prefer,
+      avoid: student.coreChoices?.avoid,
     });
     for (const p of core.picks) {
       const names = p.categories.map((k) => CORE_NAMES[k] ?? k);
@@ -455,8 +458,9 @@ export function buildPlan(ds: Dataset, student: Student, opts: PlanOptions = {})
         reqNames: [`TCU Core: ${names.join(" + ")}`],
         programs: ["degree"],
         added: "requirement",
-        why: `Fills TCU Core ${names.join(" and ")}${two ? " with one course" : ""}.${p.interest.length ? ` Matches your interest in ${p.interest.join(", ")}.` : ""} A suggestion: any approved course in ${p.categories.length > 1 ? "these categories" : "this category"} works.`,
+        why: `Fills TCU Core ${names.join(" and ")}${two ? " with one course" : ""}.${student.coreChoices?.prefer.includes(p.code) ? " You chose this course." : p.interest.length ? ` Matches your interest in ${p.interest.join(", ")}.` : ""} A suggestion: any approved course in ${p.categories.length > 1 ? "these categories" : "this category"} works.`,
         source: coreReq.source,
+        core: { categories: p.categories, alternatives: p.alternatives },
       });
       markUse(p.code, "degree");
     }
@@ -596,6 +600,7 @@ export function buildPlan(ds: Dataset, student: Student, opts: PlanOptions = {})
         ...eligNotes,
       ].join(". ") || undefined,
       added: need.added === "coreq" ? "coreq" : need.added === "prereq" ? "prereq" : need.added === "swap" ? "swap" : "requirement",
+      ...(need.core ? { core: need.core } : {}),
     };
   };
   const lineForSlot = (s: SlotNeed): PlanLine => ({

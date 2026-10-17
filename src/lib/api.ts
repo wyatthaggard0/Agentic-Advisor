@@ -46,6 +46,8 @@ export async function handle(fn: () => Promise<Response>): Promise<Response> {
  * The client keeps a sandbox copy of the profile (survey answers, confirmed transcript rows, what-ifs) for
  * unsaved what-ifs. Only these fields may be overridden; identity and history come from the stored record.
  */
+const codes = (v: unknown) => (Array.isArray(v) ? v.filter((x): x is string => typeof x === "string" && /^[A-Z]{2,4} \d{5}$/.test(x)).slice(0, 40) : []);
+
 export function sandboxStudent(base: Student, patch?: Partial<Student>): Student {
   if (!patch) return applySurvey(base);
   const s: Student = {
@@ -55,6 +57,7 @@ export function sandboxStudent(base: Student, patch?: Partial<Student>): Student
     ...(Array.isArray(patch.completed) ? { completed: patch.completed } : {}),
     ...(Array.isArray(patch.inProgress) ? { inProgress: patch.inProgress } : {}),
     ...(typeof patch.targetGradTerm === "string" && TERM.test(patch.targetGradTerm) ? { targetGradTerm: patch.targetGradTerm } : {}),
+    ...(patch.coreChoices ? { coreChoices: { prefer: codes(patch.coreChoices.prefer), avoid: codes(patch.coreChoices.avoid) } } : {}),
   };
   return applySurvey(s);
 }

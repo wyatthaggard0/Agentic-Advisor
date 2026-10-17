@@ -6,12 +6,14 @@ import type { SchedulePrefs, Section } from "@/lib/engine/types";
 import { patchOf, type StudentState } from "./types";
 
 const DAYS = ["M", "T", "W", "R", "F"];
-const DAY_NAMES = ["Mon", "Tue", "Wed", "Thu", "Fri"];
+const DAY_NAMES = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
 const START = 8 * 60;
-const END = 19 * 60;
-const PX = 0.9; // pixels per minute
+const PX = 1.05; // pixels per minute
+// One color per course, as in TCU Class Search's week view
+const COLORS = ["c1", "c2", "c3", "c4", "c5", "c6", "c7"];
 
 const toMin = (t?: string) => (t ? Number(t.split(":")[0]) * 60 + Number(t.split(":")[1]) : 0);
+const hourLabel = (h: number) => `${h > 12 ? h - 12 : h} ${h >= 12 ? "pm" : "am"}`;
 const fmt = (t?: string) => {
   if (!t) return "";
   const [h, m] = t.split(":").map(Number);
@@ -59,12 +61,16 @@ export function ScheduleTab(props: { studentId: string; state: StudentState; toa
     }
   }
 
-  const blocks = result.chosen.flatMap((c) => {
+  const blocks = result.chosen.flatMap((c, ci) => {
     const secs: [Section, boolean][] = [[c.section, false], ...(c.lab ? [[c.lab, true] as [Section, boolean]] : [])];
     return secs.flatMap(([s, lab]) =>
-      days(s.days).map((d) => ({ d, s, lab, code: c.code })),
+      days(s.days).map((d) => ({ d, s, lab, code: c.code, color: COLORS[ci % COLORS.length] })),
     );
   });
+  // Grid runs 8 am to at least 6 pm, further if a class ends later
+  const latest = Math.max(18 * 60, ...blocks.map((b) => toMin(b.s.end)));
+  const END = Math.ceil(latest / 60) * 60;
+  const HOURS = (END - START) / 60;
 
   return (
     <>
@@ -99,26 +105,26 @@ export function ScheduleTab(props: { studentId: string; state: StudentState; toa
         <div style={{ minWidth: 0 }}>
           <div className="scroll">
             <div className="week">
-              <div className="hd" />
+              <div className="hd corner" />
               {DAY_NAMES.map((d) => <div key={d} className="hd">{d}</div>)}
               <div className="hours" style={{ height: (END - START) * PX }}>
-                {Array.from({ length: (END - START) / 60 }, (_, i) => (
-                  <div key={i} className="hr" style={{ top: i * 60 * PX }}>{fmt(`${8 + i}:00`)}</div>
+                {Array.from({ length: HOURS }, (_, i) => (
+                  <div key={i} className="hr-lab" style={{ top: i * 60 * PX }}>{hourLabel(8 + i)}</div>
                 ))}
               </div>
               {DAYS.map((d) => (
                 <div key={d} className="col" style={{ height: (END - START) * PX }}>
-                  {Array.from({ length: (END - START) / 60 }, (_, i) => <div key={i} className="hr" style={{ top: i * 60 * PX }} />)}
+                  {Array.from({ length: HOURS * 2 }, (_, i) => <div key={i} className={`hr${i % 2 ? " half" : ""}`} style={{ top: i * 30 * PX }} />)}
                   {blocks.filter((b) => b.d === d).map((b, i) => (
                     <div
                       key={i}
-                      className={`blk${b.s.status !== "Open" ? " closed" : ""}${b.s.session && b.s.session !== "1" ? " half" : ""}`}
-                      style={{ top: (toMin(b.s.start) - START) * PX, height: (toMin(b.s.end) - toMin(b.s.start)) * PX }}
-                      title={`${b.code} ${b.s.section}`}
+                      className={`blk ${b.color}${b.s.status !== "Open" ? " closed" : ""}${b.s.session && b.s.session !== "1" ? " half" : ""}`}
+                      style={{ top: (toMin(b.s.start) - START) * PX + 1, height: (toMin(b.s.end) - toMin(b.s.start)) * PX - 2 }}
+                      title={`${b.code} ${b.s.section} · ${fmt(b.s.start)}–${fmt(b.s.end)}${b.s.status !== "Open" ? ` · ${b.s.status}` : ""}`}
                     >
-                      <b>{b.code}{b.lab ? " lab" : ""}</b>
-                      {fmt(b.s.start)}–{fmt(b.s.end)}
-                      {b.s.session && b.s.session !== "1" ? ` · ${b.s.session === "8W1" ? "1st" : "2nd"} 8 wks` : ""}
+                      <b>{b.code}</b>
+                      <span>{b.lab ? "LAB" : b.s.component ?? "LEC"}{b.s.status !== "Open" ? ` · ${b.s.status}` : ""}</span>
+                      <small>{fmt(b.s.start)}–{fmt(b.s.end)}{b.s.session && b.s.session !== "1" ? ` · ${b.s.session === "8W1" ? "1st" : "2nd"} 8 wks` : ""}</small>
                     </div>
                   ))}
                 </div>

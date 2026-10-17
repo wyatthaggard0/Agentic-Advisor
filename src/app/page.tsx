@@ -99,6 +99,16 @@ export default function Home() {
             programOptions={programOptions}
             setPrograms={(programs) => update((s) => ({ ...s, programs }))}
             onSchedule={() => setTab("schedule")}
+            onCoreSwap={(from, to) =>
+              update((s) => {
+                const cur = s.student.coreChoices ?? { prefer: [], avoid: [] };
+                const coreChoices =
+                  from && to
+                    ? { prefer: [...cur.prefer.filter((c) => c !== from && c !== to), to], avoid: [...cur.avoid.filter((c) => c !== from && c !== to), from] }
+                    : undefined;
+                return { ...s, student: { ...s.student, coreChoices } };
+              })
+            }
             toast={toast}
           />
         ) : (

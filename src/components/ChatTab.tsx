@@ -271,19 +271,6 @@ export function ChatTab(props: {
           <div className="row"><span>Courses on record</span><span>{s.completed.length} done · {s.inProgress.length} in progress</span></div>
           {s.survey?.interests?.length ? <div className="row"><span>Interests</span><span>{s.survey.interests.join(", ")}</span></div> : null}
         </div>
-        <div>
-          <h4>Try asking</h4>
-          <div className="chips" style={{ flexDirection: "column", alignItems: "flex-start" }}>
-            {(s.programs.includes("BBA-UNDECIDED")
-              ? ["Am I on the right track?", "I'm not sure what career I want", "What if I lean toward Finance?"]
-              : ["Am I on track to graduate?", "How does FinTech fit into my timeline?", "What needs advisor sign-off?"]
-            ).map((c) => (
-              <button key={c} className="linkbtn" onClick={() => send(c)} disabled={busy}>
-                {c}
-              </button>
-            ))}
-          </div>
-        </div>
         <p className="modebadge">Answers come from the planning engine and TCU data files; Claude explains them.</p>
       </aside>
 
