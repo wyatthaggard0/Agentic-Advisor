@@ -11,8 +11,9 @@ import path from "node:path";
 type Ref = { code: string; minGrade?: string; concurrentOk?: boolean };
 const raw = <T>(f: string): T => JSON.parse(fs.readFileSync(path.join("data", f), "utf8"));
 
-const courses = new Map<string, { credits: number | null; level: number; prereqs: Ref[][]; coreqs: string[] }>();
-for (const c of raw<{ courses: { code: string; credits: number | null; level: number; prereqs: Ref[][]; coreqs: string[] }[] }>("courses.json").courses) courses.set(c.code, c);
+type RawCourse = { credits: number | null; level: number; prereqs: Ref[][]; coreqs: string[]; core?: string[] };
+const courses = new Map<string, RawCourse>();
+for (const c of raw<{ courses: (RawCourse & { code: string })[] }>("courses.json").courses) courses.set(c.code, c);
 const overrides = raw<{ overrides: Record<string, { prereqs?: Ref[][]; coreqs?: string[]; credits?: number | null }> }>("prereq_overrides.json").overrides;
 for (const [code, o] of Object.entries(overrides)) {
   const c = courses.get(code);
@@ -36,7 +37,7 @@ const seasonIdx = (t: string) => {
 
 interface SavedPlan {
   student: { id: string; completed: { code: string; term: string; grade?: string; credits?: number; countsToward?: string }[]; inProgress: { code: string; countsToward?: string; credits?: number }[]; otherHours?: { hours: number; upper?: number }; satisfiedSlots?: Record<string, number> };
-  plan: { cohort: string; programs: string[]; gradTerm: string; targetGradTerm: string; terms: { term: string; status: string; hours: number; lines: { code: string; slot: boolean; credits: number; requirementId: string; upper?: boolean }[] }[] };
+  plan: { cohort: string; programs: string[]; gradTerm: string; targetGradTerm: string; coreAssignments?: { slot: string; code?: string; source: string }[]; terms: { term: string; status: string; hours: number; lines: { code: string; slot: boolean; credits: number; requirementId: string; upper?: boolean }[] }[] };
 }
 
 function check(saved: SavedPlan): string[] {
@@ -65,6 +66,12 @@ function check(saved: SavedPlan): string[] {
         [...student.completed, ...student.inProgress].filter((c) => c.countsToward === id).reduce((n, c) => n + (c.credits ?? credit(c.code)), 0);
       if (have + 0.001 < (r.hours ?? 0)) errors.push(`Requirement ${id}: ${have}/${r.hours} hours`);
     }
+  }
+  // TCU Core: every credited course must carry that Core tag in the raw data and be on the record or in the plan
+  for (const a of plan.coreAssignments ?? []) {
+    if (!a.code) continue;
+    if (!(courses.get(a.code)?.core ?? []).includes(a.slot)) errors.push(`${a.code} credited to Core ${a.slot} but courses.json doesn't tag it ${a.slot}`);
+    if (!at.has(a.code) && !student.inProgress.some((c) => c.code === a.code)) errors.push(`${a.code} credited to Core ${a.slot} but isn't completed or planned`);
   }
   // Hours
   const done = student.completed.reduce((n, c) => n + (c.credits ?? credit(c.code)), 0) + (student.otherHours?.hours ?? 0);

@@ -196,7 +196,7 @@ export function runTool(ctx: ToolContext, name: string, input: Record<string, un
       const next = [...ctx.programs.filter((p) => !remove.includes(p)), ...add.filter((p) => !ctx.programs.includes(p))];
       const a = buildPlan(ds, student, { programs: ctx.programs });
       const b = buildPlan(ds, student, { programs: next });
-      const cmp = comparePlans(a, b, ctx.programs.join(" + "), next.join(" + "));
+      const cmp = comparePlans(a, b, ctx.programs.join(" + "), next.join(" + "), ds.programs.cost);
       return {
         comparison: cmp,
         whatIfPrograms: next,
@@ -265,7 +265,7 @@ export function runTool(ctx: ToolContext, name: string, input: Record<string, un
       });
       // For pathways the planner models, show the real effect on this student's plan
       const basePlan = buildPlan(ds, student, { programs: ctx.programs });
-      for (const item of [...(recs.doubleMajors ?? []), ...(recs.certificates ?? [])]) {
+      for (const item of [...(recs.doubleMajors ?? []), ...(recs.minors ?? []), ...(recs.certificates ?? [])]) {
         const ids = item.programIds ?? [];
         if (!ids.length || !ids.every((id) => ds.programs.programs[id])) continue;
         const next =
@@ -275,9 +275,15 @@ export function runTool(ctx: ToolContext, name: string, input: Record<string, un
         const plan = buildPlan(ds, student, { programs: next });
         if (plan.blocked.length) continue;
         const dh = plan.totals.hours - basePlan.totals.hours;
-        const grad = plan.gradTerm === basePlan.gradTerm ? `graduation stays ${plan.gradTerm}` : `graduation moves to ${plan.gradTerm}`;
+        const left = plan.unplaced.reduce((n, u) => n + u.credits, 0);
+        const grad = plan.unplaced.length
+          ? `doesn't fit by ${plan.targetGradTerm} (${left} hours left over; ask your advisor about summer or an overload)`
+          : plan.gradTerm === basePlan.gradTerm
+            ? `graduation stays ${plan.gradTerm}`
+            : `graduation moves to ${plan.gradTerm}`;
         const summer = plan.terms.some((t) => t.term.startsWith("Summer")) && !basePlan.terms.some((t) => t.term.startsWith("Summer"));
-        item.impact = `In your plan: ${grad}, ${dh === 0 ? "same total hours" : `${dh > 0 ? "+" : ""}${dh} hours`}${summer ? ", uses a summer term" : ""}`;
+        const extraCost = comparePlans(basePlan, plan, "", "", ds.programs.cost).cost;
+        item.impact = `In your plan: ${grad}, ${dh === 0 ? "same total hours" : `${dh > 0 ? "+" : ""}${dh} hours`}${summer ? ", uses a summer term" : ""}${extraCost && extraCost.studentCost > 0 ? `, about $${extraCost.studentCost.toLocaleString("en-US")} more` : ""}`;
       }
       if (!ctx.actions.some((a) => a.type === "recommendations")) ctx.actions.push({ type: "recommendations", data: recs });
       return recs;

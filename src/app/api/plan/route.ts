@@ -16,7 +16,7 @@ export async function POST(req: Request) {
     if (base.join("|") !== programs.join("|")) {
       const basePlan = buildPlan(ds, student, { programs: base });
       const name = (ids: string[]) => ids.map((p) => ds.programs.programs[p]?.name ?? p).join(" + ");
-      comparison = comparePlans(basePlan, plan, name(base), name(programs));
+      comparison = comparePlans(basePlan, plan, name(base), name(programs), ds.programs.cost);
     }
     return json({ plan, comparison });
   });

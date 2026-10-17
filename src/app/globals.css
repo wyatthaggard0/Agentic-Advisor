@@ -167,6 +167,13 @@ a { color: var(--accent); }
 .fact b { font: 900 22px var(--font-ui); color: var(--head); }
 .fact b.risk { color: var(--err); }
 .controls { display: flex; flex-wrap: wrap; gap: 10px 16px; align-items: center; justify-content: space-between; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 12px 0; margin-bottom: 18px; }
+.core-list { display: grid; gap: 4px; font-size: 12.5px; }
+.core-row { display: grid; grid-template-columns: 42px 1fr; gap: 6px; align-items: baseline; }
+.core-code { font: 700 11px var(--font-mono); color: var(--accent); background: var(--accent-soft); text-align: center; padding: 1px 0; }
+.core-row small { color: var(--muted); }
+.core-row.open .core-code { background: var(--err-soft); color: var(--err); }
+.prog-groups { display: grid; gap: 8px; min-width: 0; }
+.progs .lab { min-width: 92px; }
 .progs { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
 .progs .lab { font-size: 10.5px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-right: 4px; }
 .prog { border: 2px solid var(--accent); color: var(--accent); background: var(--surface); padding: 5px 10px; font-size: 12px; font-weight: 700; }

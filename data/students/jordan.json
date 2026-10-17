@@ -1,42 +1,150 @@
 {
   "id": "jordan",
   "name": "Jordan Kim",
-  "tag": "Junior · Finance + BIS",
+  "tag": "Junior \u00b7 Finance + BIS",
   "sample": true,
   "startTerm": "Fall 2024",
   "currentTerm": "Fall 2026",
   "targetGradTerm": "Spring 2028",
-  "programs": ["BBA-FINA", "BBA-BIS"],
+  "programs": [
+    "BBA-FINA",
+    "BBA-BIS"
+  ],
   "declared": true,
   "completed": [
-    { "code": "MATH 10283", "grade": "B", "term": "Summer 2024", "transfer": { "from": "Tarrant County College", "verified": false, "note": "Not found in the equivalency data loaded" } },
-    { "code": "ENGL 10803", "grade": "A-", "term": "Fall 2024" },
-    { "code": "ECON 10223", "grade": "B+", "term": "Fall 2024" },
-    { "code": "INSC 20153", "grade": "B", "term": "Spring 2025" },
-    { "code": "ECON 10233", "grade": "B", "term": "Spring 2025" },
-    { "code": "ENTR 20263", "grade": "A", "term": "Spring 2025" },
-    { "code": "ACCT 20353", "grade": "B", "term": "Fall 2025" },
-    { "code": "INSC 20263", "grade": "A-", "term": "Fall 2025" }
+    {
+      "code": "MATH 10283",
+      "grade": "B",
+      "term": "Summer 2024",
+      "transfer": {
+        "from": "Tarrant County College",
+        "verified": false,
+        "note": "Not found in the equivalency data loaded"
+      }
+    },
+    {
+      "code": "ENGL 10803",
+      "grade": "A-",
+      "term": "Fall 2024"
+    },
+    {
+      "code": "ECON 10223",
+      "grade": "B+",
+      "term": "Fall 2024"
+    },
+    {
+      "code": "BUSI 10153",
+      "grade": "A",
+      "term": "Fall 2024",
+      "credits": 3
+    },
+    {
+      "code": "BUSI 10151",
+      "grade": "P",
+      "term": "Fall 2024",
+      "credits": 1
+    },
+    {
+      "code": "INSC 20153",
+      "grade": "B",
+      "term": "Spring 2025"
+    },
+    {
+      "code": "ECON 10233",
+      "grade": "B",
+      "term": "Spring 2025"
+    },
+    {
+      "code": "ENGL 20803",
+      "grade": "A-",
+      "term": "Spring 2025"
+    },
+    {
+      "code": "ENTR 20153",
+      "grade": "A",
+      "term": "Spring 2025",
+      "credits": 3
+    },
+    {
+      "code": "ACCT 20353",
+      "grade": "B",
+      "term": "Fall 2025"
+    },
+    {
+      "code": "INSC 20263",
+      "grade": "A-",
+      "term": "Fall 2025"
+    }
   ],
   "inProgress": [
-    { "code": "FINA 30153", "grade": "IP", "term": "Fall 2026" },
-    { "code": "MARK 30153", "grade": "IP", "term": "Fall 2026" },
-    { "code": "INSC 30313", "grade": "IP", "term": "Fall 2026" },
-    { "code": "INSC 30723", "grade": "IP", "term": "Fall 2026" },
-    { "code": "INSC 30801", "grade": "IP", "term": "Fall 2026" },
-    { "code": "MANA 30250", "grade": "IP", "term": "Fall 2026" }
+    {
+      "code": "FINA 30153",
+      "grade": "IP",
+      "term": "Fall 2026"
+    },
+    {
+      "code": "INSC 30313",
+      "grade": "IP",
+      "term": "Fall 2026"
+    },
+    {
+      "code": "INSC 30723",
+      "grade": "IP",
+      "term": "Fall 2026"
+    },
+    {
+      "code": "INSC 30823",
+      "grade": "IP",
+      "term": "Fall 2026"
+    },
+    {
+      "code": "INSC 30801",
+      "grade": "IP",
+      "term": "Fall 2026"
+    },
+    {
+      "code": "MANA 30153",
+      "grade": "IP",
+      "term": "Fall 2026"
+    }
   ],
-  "otherHours": { "hours": 36, "label": "TCU Core courses (from degree audit)", "upper": 0 },
-  "satisfiedSlots": {
-    "core-fine-arts": 3,
-    "core-humanities": 9,
-    "core-social": 6,
-    "core-historical": 3,
-    "core-religious": 3,
-    "core-natsci": 6,
-    "core-oral": 3,
-    "core-wco2": 3
+  "otherHours": {
+    "hours": 39,
+    "label": "TCU Core courses (from degree audit)",
+    "upper": 0
   },
-  "survey": { "interests": ["fintech", "data", "investing", "machine learning"], "careers": ["Fintech product", "Investment analysis"], "workload": "balanced" },
-  "preferences": { "earliestStart": "09:00", "fridaysFree": true, "noEvening": true, "pattern": "any", "mode": "In Person", "lunchGap": true, "fewerDays": false }
+  "satisfiedSlots": {
+    "HUM": 3,
+    "SSC": 1,
+    "NSC": 2,
+    "FAR": 1,
+    "OCO": 1,
+    "RT": 1,
+    "HT": 1,
+    "LT": 1,
+    "GA": 1,
+    "CSV": 1
+  },
+  "survey": {
+    "interests": [
+      "fintech",
+      "data",
+      "investing",
+      "machine learning"
+    ],
+    "careers": [
+      "Fintech product",
+      "Investment analysis"
+    ],
+    "workload": "balanced"
+  },
+  "preferences": {
+    "earliestStart": "09:00",
+    "fridaysFree": true,
+    "noEvening": true,
+    "pattern": "any",
+    "mode": "In Person",
+    "lunchGap": true,
+    "fewerDays": false
+  }
 }

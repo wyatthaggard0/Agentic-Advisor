@@ -1,5 +1,7 @@
 // Claude chat loop with tool use. Claude explains and asks; the engine decides placements.
 
+import fs from "node:fs";
+import path from "node:path";
 import Anthropic from "@anthropic-ai/sdk";
 import type { Dataset } from "../engine/load";
 import type { Student } from "../engine/types";
@@ -20,6 +22,15 @@ How you work:
 - When a message starts with "Survey answers:", the survey is already saved to the profile. Call career_recommendations and build_plan. The app shows the recommendations as a card with match bars right under your reply, so don't repeat every item. Write 2 short paragraphs: (1) the top one or two matches and why they fit this student's answers (for incoming, freshman and sophomore students: majors and career areas; for juniors and seniors: job titles, the internship timing, and the best-fit companies, which are examples to research, not openings); (2) what changed in the plan from their answers (semester load, study abroad term, graduation target, Fridays), including any trade-off such as a later graduation date.
 - After a substantive answer, call suggest_replies with 2-3 short next questions, and call show_blueprint when the student should review the full plan.
 - Write plainly and briefly: short paragraphs, a few bullets when listing courses. Cite sources inline in the form [Source: ...] using the source strings tools return. No headings.`;
+
+/** Neeley rules reference (from the planning pack), sent as a cached system block for explanations. */
+function rulesReference(): string {
+  try {
+    return fs.readFileSync(path.join(process.cwd(), "data", "neeley_rules.md"), "utf8");
+  } catch {
+    return "";
+  }
+}
 
 export interface ChatTurn {
   role: "user" | "assistant";
@@ -42,6 +53,7 @@ export async function chat(ds: Dataset, student: Student, programs: string[], hi
   if (process.env.BLUEPRINT_OFFLINE === "1") return offlineReply(ctx, history, "Offline demo mode is on (BLUEPRINT_OFFLINE=1).");
 
   const client = new Anthropic();
+  const RULES = rulesReference();
   const messages: Anthropic.Beta.BetaMessageParam[] = history.map((t) => ({ role: t.role, content: t.content }));
   const context = `Student context (sample data for the demo): ${student.name}, ${student.programs.join(" + ")}, current term ${student.currentTerm}, target ${student.targetGradTerm}. Program ids available: ${Object.keys(ds.programs.programs).join(", ")}.`;
 
@@ -54,7 +66,12 @@ export async function chat(ds: Dataset, student: Student, programs: string[], hi
         fallbacks: "default",
         output_config: { effort: "medium" },
         system: [
-          { type: "text", text: SYSTEM, cache_control: { type: "ephemeral" } },
+          { type: "text", text: SYSTEM },
+          ...(RULES
+            ? [{ type: "text" as const, text: `Reference: Neeley planning rules (use for explanations only; the planning engine's tool results decide placements and win if they differ).
+
+${RULES}`, cache_control: { type: "ephemeral" as const } }]
+            : []),
           { type: "text", text: context },
         ],
         tools: TOOL_DEFS,

@@ -723,7 +723,11 @@
         "Accounting"
       ],
       "detail": "The Finance major already requires ACCT 30153 and ACCT 30253, so the accounting side starts with a head start.",
-      "source": "TCU 2026-27 catalog: Finance, BBA"
+      "source": "TCU 2026-27 catalog: Finance, BBA",
+      "programIds": [
+        "BBA-FINA",
+        "BBA-ACCT"
+      ]
     },
     {
       "id": "dm-fina-bis",
@@ -773,7 +777,11 @@
         "Supply Chain Management"
       ],
       "detail": "Both majors sit in the Information Systems and Supply Chain Management department.",
-      "source": "TCU 2025-26 catalog: BISA-BBA department"
+      "source": "TCU 2025-26 catalog: BISA-BBA department",
+      "programIds": [
+        "BBA-BIS",
+        "BBA-SVCM"
+      ]
     },
     {
       "id": "dm-mark-entr",
@@ -796,7 +804,11 @@
         "Entrepreneurial Management"
       ],
       "detail": "Pairs brand and customer skills with launching and growing ventures.",
-      "source": "Neeley majors list"
+      "source": "Neeley majors list",
+      "programIds": [
+        "BBA-MARK",
+        "BBA-ENTR"
+      ]
     },
     {
       "id": "dm-mana-mark",
@@ -820,7 +832,11 @@
         "Marketing"
       ],
       "detail": "A common route into sales leadership, brand and people-management roles.",
-      "source": "Neeley majors list"
+      "source": "Neeley majors list",
+      "programIds": [
+        "BBA-MANA",
+        "BBA-MARK"
+      ]
     },
     {
       "id": "min-acct",
@@ -839,7 +855,10 @@
       ],
       "field": "Accounting",
       "detail": "For students in other business majors. Minors need a 2.50 GPA in their courses.",
-      "source": "TCU 2026-27 catalog: Neeley minors"
+      "source": "TCU 2026-27 catalog: Neeley minors",
+      "programIds": [
+        "MIN-ACCT"
+      ]
     },
     {
       "id": "min-fina",
@@ -858,7 +877,10 @@
       ],
       "field": "Finance",
       "detail": "For students in other business majors who want corporate finance and investments.",
-      "source": "TCU 2026-27 catalog: Neeley minors"
+      "source": "TCU 2026-27 catalog: Neeley minors",
+      "programIds": [
+        "MIN-FINA"
+      ]
     },
     {
       "id": "min-entr",
@@ -877,7 +899,10 @@
       ],
       "field": "Entrepreneurial Management",
       "detail": "Startup and innovation coursework that fits alongside any major.",
-      "source": "TCU catalog course restrictions (ACCT 20653)"
+      "source": "TCU catalog course restrictions (ACCT 20653)",
+      "programIds": [
+        "MIN-EI"
+      ]
     },
     {
       "id": "min-ldr",
@@ -895,7 +920,10 @@
         "senior"
       ],
       "detail": "No more than 6 hours may be shared with your major.",
-      "source": "Team rules: Leadership minor shared-hour limit"
+      "source": "Team rules: Leadership minor shared-hour limit",
+      "programIds": [
+        "MIN-LEAD"
+      ]
     },
     {
       "id": "min-gbus",
@@ -915,7 +943,10 @@
       ],
       "nonBusinessOnly": true,
       "detail": "For students outside Neeley who want a business foundation.",
-      "source": "TCU catalog course restrictions (INSC 30653)"
+      "source": "TCU catalog course restrictions (INSC 30653)",
+      "programIds": [
+        "MIN-GENBUS"
+      ]
     },
     {
       "id": "cert-fintech",
@@ -958,7 +989,10 @@
         "senior"
       ],
       "detail": "Neeley's sales credential for students headed into sales, business development and client roles. Course details to confirm with the department.",
-      "source": "TCU 2026-27 catalog: Special Programs"
+      "source": "TCU 2026-27 catalog: Special Programs",
+      "programIds": [
+        "CERT-SALES"
+      ]
     },
     {
       "id": "cert-sust",
@@ -976,7 +1010,10 @@
         "incoming"
       ],
       "detail": "Its courses (e.g. INSC 30513, 30523) require junior or senior standing and certificate enrollment.",
-      "source": "TCU catalog: INSC 30513 / 30523"
+      "source": "TCU catalog: INSC 30513 / 30523",
+      "programIds": [
+        "CERT-SUSTAIN"
+      ]
     },
     {
       "id": "prog-fellows",
@@ -1050,6 +1087,50 @@
       "detail": "Manage a real portfolio for two senior semesters (FINA 40183/40193). FINA 30213 is required; you can apply while taking it.",
       "when": "Apply in junior year",
       "source": "neeley.tcu.edu: Educational Investment Fund"
+    },
+    {
+      "id": "min-bis",
+      "kind": "minor",
+      "name": "Business Information Systems minor",
+      "areas": [
+        "technology",
+        "data"
+      ],
+      "years": [
+        "incoming",
+        "freshman",
+        "sophomore",
+        "junior",
+        "senior"
+      ],
+      "field": "Business Information Systems",
+      "programIds": [
+        "MIN-BIS"
+      ],
+      "detail": "Data, systems and analytics coursework for business majors outside BIS.",
+      "source": "Neeley planning pack: neeley_programs.json"
+    },
+    {
+      "id": "min-global",
+      "kind": "minor",
+      "name": "Global Business minor",
+      "areas": [
+        "marketing",
+        "consulting",
+        "leadership"
+      ],
+      "years": [
+        "incoming",
+        "freshman",
+        "sophomore",
+        "junior",
+        "senior"
+      ],
+      "programIds": [
+        "MIN-GLOBAL"
+      ],
+      "detail": "For Neeley majors; pairs well with study abroad and language study.",
+      "source": "Neeley planning pack: neeley_programs.json"
     }
   ],
   "doubleMajorRule": {

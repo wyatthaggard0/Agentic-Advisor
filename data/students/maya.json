@@ -13,8 +13,8 @@
     { "code": "ENGL 10803", "grade": "IP", "term": "Fall 2026" },
     { "code": "ECON 10223", "grade": "IP", "term": "Fall 2026" },
     { "code": "MATH 10283", "grade": "IP", "term": "Fall 2026" },
-    { "code": "RELI 10023", "grade": "IP", "term": "Fall 2026", "countsToward": "core-religious" },
-    { "code": "HIST 10103", "grade": "IP", "term": "Fall 2026", "countsToward": "core-historical" }
+    { "code": "RELI 10023", "grade": "IP", "term": "Fall 2026" },
+    { "code": "HIST 10603", "grade": "IP", "term": "Fall 2026" }
   ],
   "survey": { "interests": [], "workload": "balanced" },
   "preferences": { "earliestStart": "09:00", "fridaysFree": false, "noEvening": true, "pattern": "any", "mode": "In Person", "lunchGap": true, "fewerDays": false }

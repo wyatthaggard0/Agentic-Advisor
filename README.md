@@ -36,6 +36,7 @@ Without the Supabase variables, the app runs in local mode from `data/students/*
 
 | Command | What it does |
 |---|---|
+| `npm run data:pack` | Imports `neeley-planning-pack/` (courses, programs, rules) into `data/`. Re-run after the team edits the pack |
 | `npm run data:courses` | Rebuilds `data/courses.json` from `courses-report*.csv`, parsing prerequisites out of the descriptions |
 | `npm test` | Prints the demo plans and their checks |
 | `npm run check` | Re-verifies the demo plans from the **raw** data files without using engine code. Exits 1 on any failure. `npm run check -- plan.json` checks an exported plan |

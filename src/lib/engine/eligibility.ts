@@ -27,6 +27,11 @@ export function offering(ds: Dataset, code: string, term: string): Offer {
   const posted = ds.sectionsMeta.terms.filter(covered);
   const src = `${ds.sectionsMeta.source}${sample}`;
 
+  // A season rule from the Neeley checklists (e.g. FINA 40623 fall only) overrides schedule evidence
+  const course = ds.courses.get(code);
+  if (course?.seasons?.length && !course.seasons.includes(seasonOf(term))) {
+    return { status: "not-offered", note: `${course.seasonNote ?? `${course.seasons.join("/")} only`}`, source: "Neeley checklists (season rule)" };
+  }
   const thisTerm = posted.find((t) => t.term === term);
   const secs = ds.sections.filter((s) => s.code === code);
   if (thisTerm) {
@@ -100,6 +105,20 @@ function refSatisfied(ref: PrereqRef, term: string, st: PlanState): "yes" | "no"
   return meetsGrade(grade, ref.minGrade) ? "yes" : "no";
 }
 
+/** Semester index from the student's first term: 0 = first fall (or first spring for a spring start), counting fall/spring only. */
+export function semesterIndex(startTerm: string, term: string): number {
+  let first = startTerm;
+  if (first.startsWith("Summer")) first = `Fall ${first.split(" ")[1]}`;
+  let i = 0;
+  let cur = first;
+  while (compareTerms(cur, term) < 0) {
+    cur = cur.startsWith("Fall") ? `Spring ${Number(cur.split(" ")[1]) + 1}` : `Fall ${cur.split(" ")[1]}`;
+    i++;
+    if (i > 40) break;
+  }
+  return i;
+}
+
 export function standingHours(ds: Dataset, level: string): number {
   const s = ds.programs.standing;
   return level === "senior" ? s.senior : level === "junior" ? s.junior : level === "sophomore" ? s.sophomore : 0;
@@ -130,6 +149,15 @@ export function checkEligibility(
     } else if (best === "pending") {
       res.pendingGrade.push(group.map((r) => r.code).join(" or "));
     }
+  }
+  // Earliest semester from TCU's four-year plans (0 = first fall): never earlier than the hard rule
+  const idx = semesterIndex(student.startTerm, term);
+  const bud = ds.programs.rules.businessUpperDefault;
+  const hardEarliest =
+    course.earliest ?? (bud && course.level >= 3 && course.level <= 4 && bud.prefixes.includes(course.subject) ? bud.index : undefined);
+  if (hardEarliest !== undefined && idx < hardEarliest) {
+    res.ok = false;
+    res.missing.push(`semester ${hardEarliest + 1} or later (TCU four-year plan; this is semester ${idx + 1})`);
   }
   // Earliest-semester rules from programs.json (e.g. capstones in the final year)
   const earliest = ds.programs.rules.earliest.filter((r) => r.course === course.code);
@@ -173,7 +201,9 @@ export function checkEligibility(
         break;
       }
       case "program": {
+        // "Program admission required" is met by any selected program that uses the course
         const inProgram =
+          (cond.value === "admission" && (course.usedBy ?? []).some((p) => ctx.programs.includes(p))) ||
           (cond.value === "certificate" && ctx.programs.some((p) => p.startsWith("CERT-"))) ||
           ctx.programs.includes(cond.value ?? "");
         if (!inProgram) {

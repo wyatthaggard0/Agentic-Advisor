@@ -35,8 +35,22 @@ export interface Course {
   permissionAlt?: boolean;
   exclusions?: string[];
   prereqText?: string;
-  parseConfidence: "high" | "low" | "override";
+  /** verified = checked by hand against TCU's text (planning pack); parsed/high/low = read automatically */
+  parseConfidence: "verified" | "parsed" | "high" | "low" | "override";
   source: string;
+  /** TCU Core categories this course carries (MTH, NSC, HUM, SSC, WEM, ...) */
+  core?: string[];
+  /** Season rule from Neeley checklists, e.g. ["Fall"] for fall-only courses */
+  seasons?: Season[];
+  seasonNote?: string;
+  /** Earliest semester index from TCU's four-year plans (0 = first fall). Hard: never earlier. */
+  earliest?: number;
+  /** Preferred earliest semester (soft): placed earlier only when nothing else fits */
+  preferredEarliest?: number;
+  /** Known data problem to route to an advisor */
+  advisorNote?: string;
+  /** Neeley program ids that require or list this course */
+  usedBy?: string[];
 }
 
 export interface CoursesFile {
@@ -89,8 +103,11 @@ export interface SectionsFile {
 export interface Requirement {
   id: string;
   name: string;
-  /** all: every course; choose: count courses or hours from the list; slot: placeholder of hours (e.g. a Core category). */
-  type: "all" | "choose" | "slot";
+  /**
+   * all: every course; choose: count courses or hours from the list; slot: placeholder of hours;
+   * core: TCU Core categories filled by courses' Core tags (see coreSlots).
+   */
+  type: "all" | "choose" | "slot" | "core";
   courses?: string[];
   count?: number;
   hours?: number;
@@ -99,6 +116,18 @@ export interface Requirement {
   source: string;
   note?: string;
   verified?: boolean;
+  /** For type "core": the categories and how many courses each needs */
+  coreSlots?: CoreSlot[];
+  coreVersion?: "new" | "old";
+  rules?: string[];
+}
+
+export interface CoreSlot {
+  code: string; // MTH, NSC, HUM, ...
+  count: number;
+  /** Writing Emphasis rides on top of other courses rather than needing its own */
+  overlay?: boolean;
+  upperOnly?: boolean;
 }
 
 export interface Program {
@@ -108,10 +137,23 @@ export interface Program {
   field?: string;
   requirements: string[];
   hours?: number;
+  hoursPublished?: string;
   declare?: { text: string; minHours?: number; courses?: string[] };
   source: string;
   verified?: boolean;
   note?: string;
+  /** Programs this one can't be combined with (e.g. Finance minor with the Finance major) */
+  blockedWith?: string[];
+  /** Not open to BBA students at all (e.g. General Business minor) */
+  blockedForBusiness?: string;
+  /** Max hours this program may share with any other program */
+  maxShared?: number;
+  application?: boolean;
+  advisorFlags?: string[];
+  rules?: string[];
+  tags?: string[];
+  /** Hidden from what-if toggles (graduate-only or requirements unpublished) */
+  selectable?: boolean;
 }
 
 export interface Cohort {
@@ -121,6 +163,7 @@ export interface Cohort {
   startsFrom: string;
   totalHours: number;
   upperDivHours: number;
+  tcuHours?: number;
   requirements: string[]; // degree-wide requirement ids (Core, business core, ...)
   source: string;
 }
@@ -143,7 +186,7 @@ export interface Contradiction {
 export interface ProgramsFile {
   meta: { source: string; catalogYear: string; verified: boolean; note?: string };
   standing: { sophomore: number; junior: number; senior: number; source: string };
-  load: { max: number; fullTime: number; source: string };
+  load: { max: number; fullTime: number; summerMax?: number; source: string };
   cohorts: Cohort[];
   requirements: Record<string, Requirement>;
   programs: Record<string, Program>;
@@ -152,10 +195,17 @@ export interface ProgramsFile {
     sharedHours?: { between: string[]; maxShared: number; source: string }[];
     sameFieldMinorBlocked?: boolean;
     earliest: EarliestRule[];
+    /** Six courses that must be done (plus 24 hours) before "declared business major" courses */
+    declareCourses?: string[];
+    declareMinHours?: number;
+    /** Any 30000+ course in these prefixes waits until this semester index unless the course says otherwise */
+    businessUpperDefault?: { index: number; prefixes: string[]; source: string };
     source: string;
   };
   contradictions: Contradiction[];
-  opportunities: { id: string; name: string; text: string; source: string }[];
+  opportunities: { id: string; name: string; text: string; source: string; when?: string; tags?: string[]; planEffect?: string }[];
+  /** Cost of an extra semester, for trade-off comparisons */
+  cost?: { tuitionPerSemester: number; housingFoodPerSemester: number; year: string; source: string; note: string };
 }
 
 export interface CompletedCourse {
@@ -181,7 +231,7 @@ export interface Student {
   inProgress: CompletedCourse[];
   /** Hours earned outside the course list (AP, general transfer) counted toward totals only. */
   otherHours?: { hours: number; label: string; upper?: number };
-  /** Core / elective requirement slots already satisfied, by requirement id. */
+  /** Requirement slots already satisfied per the degree audit: TCU Core category codes (e.g. HUM: 3 courses) or slot requirement ids (hours). */
   satisfiedSlots?: Record<string, number>;
   holds?: { term: string; type: "study-abroad" | "neeley-fellows" | "internship"; note: string }[];
   survey?: Survey;
@@ -277,4 +327,16 @@ export interface Plan {
   advisorItems: AdvisorItem[];
   contradictions: Contradiction[];
   dataNotes: string[];
+  /** How each TCU Core category is filled: by the audit, a completed/planned course, or still open */
+  coreAssignments?: CoreAssignment[];
+  coreLabel?: string;
+}
+
+export interface CoreAssignment {
+  slot: string; // category code
+  slotName: string;
+  code?: string;
+  title?: string;
+  source: "audit" | "completed" | "in-progress" | "planned" | "open";
+  term?: string;
 }

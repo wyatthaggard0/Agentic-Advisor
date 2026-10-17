@@ -150,13 +150,21 @@ export function BlueprintTab(props: {
       </div>
 
       <div className="controls">
-        <div className="progs">
-          <span className="lab">Programs</span>
-          {props.programOptions.map((p) => (
-            <button key={p.id} className="prog" aria-pressed={state.programs.includes(p.id)} onClick={() => toggle(p.id)}>
-              {p.name}
-            </button>
-          ))}
+        <div className="prog-groups">
+          {(["major", "minor", "certificate"] as const).map((kind) => {
+            const opts = props.programOptions.filter((p) => p.kind === kind);
+            if (!opts.length) return null;
+            return (
+              <div className="progs" key={kind}>
+                <span className="lab">{kind === "major" ? "Majors" : kind === "minor" ? "Minors" : "Certificates"}</span>
+                {opts.map((p) => (
+                  <button key={p.id} className="prog" aria-pressed={state.programs.includes(p.id)} onClick={() => toggle(p.id)}>
+                    {p.name.replace(/ \(major not chosen\)$/, "")}
+                  </button>
+                ))}
+              </div>
+            );
+          })}
           {isWhatIf && (
             <button className="linkbtn" onClick={() => props.setPrograms(s.programs)}>
               Back to my programs
@@ -255,6 +263,24 @@ export function BlueprintTab(props: {
               </div>
             ))}
           </div>
+
+          {plan.coreAssignments?.length ? (
+            <div className="panel">
+              <h3><span>TCU Core</span><span>{plan.coreAssignments.filter((a) => a.source !== "open").length} of {plan.coreAssignments.length} filled</span></h3>
+              <div className="core-list">
+                {plan.coreAssignments.map((a, i) => (
+                  <div key={`${a.slot}-${i}`} className={`core-row ${a.source}`}>
+                    <span className="core-code">{a.slot}</span>
+                    <span>
+                      {a.code ? <b className="mono">{a.code}</b> : null} {a.title ?? (a.source === "audit" ? "From your degree audit" : a.source === "open" ? "Still open: talk to your advisor" : "")}
+                      <small> · {a.source === "planned" ? `planned ${a.term ?? ""}` : a.source === "in-progress" ? "in progress" : a.source}</small>
+                    </span>
+                  </div>
+                ))}
+              </div>
+              <small className="hint">{plan.coreLabel}. Suggested Core courses are examples; any approved course in the category works.</small>
+            </div>
+          ) : null}
 
           <div className="panel">
             <h3><span>Plan checks</span><span>{plan.checks.length - fails.length} of {plan.checks.length} pass</span></h3>

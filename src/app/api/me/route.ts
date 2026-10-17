@@ -9,7 +9,10 @@ export async function GET(req: Request) {
   return handle(async () => {
     const ds = loadData();
     const common = {
-      programs: Object.values(ds.programs.programs).map((p) => ({ id: p.id, name: p.name, kind: p.kind })),
+      // Only programs a BBA student can pick (graduate-only and unpublished ones are hidden)
+      programs: Object.values(ds.programs.programs)
+        .filter((p) => p.selectable !== false && !p.blockedForBusiness)
+        .map((p) => ({ id: p.id, name: p.name, kind: p.kind })),
       surveyOptions: { interests: interestOptions(), locations: Object.keys(loadCareers().locations) },
       dataNotes: ds.dataNotes,
       database: dbEnabled(),

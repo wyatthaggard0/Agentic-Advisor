@@ -14,7 +14,8 @@
     "db:migrate": "node scripts/db-migrate.mjs",
     "db:seed": "tsx scripts/db-seed.ts",
     "db:ping": "node scripts/db-ping.mjs",
-    "db:rls": "node scripts/rls-check.mjs"
+    "db:rls": "node scripts/rls-check.mjs",
+    "data:pack": "tsx scripts/import-pack.ts"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "0.131.0",

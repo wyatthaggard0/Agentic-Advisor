@@ -22,10 +22,11 @@ Prototype for the **Neeley AI Forward competition (Advanced Track)**, case "The 
 
 | File | Status | Notes |
 |---|---|---|
-| `courses.json` | Auto-parsed from `courses-report*.csv` (`npm run data:courses`) | The export has no titles or times. Prerequisites are an AND of OR-groups. The team's verified file can replace it |
-| `prereq_overrides.json` | Few entries | Always beats parsed data. The team's 34 pending corrections go here |
+| `courses.json` | **From `neeley-planning-pack/courses.csv`** (`npm run data:pack`) | Titles, prerequisites (AND of OR-groups; 151 Neeley courses hand-verified), same-term allowances, min grades, Core tags, season rules, earliest-semester rules, which programs use each course. `npm run data:courses` is the older fallback that parses the raw export |
+| `prereq_overrides.json` | Few entries | Always beats the course data. Add hand corrections here |
 | `sections.json` | **SAMPLE (invented)** | Replace with the TCU Class Search pull. Shape is in README.md. Every class time and fall/spring-only pattern in the demo comes from this file |
-| `programs.json` | **Provisional** | Compiled from the 2026-27 catalog and the 2025-26 PDF. Cohorts, requirements, programs, rules, contradictions, opportunities and titles |
+| `programs.json` | **From `neeley-planning-pack/neeley_programs.json`** (`npm run data:pack`) | Both rulebooks (old = started before summer 2025, new = summer 2025+), TCU Core slots and rules per version, all 7 majors + Real Estate concentration, minors, certificates, combination rules, declare-major courses, earliest-semester defaults, 21 known TCU data problems, opportunities, cost of an extra semester. Edit the pack and re-run the importer; don't hand-edit this file |
+| `neeley_rules.md` | Copy of the pack's `NEELEY_RULES.md` | Sent to Claude as cached reference text for explanations; the engine still decides |
 | `careers.json` | Team-curated | Interest areas mapped to industries, majors, roles and programs. Example employers by region. Recruiting timing |
 | `students/*.json` | Sample personas | Maya (incoming freshman, undecided) and Jordan (junior, Finance + BIS, considering FinTech) |
 
@@ -49,6 +50,22 @@ Parsing rules that matter:
 - **API routes** resolve the student from the session (`resolveStudent` in `src/lib/api.ts`). Students can't request another student's id. Without Supabase env vars, the app falls back to the JSON files.
 - **Commands:** `npm run db:migrate`, `npm run db:seed` (also resets the demo), `npm run db:rls`, `npm run db:ping`. The advisor's **Reset demo data** button reseeds without signing anyone out.
 - **Secrets** live in `.env.local` (gitignored) and, later, Vercel env vars. Never print `DATABASE_URL`; scripts only show its host.
+
+## Planning rules from the pack (engine)
+
+- **Rulebook** by start term: `cohorts` old/new set business groups, total and upper-division hours, and the Core version.
+- **TCU Core** (`src/lib/engine/core.ts`) credits the degree audit (`satisfiedSlots` counts per category code), then completed, in-progress and planned courses by their Core tags, then picks real courses for open categories:
+  - prefers double-dips and interest matches
+  - follows TCU's rules: at most 2 categories plus WEM, OCO/WCO alone, the prefix cap, and old-Core Heritage/diversity
+  - `plan.coreAssignments` shows what fills each category
+- **Placement** also checks:
+  - hard earliest-semester index (`course.earliest`, or the business 30000+ default)
+  - soft preferred semester
+  - season rules (`course.seasons`)
+  - "declared business major" only after the six declare courses and 24 hours
+  - program admission via `usedBy`
+- **Scheduling priority:** longest chain of dependents, then fewest remaining terms that offer the course (fall-only capstones first), then requirements before suggested Core picks.
+- **Comparisons** include the cost of extra semesters (`programs.json` `cost`, TCU 2026-27).
 
 ## Product surface
 
@@ -91,6 +108,7 @@ Parsing rules that matter:
 
 ```bash
 npm run dev                         # app on :3000
+npm run data:pack                   # import neeley-planning-pack into data/
 npm test                            # demo plans + checks
 npm run check                       # independent re-check from raw files (no engine code)
 npx tsx scripts/export-smoke.ts     # Excel export totals vs plan
@@ -109,6 +127,6 @@ Set `ANTHROPIC_API_KEY` for Claude (`claude-opus-5-5`), or `BLUEPRINT_OFFLINE=1`
 ## Open items
 
 - **Class Search pull** for `sections.json` (real times and offerings).
-- **Programs and overrides:** the team's verified `programs.json` and the 34 prerequisite overrides.
-- **Planner balance:** it currently pushes Maya's Core slots into later years. It should spread Core across years 1-2.
+- **Pack follow-ups:** AP credit and math placement questions in the survey (NEELEY_RULES §4), subjects to avoid for Core picks, Neeley Fellows hold on business core.
+- **Pick-lists:** the survey's "first semester at TCU" picks the rulebook for students without a record.
 - **Claude API key** on the demo machine.

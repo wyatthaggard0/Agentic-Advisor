@@ -37,6 +37,14 @@ export function validatePlan(ds: Dataset, student: Student, plan: Plan): CheckRe
       const need = r.count ?? Math.ceil((r.hours ?? 3) / 3);
       const have = (r.courses ?? []).filter((c) => termOf.has(c)).length;
       if (have < need) missing.push(`${r.name} (${have}/${need})`);
+    } else if (r.type === "core") {
+      // Each Core category must be covered by the audit, a course on the record or in the plan, or a planned slot
+      const assigned = plan.coreAssignments ?? [];
+      for (const slot of r.coreSlots ?? []) {
+        const got = assigned.filter((a) => a.slot === slot.code && a.source !== "open" && (!a.code || termOf.has(a.code))).length;
+        const waitsForMajor = slot.overlay && plan.programs.includes("BBA-UNDECIDED");
+        if (got < slot.count && !waitsForMajor) missing.push(`TCU Core ${slot.code} (${got}/${slot.count})`);
+      }
     } else {
       const have =
         slotLines.filter((l) => l.requirementId === id).reduce((n, l) => n + l.credits, 0) +

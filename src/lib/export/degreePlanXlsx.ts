@@ -126,56 +126,13 @@ export async function buildDegreePlanWorkbook(ds: Dataset, student: Student, pla
     return slotRows(reqId, "");
   };
 
-  // ---------- Group 1: TCU Core ----------
-  const g1: Section[] = [
-    {
-      title: "Essential Competencies",
-      fill: CORE_HDR,
-      rows: [
-        { cat: "WCO", status: courseStatus("ENGL 10803"), bold: true },
-        ...slotRows("core-wco2", "WCO"),
-        ...reqRows("bcore-math").map((r) => ({ ...r, cat: "MTH" })),
-        ...slotRows("core-oral", "OCO"),
-      ],
-    },
-    {
-      title: "Human Experiences and Endeavors",
-      fill: CORE_HDR,
-      rows: [
-        ...slotRows("core-humanities", "HUM"),
-        { cat: "SSC", status: courseStatus("ECON 10223") },
-        ...slotRows("core-social", "SSC"),
-        ...slotRows("core-natsci", "NSC"),
-        ...slotRows("core-fine-arts", "FAR"),
-      ],
-    },
-    {
-      title: "Heritage, Mission, Vision & Values",
-      fill: CORE_HDR,
-      rows: [
-        ...slotRows("core-religious", "RT"),
-        ...slotRows("core-historical", "HT"),
-        ...slotRows("core-literary", "LT"),
-        // Modeled as overlapping with other courses (catalog allows overlap); the advisor confirms
-        { cat: "CA***", status: { kind: "shared", credits: 3, label: "Overlap - confirm" } },
-        { cat: "GA***", status: { kind: "shared", credits: 3, label: "Overlap - confirm" } },
-        { cat: "CSV***", status: { kind: "shared", credits: 3, label: "Overlap - confirm" } },
-      ],
-    },
-  ];
-  for (const s of g1) s.hours = s.rows.filter((r) => r.status.kind !== "shared").reduce((n, r) => n + r.status.credits, 0);
-
-  // ---------- Group 2: lower division, business core, majors ----------
-  const bcoreUpper = P.requirements["bcore-upper"]?.courses ?? [];
-  const lowerCore = bcoreUpper.filter((c) => (ds.courses.get(c)?.level ?? 3) < 3);
-  const g2: Section[] = [
-    {
-      title: "LDR - Lower Division Requirements",
-      fill: LAVENDER,
-      rows: [...reqRows("bcore-lower", ["ENGL 10803", "ECON 10223"]), ...lowerCore.map((c) => ({ status: courseStatus(c), bold: true }))],
-    },
-    { title: "Upper Division B-Core", fill: LAVENDER, rows: reqRows("bcore-upper", lowerCore) },
-  ];
+  // ---------- Group 2: business requirements for the student's rulebook, then majors ----------
+  const cohortReqs = cohort.requirements.filter((id) => P.requirements[id]?.type === "all");
+  const g2: Section[] = cohortReqs.map((id) => ({
+    title: P.requirements[id].name.replace(/ \(pre-2025 rules\)$/, ""),
+    fill: LAVENDER,
+    rows: reqRows(id),
+  }));
   const g3: Section[] = [];
   for (const pid of plan.programs) {
     const prog = P.programs[pid];
@@ -185,6 +142,39 @@ export async function buildDegreePlanWorkbook(ds: Dataset, student: Student, pla
     if (prog.kind === "major") g2.push(section);
     else g3.push({ ...section, fill: ELECT_HDR });
   }
+
+  // ---------- Group 1: TCU Core, from the plan's Core assignments ----------
+  // Courses already counted in a business or major section show here as "counted elsewhere" (template convention)
+  const coreReqId = cohort.requirements.find((id) => P.requirements[id]?.type === "core");
+  const coreVersion = coreReqId ? P.requirements[coreReqId].coreVersion : "new";
+  const GROUPS: [string, string[]][] =
+    coreVersion === "old"
+      ? [["Essential Competencies", ["WCO", "MTH", "OCO", "WEM"]], ["Human Experiences and Endeavors", ["HUM", "SSC", "NSC", "FAR"]], ["Heritage, Mission, Vision & Values", ["RT", "HT", "LT", "CA", "GA", "CSV"]]]
+      : [["Communication", ["WCO", "OCO", "WEM"]], ["Quantitative & Scientific Reasoning", ["MTH", "NSC"]], ["Critical & Creative Thinking", ["HUM", "SSC", "FAR", "HT", "LT", "RT"]], ["Responsible Citizenship", ["CA", "GA", "CSV"]]];
+  const coreSlotLines = coreReqId ? takeSlots(coreReqId) : [];
+  const assignments = plan.coreAssignments ?? [];
+  const g1: Section[] = GROUPS.map(([title, codes]) => ({
+    title,
+    fill: CORE_HDR,
+    rows: assignments
+      .filter((x) => codes.includes(x.slot))
+      .sort((x, y) => codes.indexOf(x.slot) - codes.indexOf(y.slot))
+      .map((x): Row => {
+        const cat = x.slot;
+        if (x.source === "audit") return { cat, status: { kind: "completed", credits: 3, label: "Completed (degree audit)" } };
+        if (!x.code) {
+          // An open category planned as "choose a course" in some term
+          const slot = coreSlotLines.find((l) => l.term === x.term) ?? coreSlotLines[0];
+          if (slot) coreSlotLines.splice(coreSlotLines.indexOf(slot), 1);
+          return x.source === "open"
+            ? { cat, status: { kind: "missing", credits: 3, label: "Still open - see advisor" } }
+            : { cat, status: { kind: "planned", credits: 3, label: `Choose ${x.slotName} - ${x.term ? termShort(x.term) : ""}` } };
+        }
+        if (used.has(x.code)) return { cat, status: { kind: "shared", credits: 0, label: `${x.code} (counted elsewhere)` } };
+        return { cat, status: courseStatus(x.code) };
+      }),
+  })).filter((g) => g.rows.length);
+  for (const sec of g1) sec.hours = sec.rows.filter((r) => r.status.kind !== "shared").reduce((n, r) => n + r.status.credits, 0);
 
   // ---------- Group 3: electives, extras ----------
   const extras: Row[] = [];
@@ -318,7 +308,9 @@ export async function buildDegreePlanWorkbook(ds: Dataset, student: Student, pla
   const enrolledHours = allRows.filter((x) => x.status.kind === "enrolled").reduce((n, x) => n + x.status.credits, 0);
   const neededHours = allRows.reduce((n, x) => n + (x.status.kind === "completed" || x.status.kind === "shared" ? 0 : x.status.credits), 0);
   // Audit credit not tied to a listed requirement (e.g. AP or general transfer) is added to the completed total
-  const unlisted = Math.max(0, (student.otherHours?.hours ?? 0) - Object.values(student.satisfiedSlots ?? {}).reduce((a, b) => a + b, 0));
+  // satisfiedSlots: Core category codes count courses (3 hours each); other keys are hours
+  const auditHours = Object.entries(student.satisfiedSlots ?? {}).reduce((n, [k, v]) => n + (/^[A-Z]{2,3}$/.test(k) ? v * 3 : v), 0);
+  const unlisted = Math.max(0, (student.otherHours?.hours ?? 0) - auditHours);
   set("A18", { formula: `SUM(${totals.completed.join(",")})${unlisted ? `+${unlisted}` : ""}`, result: allRows.filter((x) => x.status.kind === "completed").reduce((n, x) => n + x.status.credits, 0) + unlisted }, { font: font(11), alignment: { horizontal: "center" } });
   set("A19", "Hrs Completed", { font: font(10, true) });
   set("A22", { formula: `SUM(${totals.enrolled.join(",")})`, result: enrolledHours }, { font: font(11), alignment: { horizontal: "center" } });
@@ -331,7 +323,7 @@ export async function buildDegreePlanWorkbook(ds: Dataset, student: Student, pla
   set("A33", `Plan total: ${plan.totals.hours}`, { font: font(8, false, "FF6B607A") });
 
   // Core footnotes
-  set(`D${end1}`, "*** CA, GA, and CSV are assumed to overlap with other courses; confirm with your advisor", { font: font(9, true, PURPLE), fill: fill(GRAY) });
+  set(`D${end1}`, `Core rules: ${(coreReqId ? P.requirements[coreReqId].rules ?? [] : []).slice(0, 2).join(" ")}`, { font: font(9, true, PURPLE), fill: fill(GRAY) });
   set(`D${end1 + 1}`, "Writing Emphasis hours are counted in Major courses", { font: font(9, true, PURPLE), fill: fill(GRAY) });
   set(`D${end1 + 2}`, "Yellow = still needed · TR = transfer · X = counted in another program", { font: font(9, true, PURPLE), fill: fill(GRAY) });
 
@@ -341,13 +333,12 @@ export async function buildDegreePlanWorkbook(ds: Dataset, student: Student, pla
   let u = 14;
   check(u++, "Neeley Admissions Course Requirements", true);
   check(u++, "Complete by the semester you declare a major:");
-  for (const c of P.requirements["bcore-lower"]?.courses ?? []) check(u++, c);
-  check(u++, "MATH 10283 or MATH 10524");
+  for (const c of P.rules.declareCourses ?? []) check(u++, c);
   check(u++, "3.0 TCU GPA to advance into a Neeley major");
   u++;
   check(u++, "Graduation Checklist", true);
   check(u++, `${cohort.upperDivHours} HOURS MUST BE NUMBERED 30000 OR ABOVE AT TCU`);
-  check(u++, "45 HOURS MINIMUM REQUIRED AT TCU");
+  check(u++, `${cohort.tcuHours ?? 45} HOURS MINIMUM REQUIRED AT TCU`);
   check(u++, `${cohort.totalHours} HOURS MINIMUM REQUIRED TO GRADUATE`);
   check(u++, "2.5 Cumulative GPA required to graduate");
   check(u++, "2.5 Major GPA required to graduate");
