@@ -1,0 +1,5 @@
+# Keep LF in the repo; never convert binary files
+* text=auto eol=lf
+*.pdf binary
+*.xlsx binary
+*.png binary
