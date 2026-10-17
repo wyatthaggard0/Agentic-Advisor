@@ -228,10 +228,27 @@ export function buildPlan(ds: Dataset, student: Student, opts: PlanOptions = {})
     }
     return n;
   };
+  // Next eight regular terms, for "is this course ever offered?" checks
+  const horizon: string[] = [];
+  for (let t = student.currentTerm, i = 0; i < 8; i++) horizon.push((t = nextRegularTerm(t)));
   const programGated = (c: Course) =>
     c.conditions.some(
       (k) => k.kind === "program" && !(k.value === "certificate" && programIds.some((p) => p.startsWith("CERT-"))) && !programIds.includes(k.value ?? ""),
     );
+  const schedMemo = new Map<string, boolean>();
+  /** Completed, or offered in the horizon with every prerequisite group satisfiable the same way */
+  const schedulable = (code: string, depth = 0): boolean => {
+    if (completedCodes.has(code) || student.inProgress.some((c) => c.code === code)) return true;
+    if (schedMemo.has(code)) return schedMemo.get(code)!;
+    const c = ds.courses.get(code);
+    if (!c || depth > 6 || programGated(c)) return false;
+    schedMemo.set(code, true); // guards cycles
+    const ok =
+      horizon.some((t) => !["not-offered", "other-season"].includes(offering(ds, code, t).status)) &&
+      c.prereqs.every((g) => g.some((r) => schedulable(r.code, depth + 1)));
+    schedMemo.set(code, ok);
+    return ok;
+  };
 
   for (const { req, owner } of reqOrder) {
     const ownerName = owner === "degree" ? cohort.label : P.programs[owner]?.name ?? owner;
@@ -274,6 +291,8 @@ export function buildPlan(ds: Dataset, student: Student, opts: PlanOptions = {})
           const c = ds.courses.get(code)!;
           return {
             code,
+            // never offered in the next four years (e.g. a season rule that contradicts the posted schedule): last resort only
+            blocked: schedulable(code) ? 0 : 1,
             score: interestScore(c, courseTitle(c, code), interests),
             prereqs: unmetPrereqCount(code),
             permission: c.conditions.some((k) => k.kind === "permission") ? 1 : 0,
@@ -282,7 +301,7 @@ export function buildPlan(ds: Dataset, student: Student, opts: PlanOptions = {})
             level: c.level,
           };
         })
-        .sort((a, b) => b.score - a.score || a.permission - b.permission || a.evidence - b.evidence || a.prereqs - b.prereqs || a.level - b.level);
+        .sort((a, b) => a.blocked - b.blocked || b.score - a.score || a.permission - b.permission || a.evidence - b.evidence || a.prereqs - b.prereqs || a.level - b.level);
       for (const r of rest) {
         if (chosen.length >= target) break;
         if (!canShare(r.code, owner)) continue;
@@ -863,6 +882,15 @@ export function buildPlan(ds: Dataset, student: Student, opts: PlanOptions = {})
       source: need.source,
     });
   }
+  /** Why a course missed every planned term: availability, a prerequisite, or no room under the load limit */
+  const lateReason = (code: string) => {
+    const c = ds.courses.get(code)!;
+    const open = planTerms.filter((t) => !holds.has(t) && !["not-offered", "other-season"].includes(offerFor(code, t).status));
+    if (!open.length) return reasonFor(code, planTerms[planTerms.length - 1]);
+    const ready = open.filter((t) => checkEligibility(ds, student, c, t, state, { declaredBy, programs: programIds }).ok);
+    if (!ready.length) return reasonFor(code, open[open.length - 1]);
+    return `it's offered ${ready.join(" and ")}, but ${ready.length > 1 ? "those terms are" : "that term is"} full at your ${maxLoad}-hour limit`;
+  };
   // Courses that only fit after the target push graduation back: name the bottleneck
   for (const t of extraTerms) {
     for (const l of plannedLines.get(t) ?? []) {
@@ -871,7 +899,7 @@ export function buildPlan(ds: Dataset, student: Student, opts: PlanOptions = {})
         id: `late-${l.code}`,
         kind: "unplaced",
         title: `${l.code} pushes graduation to ${t}`,
-        detail: `${l.code} couldn't be placed by ${student.targetGradTerm}: ${reasonFor(l.code, planTerms[planTerms.length - 1])}.`,
+        detail: `${l.code} couldn't be placed by ${student.targetGradTerm}: ${lateReason(l.code)}.`,
         source: l.source,
       });
     }
@@ -921,6 +949,17 @@ export function buildPlan(ds: Dataset, student: Student, opts: PlanOptions = {})
   const lastWithCourses = [...terms].reverse().find((t) => t.lines.length > 0);
   const gradTerm = unplaced.length ? "Not yet determined" : lastWithCourses?.term ?? student.targetGradTerm;
   const onTime = !unplaced.length && compareTerms(gradTerm, student.targetGradTerm) <= 0;
+  let lateCost: Plan["lateCost"];
+  if (P.cost && /^(Spring|Fall) \d{4}$/.test(gradTerm) && compareTerms(gradTerm, student.targetGradTerm) > 0) {
+    const semesters = regularTermsBetween(student.targetGradTerm, gradTerm).length;
+    const per = P.cost.tuitionPerSemester + P.cost.housingFoodPerSemester;
+    lateCost = {
+      semesters,
+      amount: semesters * per,
+      note: `${semesters} semester${semesters === 1 ? "" : "s"} past your ${student.targetGradTerm} target × $${per.toLocaleString("en-US")} ($${P.cost.tuitionPerSemester.toLocaleString("en-US")} tuition + $${P.cost.housingFoodPerSemester.toLocaleString("en-US")} housing and food, ${P.cost.year})`,
+      source: P.cost.source,
+    };
+  }
 
   // Shared courses between two programs
   for (const [code, set] of usedBy) {
@@ -983,6 +1022,7 @@ export function buildPlan(ds: Dataset, student: Student, opts: PlanOptions = {})
     gradTerm,
     targetGradTerm: student.targetGradTerm,
     onTime,
+    ...(lateCost ? { lateCost } : {}),
     totals: {
       hours: completedHours + ipHours + plannedHours,
       required: cohort.totalHours,

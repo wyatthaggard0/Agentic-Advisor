@@ -143,6 +143,13 @@ export function BlueprintTab(props: {
         </div>
         <div className="facts">
           <div className="fact"><span>Graduation</span><b className={plan.onTime ? "" : "risk"}>{plan.gradTerm}</b></div>
+          {plan.lateCost ? (
+            <div className="fact" title={`${plan.lateCost.note}. Source: ${plan.lateCost.source}`}>
+              <span>Added cost</span>
+              <b className="risk">+${plan.lateCost.amount.toLocaleString("en-US")}</b>
+              <small>{plan.lateCost.semesters} extra semester{plan.lateCost.semesters === 1 ? "" : "s"}</small>
+            </div>
+          ) : null}
           <div className="fact"><span>Hours</span><b>{plan.totals.hours}/{plan.totals.required}</b></div>
           <div className="fact"><span>Heaviest term</span><b>{plan.totals.maxLoad} hrs</b></div>
           <div className="fact"><span>Checks</span><b className={fails.length ? "risk" : ""}>{plan.checks.length - fails.length}/{plan.checks.length}</b></div>

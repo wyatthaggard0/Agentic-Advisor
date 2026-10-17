@@ -331,6 +331,8 @@ export interface Plan {
   gradTerm: string;
   targetGradTerm: string;
   onTime: boolean;
+  /** Semesters past the student's target and what they cost (TCU tuition + housing and food per semester) */
+  lateCost?: { semesters: number; amount: number; note: string; source: string };
   totals: { hours: number; required: number; upper: number; upperRequired: number; maxLoad: number };
   unplaced: { code: string; credits: number; reason: string }[];
   swaps: { from: string; to: string; reason: string }[];

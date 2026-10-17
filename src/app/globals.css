@@ -174,6 +174,7 @@ a { color: var(--accent); }
 .fact span { display: block; font-size: 10.5px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
 .fact b { font: 900 22px var(--font-ui); color: var(--head); }
 .fact b.risk { color: var(--err); }
+.fact small { display: block; font-size: 11.5px; color: var(--muted); }
 .controls { display: flex; flex-wrap: wrap; gap: 10px 16px; align-items: center; justify-content: space-between; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 12px 0; margin-bottom: 18px; }
 .core-list { display: grid; gap: 4px; font-size: 12.5px; }
 .core-row { display: grid; grid-template-columns: 42px 1fr; gap: 6px; align-items: baseline; }
