@@ -63,7 +63,21 @@ export interface MatchItem {
   score: number; // 0-100, match to survey answers
   reasons: string[];
   detail?: string;
+  /** Programs to plan with when the student picks this (majors, double majors, minors, certificates) */
+  programIds?: string[];
 }
+
+/** Major names used in careers.json mapped to planner program ids (names without a program aren't clickable). */
+const MAJOR_IDS: Record<string, string> = {
+  Finance: "BBA-FINA",
+  Accounting: "BBA-ACCT",
+  "Business Information Systems": "BBA-BIS",
+  Marketing: "BBA-MARK",
+  Management: "BBA-MANA",
+  "Entrepreneurial Management": "BBA-ENTR",
+  "Supply Chain Management": "BBA-SVCM",
+  "Finance (Real Estate concentration)": "BBA-FINA-RE",
+};
 export interface Internship extends MatchItem {
   when: string;
   apply: string;
@@ -234,7 +248,10 @@ export function recommend(
       stage: "explore",
       headline: "Majors and career areas to explore",
       timing: c.timing.early,
-      majors: [...majors.values()].map((m) => ({ ...m, score: cap(m.score) })).sort((a, b) => b.score - a.score).slice(0, 5),
+      majors: [...majors.values()]
+        .map((m) => ({ ...m, score: cap(m.score), ...(MAJOR_IDS[m.name] ? { programIds: [MAJOR_IDS[m.name]] } : {}) }))
+        .sort((a, b) => b.score - a.score)
+        .slice(0, 5),
       areas: areas.map((a) => ({ ...a, score: cap(a.score) })).sort((a, b) => b.score - a.score).slice(0, 6),
     };
   }

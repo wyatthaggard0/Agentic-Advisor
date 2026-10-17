@@ -5,7 +5,7 @@ import { Markdown } from "./Markdown";
 import { patchOf, uid, type Msg, type StudentState, type TranscriptRow } from "./types";
 import type { CompletedCourse, Student, Survey } from "@/lib/engine/types";
 import { SurveyForm, surveySummary, type SurveyOptions } from "./SurveyForm";
-import { RecommendationsCard } from "./RecommendationsCard";
+import { RecommendationsCard, type BuildKind } from "./RecommendationsCard";
 import type { Recommendations } from "@/lib/careers";
 
 const OPEN_PLAN = "Open Graduation Blueprint";
@@ -163,6 +163,24 @@ export function ChatTab(props: {
     send(`Survey answers: ${summary}`, `My survey answers: ${summary}`, student);
   }
 
+  /** One click from a recommendation to a Graduation Blueprint built around it (a what-if; the record is unchanged). */
+  function buildWith(ids: string[], kind: BuildKind) {
+    if (!ids.length) return;
+    const cur = state.programs;
+    const minors = cur.filter((p) => p.startsWith("MIN-"));
+    const certs = cur.filter((p) => p.startsWith("CERT-"));
+    const majors = cur.filter((p) => p.startsWith("BBA-") && p !== "BBA-UNDECIDED");
+    const keepMajors = majors.length ? majors : cur.filter((p) => p === "BBA-UNDECIDED");
+    // A pick replaces earlier picks of the same kind (combine several on the Blueprint toggles)
+    const next =
+      kind === "major" || kind === "double-major"
+        ? [...ids, ...minors, ...certs]
+        : kind === "minor"
+          ? [...keepMajors, ...ids, ...certs]
+          : [...keepMajors, ...minors, ...ids];
+    props.onOpenPlan(next);
+  }
+
   async function saveProfile(body: unknown) {
     try {
       await fetch("/api/profile", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) });
@@ -221,7 +239,7 @@ export function ChatTab(props: {
               <SurveyForm student={state.student} options={props.surveyOptions} onSubmit={submitSurvey} disabled={busy} />
             )
           ) : m.kind === "recs" && m.recs ? (
-            <RecommendationsCard recs={m.recs} />
+            <RecommendationsCard recs={m.recs} onBuild={buildWith} />
           ) : m.kind === "transcript" ? (
             <TranscriptCard msg={m} onConfirm={(rows) => confirmTranscript(m.id, rows)} />
           ) : (

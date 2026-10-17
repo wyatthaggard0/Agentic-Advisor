@@ -131,6 +131,10 @@ a { color: var(--accent); }
 .rec-sec h6 { margin: 0 0 8px; font-size: 11px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
 .rec-sec ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
 .match { display: grid; gap: 4px; padding-bottom: 10px; border-bottom: 1px solid var(--line); min-width: 0; }
+.match.pickable { cursor: pointer; padding: 10px; margin: 0 -10px; border-left: 3px solid transparent; }
+.match.pickable:hover, .match.pickable:focus-visible { background: var(--accent-soft); border-left-color: var(--accent); outline: none; }
+.build-cta { justify-self: start; font-size: 12px; font-weight: 800; letter-spacing: 0.04em; text-transform: uppercase; color: var(--accent); }
+.match.pickable:hover .build-cta { text-decoration: underline; text-underline-offset: 3px; }
 .match-top { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; }
 .match-top b { font-size: 14px; }
 .pct { font-size: 12px; font-weight: 800; color: var(--accent); white-space: nowrap; font-variant-numeric: tabular-nums; }
