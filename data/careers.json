@@ -1,0 +1,1059 @@
+{
+  "meta": {
+    "source": "Curated by the team for the prototype from public company information. Employers are examples to research, not current openings or TCU partnerships.",
+    "note": "Students should confirm openings through TCU's Center for Career & Professional Development and Neeley career services.",
+    "scoring": "Match % = how strongly an item lines up with the student's survey answers (picked interest areas, words in their free text, preferred locations). It is not a prediction of admission or hiring."
+  },
+  "interests": {
+    "investing": {
+      "label": "Investing & markets",
+      "keywords": [
+        "finance",
+        "investing",
+        "investment",
+        "portfolio"
+      ],
+      "industries": [
+        "Investment banking",
+        "Asset and wealth management",
+        "Corporate finance",
+        "Private equity and venture capital"
+      ],
+      "majors": [
+        "Finance",
+        "Accounting"
+      ],
+      "programs": [
+        "Educational Investment Fund (FINA 40183/40193)",
+        "TIP Board"
+      ],
+      "roles": [
+        "Investment banking summer analyst",
+        "Equity research intern",
+        "Wealth management intern",
+        "Corporate finance / FP&A intern"
+      ]
+    },
+    "technology": {
+      "label": "Technology & coding",
+      "keywords": [
+        "technology",
+        "information systems",
+        "fintech",
+        "software"
+      ],
+      "industries": [
+        "Enterprise technology",
+        "Fintech",
+        "IT consulting"
+      ],
+      "majors": [
+        "Business Information Systems"
+      ],
+      "programs": [
+        "FinTech Certificate"
+      ],
+      "roles": [
+        "Business systems analyst intern",
+        "Product analyst intern",
+        "Technology consulting intern",
+        "Fintech operations intern"
+      ]
+    },
+    "data": {
+      "label": "Data & analytics",
+      "keywords": [
+        "data",
+        "analytics",
+        "statistical",
+        "machine learning"
+      ],
+      "industries": [
+        "Business analytics",
+        "Consulting",
+        "Fintech",
+        "Retail and consumer analytics"
+      ],
+      "majors": [
+        "Business Information Systems",
+        "Supply Chain Management"
+      ],
+      "programs": [
+        "FinTech Certificate"
+      ],
+      "roles": [
+        "Data analyst intern",
+        "Business intelligence intern",
+        "Pricing / revenue analytics intern"
+      ]
+    },
+    "entrepreneurship": {
+      "label": "Entrepreneurship",
+      "keywords": [
+        "entrepreneur",
+        "venture",
+        "innovation",
+        "startup"
+      ],
+      "industries": [
+        "Startups",
+        "Venture capital",
+        "Family business"
+      ],
+      "majors": [
+        "Entrepreneurial Management",
+        "Finance"
+      ],
+      "programs": [],
+      "roles": [
+        "Startup operations intern",
+        "Venture capital analyst intern",
+        "Business development intern"
+      ]
+    },
+    "sports": {
+      "label": "Sports",
+      "keywords": [
+        "sport",
+        "marketing",
+        "sponsorship"
+      ],
+      "industries": [
+        "Sports business and media",
+        "Event and entertainment management"
+      ],
+      "majors": [
+        "Marketing",
+        "Management"
+      ],
+      "programs": [],
+      "roles": [
+        "Partnership / sponsorship intern",
+        "Sports analytics intern",
+        "Ticketing and fan experience intern"
+      ]
+    },
+    "real-estate": {
+      "label": "Real estate",
+      "keywords": [
+        "real estate",
+        "property",
+        "valuation"
+      ],
+      "industries": [
+        "Commercial real estate",
+        "Real estate investment",
+        "Construction and development"
+      ],
+      "majors": [
+        "Finance (Real Estate concentration)"
+      ],
+      "programs": [],
+      "roles": [
+        "Commercial real estate analyst intern",
+        "Acquisitions intern",
+        "Property management intern"
+      ]
+    },
+    "energy": {
+      "label": "Energy",
+      "keywords": [
+        "energy",
+        "commodit",
+        "supply chain"
+      ],
+      "industries": [
+        "Oil and gas",
+        "Renewable energy",
+        "Energy finance and trading"
+      ],
+      "majors": [
+        "Finance",
+        "Supply Chain Management",
+        "Energy Management"
+      ],
+      "programs": [],
+      "roles": [
+        "Energy finance intern",
+        "Commercial / trading analyst intern",
+        "Supply chain intern"
+      ]
+    },
+    "marketing": {
+      "label": "Marketing & brands",
+      "keywords": [
+        "marketing",
+        "brand",
+        "consumer",
+        "advertising"
+      ],
+      "industries": [
+        "Consumer brands",
+        "Advertising and media",
+        "Retail"
+      ],
+      "majors": [
+        "Marketing"
+      ],
+      "programs": [],
+      "roles": [
+        "Brand management intern",
+        "Digital marketing intern",
+        "Sales and marketing analyst intern"
+      ]
+    },
+    "consulting": {
+      "label": "Consulting & problem solving",
+      "keywords": [
+        "consult",
+        "strategy",
+        "process",
+        "analysis"
+      ],
+      "industries": [
+        "Management consulting",
+        "Technology consulting",
+        "Risk and advisory"
+      ],
+      "majors": [
+        "Business Information Systems",
+        "Finance",
+        "Management"
+      ],
+      "programs": [],
+      "roles": [
+        "Consulting summer analyst",
+        "Risk advisory intern",
+        "Strategy / operations intern"
+      ]
+    },
+    "accounting": {
+      "label": "Accounting",
+      "keywords": [
+        "accounting",
+        "audit",
+        "tax",
+        "reporting"
+      ],
+      "industries": [
+        "Public accounting",
+        "Corporate accounting",
+        "Advisory"
+      ],
+      "majors": [
+        "Accounting"
+      ],
+      "programs": [
+        "Professional Program in Accounting"
+      ],
+      "roles": [
+        "Audit intern",
+        "Tax intern",
+        "Advisory intern"
+      ]
+    },
+    "leadership": {
+      "label": "Leadership & people",
+      "keywords": [
+        "leadership",
+        "management",
+        "organizational",
+        "human resources"
+      ],
+      "industries": [
+        "Management and operations",
+        "Human resources",
+        "Sales leadership"
+      ],
+      "majors": [
+        "Management",
+        "Marketing"
+      ],
+      "programs": [
+        "Neeley Leadership Program"
+      ],
+      "roles": [
+        "Leadership development program intern",
+        "HR / people analytics intern",
+        "Sales intern"
+      ]
+    },
+    "healthcare": {
+      "label": "Healthcare",
+      "keywords": [
+        "health",
+        "medical",
+        "pharma"
+      ],
+      "industries": [
+        "Healthcare administration",
+        "Healthcare consulting",
+        "Medical devices"
+      ],
+      "majors": [
+        "Management",
+        "Finance",
+        "Supply Chain Management"
+      ],
+      "programs": [],
+      "roles": [
+        "Healthcare operations intern",
+        "Healthcare consulting intern",
+        "Medical device sales intern"
+      ]
+    },
+    "social-impact": {
+      "label": "Social impact",
+      "keywords": [
+        "nonprofit",
+        "social",
+        "sustainab",
+        "community"
+      ],
+      "industries": [
+        "Nonprofit management",
+        "Sustainability",
+        "Public sector"
+      ],
+      "majors": [
+        "Management",
+        "Marketing"
+      ],
+      "programs": [
+        "Certificate in Sustainable Business"
+      ],
+      "roles": [
+        "Nonprofit development intern",
+        "Sustainability analyst intern",
+        "Community partnerships intern"
+      ]
+    }
+  },
+  "locations": {
+    "Dallas-Fort Worth": [
+      {
+        "name": "American Airlines",
+        "industry": "Airlines",
+        "areas": [
+          "data",
+          "consulting",
+          "marketing",
+          "technology"
+        ]
+      },
+      {
+        "name": "Lockheed Martin",
+        "industry": "Aerospace & defense",
+        "areas": [
+          "technology",
+          "data",
+          "leadership"
+        ]
+      },
+      {
+        "name": "Charles Schwab",
+        "industry": "Brokerage & wealth management",
+        "areas": [
+          "investing",
+          "technology",
+          "data"
+        ]
+      },
+      {
+        "name": "AT&T",
+        "industry": "Telecom",
+        "areas": [
+          "technology",
+          "marketing",
+          "data"
+        ]
+      },
+      {
+        "name": "Texas Instruments",
+        "industry": "Semiconductors",
+        "areas": [
+          "technology",
+          "data",
+          "accounting"
+        ]
+      },
+      {
+        "name": "Toyota Motor North America",
+        "industry": "Automotive",
+        "areas": [
+          "marketing",
+          "leadership",
+          "data"
+        ]
+      },
+      {
+        "name": "Southwest Airlines",
+        "industry": "Airlines",
+        "areas": [
+          "marketing",
+          "leadership",
+          "data"
+        ]
+      },
+      {
+        "name": "BNSF Railway",
+        "industry": "Rail & logistics",
+        "areas": [
+          "energy",
+          "data",
+          "leadership"
+        ]
+      },
+      {
+        "name": "Goldman Sachs (Dallas)",
+        "industry": "Investment banking",
+        "areas": [
+          "investing",
+          "technology"
+        ]
+      },
+      {
+        "name": "JPMorgan Chase (Plano)",
+        "industry": "Banking",
+        "areas": [
+          "investing",
+          "technology",
+          "data"
+        ]
+      },
+      {
+        "name": "Dallas Cowboys",
+        "industry": "Sports",
+        "areas": [
+          "sports",
+          "marketing"
+        ]
+      }
+    ],
+    "Houston": [
+      {
+        "name": "ExxonMobil",
+        "industry": "Energy",
+        "areas": [
+          "energy",
+          "data",
+          "accounting"
+        ]
+      },
+      {
+        "name": "Chevron",
+        "industry": "Energy",
+        "areas": [
+          "energy",
+          "investing",
+          "data"
+        ]
+      },
+      {
+        "name": "Shell USA",
+        "industry": "Energy",
+        "areas": [
+          "energy",
+          "technology"
+        ]
+      },
+      {
+        "name": "Hewlett Packard Enterprise",
+        "industry": "Technology",
+        "areas": [
+          "technology",
+          "data",
+          "consulting"
+        ]
+      },
+      {
+        "name": "Sysco",
+        "industry": "Food distribution",
+        "areas": [
+          "marketing",
+          "data",
+          "leadership"
+        ]
+      }
+    ],
+    "Austin": [
+      {
+        "name": "Dell Technologies",
+        "industry": "Technology",
+        "areas": [
+          "technology",
+          "marketing",
+          "data"
+        ]
+      },
+      {
+        "name": "Tesla",
+        "industry": "Automotive & energy",
+        "areas": [
+          "technology",
+          "energy",
+          "data"
+        ]
+      },
+      {
+        "name": "Oracle",
+        "industry": "Enterprise software",
+        "areas": [
+          "technology",
+          "data",
+          "consulting"
+        ]
+      },
+      {
+        "name": "Apple (Austin campus)",
+        "industry": "Technology",
+        "areas": [
+          "technology",
+          "marketing"
+        ]
+      }
+    ],
+    "New York": [
+      {
+        "name": "JPMorgan Chase",
+        "industry": "Banking",
+        "areas": [
+          "investing",
+          "technology",
+          "data"
+        ]
+      },
+      {
+        "name": "Goldman Sachs",
+        "industry": "Investment banking",
+        "areas": [
+          "investing"
+        ]
+      },
+      {
+        "name": "Morgan Stanley",
+        "industry": "Investment banking & wealth",
+        "areas": [
+          "investing"
+        ]
+      },
+      {
+        "name": "Citi",
+        "industry": "Banking",
+        "areas": [
+          "investing",
+          "technology"
+        ]
+      }
+    ],
+    "Chicago": [
+      {
+        "name": "Northern Trust",
+        "industry": "Wealth & asset management",
+        "areas": [
+          "investing",
+          "technology"
+        ]
+      },
+      {
+        "name": "CME Group",
+        "industry": "Financial exchanges",
+        "areas": [
+          "investing",
+          "technology",
+          "data"
+        ]
+      },
+      {
+        "name": "McDonald's",
+        "industry": "Consumer brands",
+        "areas": [
+          "marketing",
+          "leadership"
+        ]
+      },
+      {
+        "name": "United Airlines",
+        "industry": "Airlines",
+        "areas": [
+          "data",
+          "marketing"
+        ]
+      }
+    ],
+    "West Coast": [
+      {
+        "name": "Salesforce",
+        "industry": "Enterprise software",
+        "areas": [
+          "technology",
+          "marketing",
+          "consulting"
+        ]
+      },
+      {
+        "name": "Wells Fargo",
+        "industry": "Banking",
+        "areas": [
+          "investing",
+          "technology"
+        ]
+      },
+      {
+        "name": "Visa",
+        "industry": "Payments",
+        "areas": [
+          "technology",
+          "investing",
+          "data"
+        ]
+      },
+      {
+        "name": "Nike",
+        "industry": "Consumer brands",
+        "areas": [
+          "marketing",
+          "sports"
+        ]
+      }
+    ],
+    "Anywhere": [
+      {
+        "name": "Deloitte",
+        "industry": "Professional services",
+        "areas": [
+          "consulting",
+          "accounting",
+          "technology"
+        ]
+      },
+      {
+        "name": "PwC",
+        "industry": "Professional services",
+        "areas": [
+          "accounting",
+          "consulting"
+        ]
+      },
+      {
+        "name": "EY",
+        "industry": "Professional services",
+        "areas": [
+          "accounting",
+          "consulting"
+        ]
+      },
+      {
+        "name": "KPMG",
+        "industry": "Professional services",
+        "areas": [
+          "accounting",
+          "consulting"
+        ]
+      },
+      {
+        "name": "Accenture",
+        "industry": "Consulting & technology",
+        "areas": [
+          "consulting",
+          "technology",
+          "data"
+        ]
+      }
+    ]
+  },
+  "timing": {
+    "early": "Freshman and sophomore years are for exploring: try intro courses in several areas, join a student organization tied to an interest, and look for first-year or sophomore leadership and externship programs.",
+    "junior": "Most junior summer internships recruit in the fall of junior year; investment banking and consulting often recruit earlier, in the spring of sophomore year. Start applications early in the fall.",
+    "senior": "Full-time roles usually recruit in the fall of senior year, often through a return offer from the junior internship."
+  },
+  "regionStrengths": {
+    "Dallas-Fort Worth": [
+      "investing",
+      "technology",
+      "consulting",
+      "real-estate",
+      "sports",
+      "accounting"
+    ],
+    "Houston": [
+      "energy",
+      "healthcare"
+    ],
+    "Austin": [
+      "technology",
+      "data",
+      "entrepreneurship"
+    ],
+    "New York": [
+      "investing",
+      "marketing",
+      "consulting"
+    ],
+    "Chicago": [
+      "investing",
+      "consulting",
+      "marketing"
+    ],
+    "West Coast": [
+      "technology",
+      "entrepreneurship",
+      "data"
+    ],
+    "Anywhere": []
+  },
+  "pathways": [
+    {
+      "id": "dm-fina-acct",
+      "kind": "double-major",
+      "name": "Finance + Accounting",
+      "areas": [
+        "investing",
+        "accounting"
+      ],
+      "years": [
+        "incoming",
+        "freshman",
+        "sophomore",
+        "junior",
+        "senior"
+      ],
+      "majors": [
+        "Finance",
+        "Accounting"
+      ],
+      "detail": "The Finance major already requires ACCT 30153 and ACCT 30253, so the accounting side starts with a head start.",
+      "source": "TCU 2026-27 catalog: Finance, BBA"
+    },
+    {
+      "id": "dm-fina-bis",
+      "kind": "double-major",
+      "name": "Finance + Business Information Systems",
+      "areas": [
+        "investing",
+        "technology",
+        "data"
+      ],
+      "years": [
+        "incoming",
+        "freshman",
+        "sophomore",
+        "junior",
+        "senior"
+      ],
+      "majors": [
+        "Finance",
+        "Business Information Systems"
+      ],
+      "programIds": [
+        "BBA-FINA",
+        "BBA-BIS"
+      ],
+      "detail": "Both majors require BUSI 30383, and the pair lines up with fintech and analytics roles.",
+      "source": "TCU 2026-27 catalog: Finance, BBA; BIS, BBA"
+    },
+    {
+      "id": "dm-bis-scm",
+      "kind": "double-major",
+      "name": "Business Information Systems + Supply Chain Management",
+      "areas": [
+        "technology",
+        "data",
+        "energy"
+      ],
+      "years": [
+        "incoming",
+        "freshman",
+        "sophomore",
+        "junior",
+        "senior"
+      ],
+      "majors": [
+        "Business Information Systems",
+        "Supply Chain Management"
+      ],
+      "detail": "Both majors sit in the Information Systems and Supply Chain Management department.",
+      "source": "TCU 2025-26 catalog: BISA-BBA department"
+    },
+    {
+      "id": "dm-mark-entr",
+      "kind": "double-major",
+      "name": "Marketing + Entrepreneurial Management",
+      "areas": [
+        "marketing",
+        "entrepreneurship",
+        "sports"
+      ],
+      "years": [
+        "incoming",
+        "freshman",
+        "sophomore",
+        "junior",
+        "senior"
+      ],
+      "majors": [
+        "Marketing",
+        "Entrepreneurial Management"
+      ],
+      "detail": "Pairs brand and customer skills with launching and growing ventures.",
+      "source": "Neeley majors list"
+    },
+    {
+      "id": "dm-mana-mark",
+      "kind": "double-major",
+      "name": "Management + Marketing",
+      "areas": [
+        "leadership",
+        "marketing",
+        "sports",
+        "healthcare"
+      ],
+      "years": [
+        "incoming",
+        "freshman",
+        "sophomore",
+        "junior",
+        "senior"
+      ],
+      "majors": [
+        "Management",
+        "Marketing"
+      ],
+      "detail": "A common route into sales leadership, brand and people-management roles.",
+      "source": "Neeley majors list"
+    },
+    {
+      "id": "min-acct",
+      "kind": "minor",
+      "name": "Accounting minor",
+      "areas": [
+        "accounting",
+        "investing"
+      ],
+      "years": [
+        "incoming",
+        "freshman",
+        "sophomore",
+        "junior",
+        "senior"
+      ],
+      "field": "Accounting",
+      "detail": "For students in other business majors. Minors need a 2.50 GPA in their courses.",
+      "source": "TCU 2026-27 catalog: Neeley minors"
+    },
+    {
+      "id": "min-fina",
+      "kind": "minor",
+      "name": "Finance minor",
+      "areas": [
+        "investing",
+        "real-estate"
+      ],
+      "years": [
+        "incoming",
+        "freshman",
+        "sophomore",
+        "junior",
+        "senior"
+      ],
+      "field": "Finance",
+      "detail": "For students in other business majors who want corporate finance and investments.",
+      "source": "TCU 2026-27 catalog: Neeley minors"
+    },
+    {
+      "id": "min-entr",
+      "kind": "minor",
+      "name": "Entrepreneurship & Innovation minor",
+      "areas": [
+        "entrepreneurship",
+        "marketing"
+      ],
+      "years": [
+        "incoming",
+        "freshman",
+        "sophomore",
+        "junior",
+        "senior"
+      ],
+      "field": "Entrepreneurial Management",
+      "detail": "Startup and innovation coursework that fits alongside any major.",
+      "source": "TCU catalog course restrictions (ACCT 20653)"
+    },
+    {
+      "id": "min-ldr",
+      "kind": "minor",
+      "name": "Leadership minor",
+      "areas": [
+        "leadership",
+        "social-impact"
+      ],
+      "years": [
+        "incoming",
+        "freshman",
+        "sophomore",
+        "junior",
+        "senior"
+      ],
+      "detail": "No more than 6 hours may be shared with your major.",
+      "source": "Team rules: Leadership minor shared-hour limit"
+    },
+    {
+      "id": "min-gbus",
+      "kind": "minor",
+      "name": "General Business minor",
+      "areas": [
+        "entrepreneurship",
+        "leadership",
+        "marketing"
+      ],
+      "years": [
+        "incoming",
+        "freshman",
+        "sophomore",
+        "junior",
+        "senior"
+      ],
+      "nonBusinessOnly": true,
+      "detail": "For students outside Neeley who want a business foundation.",
+      "source": "TCU catalog course restrictions (INSC 30653)"
+    },
+    {
+      "id": "cert-fintech",
+      "kind": "certificate",
+      "name": "FinTech Certificate",
+      "areas": [
+        "technology",
+        "data",
+        "investing"
+      ],
+      "years": [
+        "incoming",
+        "freshman",
+        "sophomore",
+        "junior",
+        "senior"
+      ],
+      "programIds": [
+        "CERT-FINTECH"
+      ],
+      "detail": "9 hours: INSC 30263, 30273, 30283. You must have advanced into a business major before the first class; admission is competitive.",
+      "when": "Apply once you've advanced into your major",
+      "source": "TCU 2026-27 catalog: FinTech Certificate"
+    },
+    {
+      "id": "cert-sales",
+      "kind": "certificate",
+      "name": "Consultative Selling Certificate (Sales)",
+      "areas": [
+        "marketing",
+        "leadership",
+        "sports",
+        "healthcare"
+      ],
+      "years": [
+        "incoming",
+        "freshman",
+        "sophomore",
+        "junior",
+        "senior"
+      ],
+      "detail": "Neeley's sales credential for students headed into sales, business development and client roles. Course details to confirm with the department.",
+      "source": "TCU 2026-27 catalog: Special Programs"
+    },
+    {
+      "id": "cert-sust",
+      "kind": "certificate",
+      "name": "Certificate in Sustainable Business",
+      "areas": [
+        "social-impact",
+        "energy"
+      ],
+      "years": [
+        "sophomore",
+        "junior",
+        "senior",
+        "freshman",
+        "incoming"
+      ],
+      "detail": "Its courses (e.g. INSC 30513, 30523) require junior or senior standing and certificate enrollment.",
+      "source": "TCU catalog: INSC 30513 / 30523"
+    },
+    {
+      "id": "prog-fellows",
+      "kind": "program",
+      "name": "Neeley Fellows",
+      "areas": [
+        "leadership",
+        "consulting",
+        "investing",
+        "data",
+        "entrepreneurship"
+      ],
+      "years": [
+        "incoming",
+        "freshman"
+      ],
+      "detail": "About 30 first-year students a year join a three-year honors cohort with enhanced business core courses. Talk to an advisor before taking core courses in year one.",
+      "when": "Selected in the first year",
+      "source": "TCU 2026-27 catalog: Special Programs; neeley.tcu.edu"
+    },
+    {
+      "id": "prog-nlp",
+      "kind": "program",
+      "name": "Neeley Leadership Program (NLP)",
+      "areas": [
+        "leadership",
+        "consulting",
+        "social-impact",
+        "sports"
+      ],
+      "years": [
+        "incoming",
+        "freshman",
+        "sophomore",
+        "junior"
+      ],
+      "detail": "15 hours: BUSI 30833, 30843, 40213, 40843 and 40853.",
+      "when": "Start by junior year to fit all 15 hours",
+      "source": "TCU 2026-27 catalog: Neeley Leadership Program"
+    },
+    {
+      "id": "prog-tip",
+      "kind": "program",
+      "name": "TIP Board",
+      "areas": [
+        "investing"
+      ],
+      "years": [
+        "freshman",
+        "sophomore",
+        "junior",
+        "senior"
+      ],
+      "detail": "Transaction & Investment Professionals Board: alumni mentorship and interview prep for investment banking, equity research and private equity. Has junior and senior board members.",
+      "when": "Application timing to confirm with Neeley",
+      "source": "neeley.tcu.edu: TIP"
+    },
+    {
+      "id": "prog-eif",
+      "kind": "program",
+      "name": "Educational Investment Fund",
+      "areas": [
+        "investing"
+      ],
+      "years": [
+        "incoming",
+        "freshman",
+        "sophomore",
+        "junior"
+      ],
+      "detail": "Manage a real portfolio for two senior semesters (FINA 40183/40193). FINA 30213 is required; you can apply while taking it.",
+      "when": "Apply in junior year",
+      "source": "neeley.tcu.edu: Educational Investment Fund"
+    }
+  ],
+  "doubleMajorRule": {
+    "text": "Neeley lets you double major in any combination of business disciplines. A course can count toward two majors only with dean approval, and no more than 6 shared credits per major. Use the program toggles on your Graduation Blueprint to see the hours and graduation impact before you decide.",
+    "source": "TCU 2026-27 catalog: Neeley double majors; Academic Policies"
+  }
+}

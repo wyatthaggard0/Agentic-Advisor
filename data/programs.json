@@ -1,0 +1,248 @@
+{
+  "meta": {
+    "source": "Provisional rules compiled from the TCU 2026-27 undergraduate catalog and the archived 2025-26 catalog PDF; replace with the team's verified programs.json",
+    "catalogYear": "2026-27",
+    "verified": false,
+    "note": "TCU Core categories are modeled as hour slots. Writing Emphasis and the Responsible Citizenship categories are assumed to overlap with other courses (the catalog allows overlap: 39-63 hours). Cohort split: catalog text is identical for both cohorts; the team's checklists define the differences."
+  },
+  "standing": {
+    "sophomore": 24,
+    "junior": 54,
+    "senior": 84,
+    "source": "TCU 2025-26 catalog, Student Policies: Classification (24/54/84 hours)"
+  },
+  "load": {
+    "max": 18,
+    "fullTime": 12,
+    "source": "TCU 2026-27 catalog, Academic Policies: more than 18 hours needs written dean approval; full-time is 12"
+  },
+  "cohorts": [
+    {
+      "id": "pre-summer-2025",
+      "label": "Entered before Summer 2025",
+      "startsFrom": "Fall 2018",
+      "totalHours": 120,
+      "upperDivHours": 36,
+      "requirements": ["core-fine-arts", "core-humanities", "core-social", "core-historical", "core-literary", "core-religious", "core-natsci", "core-oral", "core-wco2", "bcore-lower", "bcore-math", "bcore-upper"],
+      "source": "TCU 2025-26 catalog: Graduation Requirements (120 hours; 36 hours numbered 30000+ at TCU)"
+    },
+    {
+      "id": "summer-2025-plus",
+      "label": "Entered Summer 2025 or later",
+      "startsFrom": "Summer 2025",
+      "totalHours": 120,
+      "upperDivHours": 36,
+      "requirements": ["core-fine-arts", "core-humanities", "core-social", "core-historical", "core-literary", "core-religious", "core-natsci", "core-oral", "core-wco2", "bcore-lower", "bcore-math", "bcore-upper"],
+      "source": "TCU 2026-27 catalog: Academic Policies, Graduation Requirements"
+    }
+  ],
+  "requirements": {
+    "core-fine-arts": { "id": "core-fine-arts", "name": "TCU Core: Fine Arts", "type": "slot", "hours": 3, "tags": ["core"], "source": "TCU 2026-27 catalog: TCU Core Curriculum" },
+    "core-humanities": { "id": "core-humanities", "name": "TCU Core: Humanities", "type": "slot", "hours": 9, "tags": ["core"], "source": "TCU 2026-27 catalog: TCU Core Curriculum" },
+    "core-social": { "id": "core-social", "name": "TCU Core: Social Sciences", "type": "slot", "hours": 6, "tags": ["core"], "source": "TCU 2026-27 catalog: TCU Core Curriculum (9 hours; ECON 10223 assumed to count for 3)", "note": "Assumption: ECON 10223 carries Social Sciences credit", "verified": false },
+    "core-historical": { "id": "core-historical", "name": "TCU Core: Historical Traditions", "type": "slot", "hours": 3, "tags": ["core"], "source": "TCU 2026-27 catalog: TCU Core Curriculum" },
+    "core-literary": { "id": "core-literary", "name": "TCU Core: Literary Traditions", "type": "slot", "hours": 3, "tags": ["core"], "source": "TCU 2026-27 catalog: TCU Core Curriculum" },
+    "core-religious": { "id": "core-religious", "name": "TCU Core: Religious Traditions", "type": "slot", "hours": 3, "tags": ["core"], "source": "TCU 2026-27 catalog: TCU Core Curriculum" },
+    "core-natsci": { "id": "core-natsci", "name": "TCU Core: Natural Sciences", "type": "slot", "hours": 6, "tags": ["core"], "source": "TCU 2026-27 catalog: TCU Core Curriculum" },
+    "core-oral": { "id": "core-oral", "name": "TCU Core: Oral Communication", "type": "slot", "hours": 3, "tags": ["core"], "source": "TCU 2026-27 catalog: TCU Core Curriculum" },
+    "core-wco2": { "id": "core-wco2", "name": "TCU Core: Written Communication 2", "type": "slot", "hours": 3, "tags": ["core"], "source": "TCU 2026-27 catalog: TCU Core Curriculum" },
+    "bcore-lower": {
+      "id": "bcore-lower",
+      "name": "BBA lower-division requirements",
+      "type": "all",
+      "courses": ["ENGL 10803", "ECON 10223", "ACCT 20353", "INSC 20153", "INSC 20263"],
+      "source": "TCU 2026-27 catalog: BBA Business Core, section B (https://undergraduate.catalog.tcu.edu/colleges/business/busistudents/bbacore)",
+      "note": "ACCT 20353, INSC 20153 and INSC 20263 must be complete by the semester the student declares a major"
+    },
+    "bcore-math": {
+      "id": "bcore-math",
+      "name": "BBA math requirement",
+      "type": "choose",
+      "count": 1,
+      "courses": ["MATH 10283", "MATH 10524"],
+      "source": "TCU 2026-27 catalog: BBA Business Core, section B (MATH 10283 or MATH 10524; not both)"
+    },
+    "bcore-upper": {
+      "id": "bcore-upper",
+      "name": "Business Core",
+      "type": "all",
+      "courses": ["ENTR 20263", "MARK 30153", "FINA 30153", "INSC 30313", "INSC 30801", "MANA 30250", "MANA 40250"],
+      "source": "TCU 2026-27 catalog: BBA Business Core, section C"
+    },
+    "fin-req": {
+      "id": "fin-req",
+      "name": "Finance major: required courses",
+      "type": "all",
+      "courses": ["FINA 30203", "FINA 30213", "FINA 30233", "FINA 40153", "ACCT 30153", "ACCT 30253"],
+      "tags": ["finance", "investing"],
+      "source": "TCU 2026-27 catalog: Finance, BBA (https://undergraduate.catalog.tcu.edu/colleges/business/majors/financebba)"
+    },
+    "fin-elec": {
+      "id": "fin-elec",
+      "name": "Finance major: electives",
+      "type": "choose",
+      "count": 2,
+      "courses": ["FINA 30223", "FINA 30303", "FINA 30623", "FINA 40183", "FINA 40193", "FINA 40313", "FINA 40533", "FINA 40603", "FINA 40613", "FINA 40623", "ACCT 30303"],
+      "tags": ["finance"],
+      "source": "TCU 2026-27 catalog: Finance, BBA electives (6 hours; FINA 40970 topics excluded here)"
+    },
+    "fin-econ": {
+      "id": "fin-econ",
+      "name": "Finance associated requirement: Macroeconomics",
+      "type": "all",
+      "courses": ["ECON 10233"],
+      "source": "TCU 2026-27 catalog: Finance, BBA associated requirements"
+    },
+    "fin-global": {
+      "id": "fin-global",
+      "name": "Finance associated requirement: global business",
+      "type": "choose",
+      "count": 1,
+      "courses": ["BUSI 30383", "FINA 40623"],
+      "source": "TCU 2026-27 catalog: Finance, BBA associated requirements (FINA 40623 without BUSI 30383 also needs ACCT 30450 or 30460)"
+    },
+    "bis-req": {
+      "id": "bis-req",
+      "name": "BIS major: required courses",
+      "type": "all",
+      "courses": ["INSC 30723", "INSC 30823", "INSC 30853", "INSC 40813", "INSC 40383"],
+      "tags": ["technology", "data"],
+      "source": "TCU 2026-27 catalog: Business Information Systems, BBA (https://undergraduate.catalog.tcu.edu/colleges/business/majors/businessinformationsystemsbba)"
+    },
+    "bis-dev": {
+      "id": "bis-dev",
+      "name": "BIS major: development course",
+      "type": "choose",
+      "count": 1,
+      "courses": ["INSC 30833", "INSC 30283"],
+      "source": "TCU 2026-27 catalog: BIS, BBA (INSC 30283 may substitute for INSC 30833)"
+    },
+    "bis-bi": {
+      "id": "bis-bi",
+      "name": "BIS major: business intelligence course",
+      "type": "choose",
+      "count": 1,
+      "courses": ["INSC 40843", "INSC 30273"],
+      "source": "TCU 2026-27 catalog: BIS, BBA (INSC 30273 may substitute for INSC 40843)"
+    },
+    "bis-busi": {
+      "id": "bis-busi",
+      "name": "BIS associated requirement",
+      "type": "all",
+      "courses": ["BUSI 30383"],
+      "source": "TCU 2026-27 catalog: BIS, BBA associated requirement"
+    },
+    "fintech": {
+      "id": "fintech",
+      "name": "FinTech Certificate",
+      "type": "all",
+      "courses": ["INSC 30263", "INSC 30273", "INSC 30283"],
+      "tags": ["fintech", "technology"],
+      "source": "TCU 2026-27 catalog: Special Programs, FinTech Certificate (FNTKCERT)"
+    },
+    "major-tbd": {
+      "id": "major-tbd",
+      "name": "Neeley major courses (after declaring)",
+      "type": "slot",
+      "hours": 24,
+      "minLevel": 3,
+      "tags": ["major"],
+      "source": "TCU 2026-27 catalog: BBA degree program (major 21-27 hours)"
+    }
+  },
+  "programs": {
+    "BBA-UNDECIDED": {
+      "id": "BBA-UNDECIDED",
+      "name": "Pre-business (major not chosen)",
+      "kind": "major",
+      "requirements": ["major-tbd"],
+      "declare": { "text": "Continue in business with 24 first-year hours and a 2.75 GPA; advance into a major with a 3.0 TCU GPA; declare by 54 hours.", "minHours": 24 },
+      "source": "TCU 2026-27 catalog: Neeley, Bachelor of Business Administration (busistudents/bu)"
+    },
+    "BBA-FINA": {
+      "id": "BBA-FINA",
+      "name": "Finance (BBA)",
+      "kind": "major",
+      "field": "FINA",
+      "requirements": ["fin-req", "fin-elec", "fin-econ", "fin-global"],
+      "declare": { "text": "Advance into a Neeley major with a 3.0 TCU GPA after completing the lower-division sequence.", "minHours": 24 },
+      "source": "TCU 2026-27 catalog: Finance, BBA"
+    },
+    "BBA-BIS": {
+      "id": "BBA-BIS",
+      "name": "Business Information Systems (BBA)",
+      "kind": "major",
+      "field": "INSC",
+      "requirements": ["bis-req", "bis-dev", "bis-bi", "bis-busi"],
+      "declare": { "text": "Advance into a Neeley major with a 3.0 TCU GPA after completing the lower-division sequence.", "minHours": 24 },
+      "source": "TCU 2026-27 catalog: Business Information Systems, BBA"
+    },
+    "CERT-FINTECH": {
+      "id": "CERT-FINTECH",
+      "name": "FinTech Certificate",
+      "kind": "certificate",
+      "requirements": ["fintech"],
+      "source": "TCU 2026-27 catalog: FinTech Certificate; Neeley certificates page (business students only; competitive application)",
+      "note": "Must have advanced into a business major before the first FinTech class. Admission is competitive and limited."
+    }
+  },
+  "rules": {
+    "maxMajors": 2,
+    "sameFieldMinorBlocked": true,
+    "sharedHours": [
+      { "between": ["BBA-BIS", "CERT-FINTECH"], "maxShared": 6, "source": "TCU 2026-27 Academic Policies: a course may count toward more than one program only with dean approval, up to 6 credits in any given major" },
+      { "between": ["BBA-FINA", "CERT-FINTECH"], "maxShared": 6, "source": "TCU 2026-27 Academic Policies: shared-credit limit of 6 credits per major" },
+      { "between": ["BBA-FINA", "BBA-BIS"], "maxShared": 6, "source": "TCU 2026-27 Academic Policies: shared-credit limit of 6 credits per major" }
+    ],
+    "earliest": [],
+    "source": "TCU 2026-27 catalog: Neeley double majors and Academic Policies. Max 2 majors is the team's planning rule; the catalog says 'one or more'."
+  },
+  "contradictions": [
+    { "id": "hours-120-124", "title": "120 vs. 124 total hours", "text": "The catalog says 120 total hours, but older Neeley checklists say 124 for earlier admits. The plan uses 120.", "affects": ["degree"], "source": "TCU 2026-27 catalog vs archived Neeley degree checklists" },
+    { "id": "mana-30350", "title": "MANA 30350 is missing", "text": "MANA 30250 requires concurrent enrollment in MANA 30350, and post-Summer-2025 checklists list it, but MANA 30350 isn't in the registrar course export.", "affects": ["bcore-upper", "MANA 30250"], "source": "MANA 30250 description and Neeley checklist vs courses-report export" },
+    { "id": "mana-30250-40250", "title": "MANA 30250 / 40250 have no sections", "text": "MANA 30250 and MANA 40250 (1.5 hours each) are in the Business Core but have no sections on the posted schedules.", "affects": ["MANA 30250", "MANA 40250"], "source": "TCU 2026-27 catalog vs class schedule" },
+    { "id": "acct-20153", "title": "ACCT 20153 doesn't exist", "text": "Some Neeley materials reference ACCT 20153, which isn't in the course export (the catalog course is ACCT 20353).", "affects": ["bcore-lower"], "source": "Neeley materials vs courses-report export" }
+  ],
+  "opportunities": [
+    { "id": "neeley-fellows", "name": "Neeley Fellows", "text": "About 30 first-year students a year join a three-year honors cohort with enhanced core courses. Talk to an advisor before taking core courses in year one.", "source": "TCU 2026-27 catalog: Special Programs; neeley.tcu.edu" },
+    { "id": "eif", "name": "Educational Investment Fund (FINA 40183/40193)", "text": "Apply in junior year after or during FINA 30213; manage a real portfolio for two consecutive senior semesters.", "source": "neeley.tcu.edu Educational Investment Fund" },
+    { "id": "tip", "name": "TIP Board", "text": "Transaction & Investment Professionals Board: mentorship and interview prep for investment banking, equity research and private equity.", "source": "neeley.tcu.edu TIP" },
+    { "id": "study-abroad", "name": "Study abroad", "text": "Faculty-led spring break, Maymester, summer, and semester programs.", "source": "neeley.tcu.edu study abroad" }
+  ],
+  "titles": {
+    "ENGL 10803": "Introductory Composition: Writing as Inquiry",
+    "ECON 10223": "Introductory Microeconomics",
+    "ECON 10233": "Introductory Macroeconomics",
+    "MATH 10283": "Applied Calculus",
+    "MATH 10524": "Calculus I",
+    "ACCT 20353": "Fundamentals of Accounting",
+    "INSC 20153": "Statistical Analysis",
+    "INSC 20263": "Business Information Systems",
+    "ENTR 20263": "Entrepreneurship and Innovation",
+    "MARK 30153": "Marketing Management",
+    "FINA 30153": "Financial Management",
+    "INSC 30313": "Supply Chain Management",
+    "INSC 30801": "Business Applications in Excel",
+    "MANA 30250": "Organizational Behavior",
+    "MANA 40250": "Strategy",
+    "FINA 30203": "Financial Institutions & Markets",
+    "FINA 30213": "Investments",
+    "FINA 30233": "Financial Derivatives",
+    "FINA 40153": "Intermediate Financial Management",
+    "ACCT 30153": "Financial Reporting I",
+    "ACCT 30253": "Financial Reporting II",
+    "FINA 40183": "Educational Investment Fund I",
+    "FINA 40193": "Educational Investment Fund II",
+    "BUSI 30383": "Global Business with an Ethical Lens",
+    "INSC 30723": "Business Process Analysis",
+    "INSC 30823": "Data Management for Business Information Systems",
+    "INSC 30833": "Business Information Systems Development",
+    "INSC 30853": "Fundamentals of Cybersecurity",
+    "INSC 40813": "Business Information Systems Capstone",
+    "INSC 40843": "Business Intelligence and Analytics",
+    "INSC 40383": "Digital Transformation with AI",
+    "INSC 30263": "Digital Asset & Payment Technologies",
+    "INSC 30273": "Introduction to Machine Learning",
+    "INSC 30283": "Deep Learning Technologies"
+  }
+}

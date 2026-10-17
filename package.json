@@ -1,0 +1,37 @@
+{
+  "name": "graduation-blueprint",
+  "version": "0.1.0",
+  "private": true,
+  "description": "AI academic planning assistant prototype for the Neeley AI Forward competition",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "typecheck": "tsc --noEmit",
+    "data:courses": "tsx scripts/build-courses.ts",
+    "check": "tsx scripts/check-plans.ts",
+    "test": "tsx scripts/engine-smoke.ts",
+    "db:migrate": "node scripts/db-migrate.mjs",
+    "db:seed": "tsx scripts/db-seed.ts",
+    "db:ping": "node scripts/db-ping.mjs",
+    "db:rls": "node scripts/rls-check.mjs"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "0.131.0",
+    "@supabase/ssr": "0.12.7",
+    "@supabase/supabase-js": "2.117.2",
+    "exceljs": "4.4.0",
+    "next": "16.3.8",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
+    "zod": "4.6.5"
+  },
+  "devDependencies": {
+    "@types/node": "25.9.9",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "postgres": "3.4.9",
+    "tsx": "4.23.15",
+    "typescript": "5.9.3"
+  }
+}

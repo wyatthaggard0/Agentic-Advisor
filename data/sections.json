@@ -1,0 +1,1443 @@
+{
+ "meta": {
+  "source": "SAMPLE sections (invented for the demo; replace with the TCU Class Search pull)",
+  "pulledAt": "",
+  "sample": true,
+  "terms": [
+   {
+    "term": "Fall 2026",
+    "coverage": "partial",
+    "subjects": [
+     "ACCT",
+     "BUSI",
+     "ENTR",
+     "FINA",
+     "INSC",
+     "MARK"
+    ]
+   },
+   {
+    "term": "Spring 2027",
+    "coverage": "partial",
+    "subjects": [
+     "ACCT",
+     "BUSI",
+     "ENTR",
+     "FINA",
+     "INSC",
+     "MARK"
+    ]
+   }
+  ],
+  "note": "Coverage is limited to the listed subjects. In those subjects a missing section means 'not offered'. Other subjects have no schedule evidence."
+ },
+ "sections": [
+  {
+   "term": "Fall 2026",
+   "code": "ACCT 20353",
+   "classNumber": "10100",
+   "section": "010",
+   "component": "LEC",
+   "days": "MWF",
+   "start": "09:00",
+   "end": "09:50",
+   "session": "1",
+   "status": "Open",
+   "seats": {
+    "capacity": 40,
+    "enrolled": 27
+   },
+   "consent": null,
+   "mode": "In Person",
+   "instructor": "Staff"
+  },
+  {
+   "term": "Fall 2026",
+   "code": "ACCT 20353",
+   "classNumber": "10101",
+   "section": "020",
+   "component": "LEC",
+   "days": "TR",
+   "start": "11:00",
+   "end": "12:20",
+   "session": "1",
+   "status": "Open",
+   "seats": {
+    "capacity": 40,
+    "enrolled": 34
+   },
+   "consent": null,
+   "mode": "In Person",
+   "instructor": "Staff"
+  },
+  {
+   "term": "Spring 2027",
+   "code": "ACCT 20353",
+   "classNumber": "10102",
+   "section": "010",
+   "component": "LEC",
+   "days": "MWF",
+   "start": "10:00",
+   "end": "10:50",
+   "session": "1",
+   "status": "Open",
+   "seats": {
+    "capacity": 40,
+    "enrolled": 21
+   },
+   "consent": null,
+   "mode": "In Person",
+   "instructor": "Staff"
+  },
+  {
+   "term": "Spring 2027",
+   "code": "ACCT 20353",
+   "classNumber": "10103",
+   "section": "020",
+   "component": "LEC",
+   "days": "TR",
+   "start": "14:00",
+   "end": "15:20",
+   "session": "1",
+   "status": "Open",
+   "seats": {
+    "capacity": 40,
+    "enrolled": 28
+   },
+   "consent": null,
+   "mode": "In Person",
+   "instructor": "Staff"
+  },
+  {
+   "term": "Fall 2026",
+   "code": "INSC 20153",
+   "classNumber": "10104",
+   "section": "010",
+   "component": "LEC",
+   "days": "TR",
+   "start": "09:30",
+   "end": "10:50",
+   "session": "1",
+   "status": "Open",
+   "seats": {
+    "capacity": 40,
+    "enrolled": 35
+   },
+   "consent": null,
+   "mode": "In Person",
+   "instructor": "Staff"
+  },
+  {
+   "term": "Spring 2027",
+   "code": "INSC 20153",
+   "classNumber": "10105",
+   "section": "010",
+   "component": "LEC",
+   "days": "MWF",
+   "start": "11:00",
+   "end": "11:50",
+   "session": "1",
+   "status": "Open",
+   "seats": {
+    "capacity": 40,
+    "enrolled": 22
+   },
+   "consent": null,
+   "mode": "In Person",
+   "instructor": "Staff"
+  },
+  {
+   "term": "Spring 2027",
+   "code": "INSC 20153",
+   "classNumber": "10106",
+   "section": "020",
+   "component": "LEC",
+   "days": "TR",
+   "start": "12:30",
+   "end": "13:50",
+   "session": "1",
+   "status": "Open",
+   "seats": {
+    "capacity": 40,
+    "enrolled": 29
+   },
+   "consent": null,
+   "mode": "In Person",
+   "instructor": "Staff"
+  },
+  {
+   "term": "Fall 2026",
+   "code": "INSC 20263",
+   "classNumber": "10107",
+   "section": "010",
+   "component": "LEC",
+   "days": "MWF",
+   "start": "13:00",
+   "end": "13:50",
+   "session": "1",
+   "status": "Open",
+   "seats": {
+    "capacity": 40,
+    "enrolled": 36
+   },
+   "consent": null,
+   "mode": "In Person",
+   "instructor": "Staff"
+  },
+  {
+   "term": "Spring 2027",
+   "code": "INSC 20263",
+   "classNumber": "10108",
+   "section": "010",
+   "component": "LEC",
+   "days": "TR",
+   "start": "09:30",
+   "end": "10:50",
+   "session": "1",
+   "status": "Open",
+   "seats": {
+    "capacity": 40,
+    "enrolled": 23
+   },
+   "consent": null,
+   "mode": "In Person",
+   "instructor": "Staff"
+  },
+  {
+   "term": "Spring 2027",
+   "code": "INSC 20263",
+   "classNumber": "10109",
+   "section": "020",
+   "component": "LEC",
+   "days": "MWF",
+   "start": "09:00",
+   "end": "09:50",
+   "session": "1",
+   "status": "Open",
+   "seats": {
+    "capacity": 40,
+    "enrolled": 30
+   },
+   "consent": null,
+   "mode": "In Person",
+   "instructor": "Staff"
+  },
+  {
+   "term": "Fall 2026",
+   "code": "ENTR 20263",
+   "classNumber": "10110",
+   "section": "010",
+   "component": "LEC",
+   "days": "TR",
+   "start": "14:00",
+   "end": "15:20",
+   "session": "1",
+   "status": "Open",
+   "seats": {
+    "capacity": 40,
+    "enrolled": 37
+   },
+   "consent": null,
+   "mode": "In Person",
+   "instructor": "Staff"
+  },
+  {
+   "term": "Spring 2027",
+   "code": "ENTR 20263",
+   "classNumber": "10111",
+   "section": "010",
+   "component": "LEC",
+   "days": "MWF",
+   "start": "13:00",
+   "end": "13:50",
+   "session": "1",
+   "status": "Open",
+   "seats": {
+    "capacity": 40,
+    "enrolled": 24
+   },
+   "consent": null,
+   "mode": "In Person",
+   "instructor": "Staff"
+  },
+  {
+   "term": "Spring 2027",
+   "code": "ENTR 20263",
+   "classNumber": "10112",
+   "section": "020",
+   "component": "LEC",
+   "days": "TR",
+   "start": "11:00",
+   "end": "12:20",
+   "session": "1",
+   "status": "Open",
+   "seats": {
+    "capacity": 40,
+    "enrolled": 31
+   },
+   "consent": null,
+   "mode": "In Person",
+   "instructor": "Staff"
+  },
+  {
+   "term": "Fall 2026",
+   "code": "MARK 30153",
+   "classNumber": "10113",
+   "section": "010",
+   "component": "LEC",
+   "days": "MWF",
+   "start": "10:00",
+   "end": "10:50",
+   "session": "1",
+   "status": "Open",
+   "seats": {
+    "capacity": 40,
+    "enrolled": 38
+   },
+   "consent": null,
+   "mode": "In Person",
+   "instructor": "Staff"
+  },
+  {
+   "term": "Spring 2027",
+   "code": "MARK 30153",
+   "classNumber": "10114",
+   "section": "010",
+   "component": "LEC",
+   "days": "TR",
+   "start": "09:30",
+   "end": "10:50",
+   "session": "1",
+   "status": "Open",
+   "seats": {
+    "capacity": 40,
+    "enrolled": 25
+   },
+   "consent": null,
+   "mode": "In Person",
+   "instructor": "Staff"
+  },
+  {
+   "term": "Spring 2027",
+   "code": "MARK 30153",
+   "classNumber": "10115",
+   "section": "020",
+   "component": "LEC",
+   "days": "MWF",
+   "start": "14:00",
+   "end": "14:50",
+   "session": "1",
+   "status": "Open",
+   "seats": {
+    "capacity": 40,
+    "enrolled": 32
+   },
+   "consent": null,
+   "mode": "In Person",
+   "instructor": "Staff"
+  },
+  {
+   "term": "Fall 2026",
+   "code": "FINA 30153",
+   "classNumber": "10116",
+   "section": "010",
+   "component": "LEC",
+   "days": "TR",
+   "start": "11:00",
+   "end": "12:20",
+   "session": "1",
+   "status": "Open",
+   "seats": {
+    "capacity": 40,
+    "enrolled": 39
+   },
+   "consent": null,
+   "mode": "In Person",
+   "instructor": "Staff"
+  },
+  {
+   "term": "Spring 2027",
+   "code": "FINA 30153",
+   "classNumber": "10117",
+   "section": "010",
+   "component": "LEC",
+   "days": "MWF",
+   "start": "09:00",
+   "end": "09:50",
+   "session": "1",
+   "status": "Open",
+   "seats": {
+    "capacity": 40,
+    "enrolled": 26
+   },
+   "consent": null,
+   "mode": "In Person",
+   "instructor": "Staff"
+  },
+  {
+   "term": "Spring 2027",
+   "code": "FINA 30153",
+   "classNumber": "10118",
+   "section": "020",
+   "component": "LEC",
+   "days": "TR",
+   "start": "14:00",
+   "end": "15:20",
+   "session": "1",
+   "status": "Open",
+   "seats": {
+    "capacity": 40,
+    "enrolled": 33
+   },
+   "consent": null,
+   "mode": "In Person",
+   "instructor": "Staff"
+  },
+  {
+   "term": "Fall 2026",
+   "code": "INSC 30313",
+   "classNumber": "10119",
+   "section": "010",
+   "component": "LEC",
+   "days": "MWF",
+   "start": "11:00",
+   "end": "11:50",
+   "session": "1",
+   "status": "Open",
+   "seats": {
+    "capacity": 40,
+    "enrolled": 20
+   },
+   "consent": null,
+   "mode": "In Person",
+   "instructor": "Staff"
+  },
+  {
+   "term": "Spring 2027",
+   "code": "INSC 30313",
+   "classNumber": "10120",
+   "section": "010",
+   "component": "LEC",
+   "days": "TR",
+   "start": "12:30",
+   "end": "13:50",
+   "session": "1",
+   "status": "Open",
+   "seats": {
+    "capacity": 40,
+    "enrolled": 27
+   },
+   "consent": null,
+   "mode": "In Person",
+   "instructor": "Staff"
+  },
+  {
+   "term": "Spring 2027",
+   "code": "INSC 30313",
+   "classNumber": "10121",
+   "section": "020",
+   "component": "LEC",
+   "days": "MWF",
+   "start": "10:00",
+   "end": "10:50",
+   "session": "1",
+   "status": "Open",
+   "seats": {
+    "capacity": 40,
+    "enrolled": 34
+   },
+   "consent": null,
+   "mode": "In Person",
+   "instructor": "Staff"
+  },
+  {
+   "term": "Fall 2026",
+   "code": "INSC 30801",
+   "classNumber": "10122",
+   "section": "010",
+   "component": "LEC",
+   "days": "F",
+   "start": "13:00",
+   "end": "14:50",
+   "session": "8W1",
+   "status": "Open",
+   "seats": {
+    "capacity": 40,
+    "enrolled": 21
+   },
+   "consent": null,
+   "mode": "In Person",
+   "instructor": "Staff"
+  },
+  {
+   "term": "Spring 2027",
+   "code": "INSC 30801",
+   "classNumber": "10123",
+   "section": "010",
+   "component": "LEC",
+   "days": "F",
+   "start": "13:00",
+   "end": "14:50",
+   "session": "8W1",
+   "status": "Open",
+   "seats": {
+    "capacity": 40,
+    "enrolled": 28
+   },
+   "consent": null,
+   "mode": "In Person",
+   "instructor": "Staff"
+  },
+  {
+   "term": "Spring 2027",
+   "code": "INSC 30801",
+   "classNumber": "10124",
+   "section": "020",
+   "component": "LEC",
+   "days": "F",
+   "start": "13:00",
+   "end": "14:50",
+   "session": "8W2",
+   "status": "Open",
+   "seats": {
+    "capacity": 40,
+    "enrolled": 35
+   },
+   "consent": null,
+   "mode": "In Person",
+   "instructor": "Staff"
+  },
+  {
+   "term": "Fall 2026",
+   "code": "BUSI 30383",
+   "classNumber": "10125",
+   "section": "010",
+   "component": "LEC",
+   "days": "TR",
+   "start": "15:30",
+   "end": "16:50",
+   "session": "1",
+   "status": "Open",
+   "seats": {
+    "capacity": 40,
+    "enrolled": 22
+   },
+   "consent": null,
+   "mode": "In Person",
+   "instructor": "Staff"
+  },
+  {
+   "term": "Spring 2027",
+   "code": "BUSI 30383",
+   "classNumber": "10126",
+   "section": "010",
+   "component": "LEC",
+   "days": "MWF",
+   "start": "11:00",
+   "end": "11:50",
+   "session": "1",
+   "status": "Open",
+   "seats": {
+    "capacity": 40,
+    "enrolled": 29
+   },
+   "consent": null,
+   "mode": "In Person",
+   "instructor": "Staff"
+  },
+  {
+   "term": "Spring 2027",
+   "code": "BUSI 30383",
+   "classNumber": "10127",
+   "section": "020",
+   "component": "LEC",
+   "days": "TR",
+   "start": "17:00",
+   "end": "18:20",
+   "session": "1",
+   "status": "Open",
+   "seats": {
+    "capacity": 40,
+    "enrolled": 36
+   },
+   "consent": null,
+   "mode": "In Person",
+   "instructor": "Staff"
+  },
+  {
+   "term": "Spring 2027",
+   "code": "BUSI 30383",
+   "classNumber": "10128",
+   "section": "060",
+   "component": "LEC",
+   "days": "",
+   "session": "1",
+   "status": "Open",
+   "seats": {
+    "capacity": 40,
+    "enrolled": 23
+   },
+   "consent": null,
+   "mode": "Online",
+   "instructor": "Staff"
+  },
+  {
+   "term": "Fall 2026",
+   "code": "FINA 30203",
+   "classNumber": "10129",
+   "section": "010",
+   "component": "LEC",
+   "days": "MWF",
+   "start": "09:00",
+   "end": "09:50",
+   "session": "1",
+   "status": "Open",
+   "seats": {
+    "capacity": 40,
+    "enrolled": 30
+   },
+   "consent": null,
+   "mode": "In Person",
+   "instructor": "Staff"
+  },
+  {
+   "term": "Spring 2027",
+   "code": "FINA 30203",
+   "classNumber": "10130",
+   "section": "010",
+   "component": "LEC",
+   "days": "TR",
+   "start": "09:30",
+   "end": "10:50",
+   "session": "1",
+   "status": "Open",
+   "seats": {
+    "capacity": 40,
+    "enrolled": 37
+   },
+   "consent": null,
+   "mode": "In Person",
+   "instructor": "Staff"
+  },
+  {
+   "term": "Spring 2027",
+   "code": "FINA 30203",
+   "classNumber": "10131",
+   "section": "020",
+   "component": "LEC",
+   "days": "MWF",
+   "start": "10:00",
+   "end": "10:50",
+   "session": "1",
+   "status": "Open",
+   "seats": {
+    "capacity": 40,
+    "enrolled": 24
+   },
+   "consent": null,
+   "mode": "In Person",
+   "instructor": "Staff"
+  },
+  {
+   "term": "Fall 2026",
+   "code": "FINA 30213",
+   "classNumber": "10132",
+   "section": "010",
+   "component": "LEC",
+   "days": "TR",
+   "start": "12:30",
+   "end": "13:50",
+   "session": "1",
+   "status": "Open",
+   "seats": {
+    "capacity": 40,
+    "enrolled": 31
+   },
+   "consent": null,
+   "mode": "In Person",
+   "instructor": "Staff"
+  },
+  {
+   "term": "Spring 2027",
+   "code": "FINA 30213",
+   "classNumber": "10133",
+   "section": "010",
+   "component": "LEC",
+   "days": "TR",
+   "start": "11:00",
+   "end": "12:20",
+   "session": "1",
+   "status": "Open",
+   "seats": {
+    "capacity": 40,
+    "enrolled": 38
+   },
+   "consent": null,
+   "mode": "In Person",
+   "instructor": "Staff"
+  },
+  {
+   "term": "Spring 2027",
+   "code": "FINA 30213",
+   "classNumber": "10134",
+   "section": "080",
+   "component": "LEC",
+   "days": "TR",
+   "start": "11:00",
+   "end": "12:20",
+   "session": "1",
+   "status": "Open",
+   "seats": {
+    "capacity": 40,
+    "enrolled": 25
+   },
+   "consent": null,
+   "mode": "In Person",
+   "instructor": "Staff",
+   "attributes": [
+    "Honors"
+   ]
+  },
+  {
+   "term": "Fall 2026",
+   "code": "FINA 30233",
+   "classNumber": "10135",
+   "section": "010",
+   "component": "LEC",
+   "days": "MWF",
+   "start": "10:00",
+   "end": "10:50",
+   "session": "1",
+   "status": "Open",
+   "seats": {
+    "capacity": 40,
+    "enrolled": 32
+   },
+   "consent": null,
+   "mode": "In Person",
+   "instructor": "Staff"
+  },
+  {
+   "term": "Fall 2026",
+   "code": "FINA 30233",
+   "classNumber": "10136",
+   "section": "020",
+   "component": "LEC",
+   "days": "TR",
+   "start": "14:00",
+   "end": "15:20",
+   "session": "1",
+   "status": "Open",
+   "seats": {
+    "capacity": 40,
+    "enrolled": 39
+   },
+   "consent": null,
+   "mode": "In Person",
+   "instructor": "Staff"
+  },
+  {
+   "term": "Fall 2026",
+   "code": "FINA 40153",
+   "classNumber": "10137",
+   "section": "010",
+   "component": "LEC",
+   "days": "TR",
+   "start": "09:30",
+   "end": "10:50",
+   "session": "1",
+   "status": "Open",
+   "seats": {
+    "capacity": 40,
+    "enrolled": 26
+   },
+   "consent": null,
+   "mode": "In Person",
+   "instructor": "Staff"
+  },
+  {
+   "term": "Spring 2027",
+   "code": "FINA 40153",
+   "classNumber": "10138",
+   "section": "010",
+   "component": "LEC",
+   "days": "MWF",
+   "start": "13:00",
+   "end": "13:50",
+   "session": "1",
+   "status": "Open",
+   "seats": {
+    "capacity": 40,
+    "enrolled": 33
+   },
+   "consent": null,
+   "mode": "In Person",
+   "instructor": "Staff"
+  },
+  {
+   "term": "Fall 2026",
+   "code": "ACCT 30153",
+   "classNumber": "10139",
+   "section": "010",
+   "component": "LEC",
+   "days": "MWF",
+   "start": "08:00",
+   "end": "08:50",
+   "session": "1",
+   "status": "Open",
+   "seats": {
+    "capacity": 40,
+    "enrolled": 20
+   },
+   "consent": null,
+   "mode": "In Person",
+   "instructor": "Staff"
+  },
+  {
+   "term": "Spring 2027",
+   "code": "ACCT 30153",
+   "classNumber": "10140",
+   "section": "010",
+   "component": "LEC",
+   "days": "TR",
+   "start": "08:00",
+   "end": "09:20",
+   "session": "1",
+   "status": "Open",
+   "seats": {
+    "capacity": 40,
+    "enrolled": 27
+   },
+   "consent": null,
+   "mode": "In Person",
+   "instructor": "Staff"
+  },
+  {
+   "term": "Spring 2027",
+   "code": "ACCT 30153",
+   "classNumber": "10141",
+   "section": "020",
+   "component": "LEC",
+   "days": "MWF",
+   "start": "13:00",
+   "end": "13:50",
+   "session": "1",
+   "status": "Open",
+   "seats": {
+    "capacity": 40,
+    "enrolled": 34
+   },
+   "consent": null,
+   "mode": "In Person",
+   "instructor": "Staff"
+  },
+  {
+   "term": "Fall 2026",
+   "code": "ACCT 30253",
+   "classNumber": "10142",
+   "section": "010",
+   "component": "LEC",
+   "days": "TR",
+   "start": "08:00",
+   "end": "09:20",
+   "session": "1",
+   "status": "Open",
+   "seats": {
+    "capacity": 40,
+    "enrolled": 21
+   },
+   "consent": null,
+   "mode": "In Person",
+   "instructor": "Staff"
+  },
+  {
+   "term": "Spring 2027",
+   "code": "ACCT 30253",
+   "classNumber": "10143",
+   "section": "010",
+   "component": "LEC",
+   "days": "MWF",
+   "start": "09:00",
+   "end": "09:50",
+   "session": "1",
+   "status": "Open",
+   "seats": {
+    "capacity": 40,
+    "enrolled": 28
+   },
+   "consent": null,
+   "mode": "In Person",
+   "instructor": "Staff"
+  },
+  {
+   "term": "Fall 2026",
+   "code": "FINA 40313",
+   "classNumber": "10144",
+   "section": "010",
+   "component": "LEC",
+   "days": "TR",
+   "start": "15:30",
+   "end": "16:50",
+   "session": "1",
+   "status": "Open",
+   "seats": {
+    "capacity": 40,
+    "enrolled": 35
+   },
+   "consent": null,
+   "mode": "In Person",
+   "instructor": "Staff"
+  },
+  {
+   "term": "Spring 2027",
+   "code": "FINA 40313",
+   "classNumber": "10145",
+   "section": "010",
+   "component": "LEC",
+   "days": "TR",
+   "start": "15:30",
+   "end": "16:50",
+   "session": "1",
+   "status": "Open",
+   "seats": {
+    "capacity": 40,
+    "enrolled": 22
+   },
+   "consent": null,
+   "mode": "In Person",
+   "instructor": "Staff"
+  },
+  {
+   "term": "Spring 2027",
+   "code": "FINA 30223",
+   "classNumber": "10146",
+   "section": "010",
+   "component": "LEC",
+   "days": "MWF",
+   "start": "14:00",
+   "end": "14:50",
+   "session": "1",
+   "status": "Open",
+   "seats": {
+    "capacity": 40,
+    "enrolled": 29
+   },
+   "consent": null,
+   "mode": "In Person",
+   "instructor": "Staff"
+  },
+  {
+   "term": "Fall 2026",
+   "code": "FINA 40533",
+   "classNumber": "10147",
+   "section": "010",
+   "component": "LEC",
+   "days": "MWF",
+   "start": "11:00",
+   "end": "11:50",
+   "session": "1",
+   "status": "Open",
+   "seats": {
+    "capacity": 40,
+    "enrolled": 36
+   },
+   "consent": null,
+   "mode": "In Person",
+   "instructor": "Staff"
+  },
+  {
+   "term": "Spring 2027",
+   "code": "FINA 40623",
+   "classNumber": "10148",
+   "section": "010",
+   "component": "LEC",
+   "days": "TR",
+   "start": "12:30",
+   "end": "13:50",
+   "session": "1",
+   "status": "Open",
+   "seats": {
+    "capacity": 40,
+    "enrolled": 23
+   },
+   "consent": null,
+   "mode": "In Person",
+   "instructor": "Staff"
+  },
+  {
+   "term": "Fall 2026",
+   "code": "ACCT 30303",
+   "classNumber": "10149",
+   "section": "010",
+   "component": "LEC",
+   "days": "MWF",
+   "start": "14:00",
+   "end": "14:50",
+   "session": "1",
+   "status": "Open",
+   "seats": {
+    "capacity": 40,
+    "enrolled": 30
+   },
+   "consent": null,
+   "mode": "In Person",
+   "instructor": "Staff"
+  },
+  {
+   "term": "Fall 2026",
+   "code": "FINA 40183",
+   "classNumber": "10150",
+   "section": "010",
+   "component": "LEC",
+   "days": "TR",
+   "start": "17:00",
+   "end": "18:20",
+   "session": "1",
+   "status": "Open",
+   "seats": {
+    "capacity": 40,
+    "enrolled": 37
+   },
+   "consent": "Dept",
+   "mode": "In Person",
+   "instructor": "Staff"
+  },
+  {
+   "term": "Spring 2027",
+   "code": "FINA 40193",
+   "classNumber": "10151",
+   "section": "010",
+   "component": "LEC",
+   "days": "TR",
+   "start": "17:00",
+   "end": "18:20",
+   "session": "1",
+   "status": "Open",
+   "seats": {
+    "capacity": 40,
+    "enrolled": 24
+   },
+   "consent": "Dept",
+   "mode": "In Person",
+   "instructor": "Staff"
+  },
+  {
+   "term": "Fall 2026",
+   "code": "INSC 30723",
+   "classNumber": "10152",
+   "section": "010",
+   "component": "LEC",
+   "days": "MWF",
+   "start": "13:00",
+   "end": "13:50",
+   "session": "1",
+   "status": "Open",
+   "seats": {
+    "capacity": 40,
+    "enrolled": 31
+   },
+   "consent": null,
+   "mode": "In Person",
+   "instructor": "Staff"
+  },
+  {
+   "term": "Spring 2027",
+   "code": "INSC 30723",
+   "classNumber": "10153",
+   "section": "010",
+   "component": "LEC",
+   "days": "TR",
+   "start": "14:00",
+   "end": "15:20",
+   "session": "1",
+   "status": "Open",
+   "seats": {
+    "capacity": 40,
+    "enrolled": 38
+   },
+   "consent": null,
+   "mode": "In Person",
+   "instructor": "Staff"
+  },
+  {
+   "term": "Fall 2026",
+   "code": "INSC 30823",
+   "classNumber": "10154",
+   "section": "010",
+   "component": "LEC",
+   "days": "TR",
+   "start": "11:00",
+   "end": "12:20",
+   "session": "1",
+   "status": "Open",
+   "seats": {
+    "capacity": 40,
+    "enrolled": 25
+   },
+   "consent": null,
+   "mode": "In Person",
+   "instructor": "Staff"
+  },
+  {
+   "term": "Spring 2027",
+   "code": "INSC 30823",
+   "classNumber": "10155",
+   "section": "010",
+   "component": "LEC",
+   "days": "TR",
+   "start": "11:00",
+   "end": "12:20",
+   "session": "1",
+   "status": "Open",
+   "seats": {
+    "capacity": 40,
+    "enrolled": 32
+   },
+   "consent": null,
+   "mode": "In Person",
+   "instructor": "Staff"
+  },
+  {
+   "term": "Spring 2027",
+   "code": "INSC 30823",
+   "classNumber": "10156",
+   "section": "020",
+   "component": "LEC",
+   "days": "MWF",
+   "start": "13:00",
+   "end": "13:50",
+   "session": "1",
+   "status": "Open",
+   "seats": {
+    "capacity": 40,
+    "enrolled": 39
+   },
+   "consent": null,
+   "mode": "In Person",
+   "instructor": "Staff"
+  },
+  {
+   "term": "Fall 2026",
+   "code": "INSC 30833",
+   "classNumber": "10157",
+   "section": "010",
+   "component": "LEC",
+   "days": "TR",
+   "start": "09:30",
+   "end": "10:50",
+   "session": "1",
+   "status": "Open",
+   "seats": {
+    "capacity": 40,
+    "enrolled": 26
+   },
+   "consent": null,
+   "mode": "In Person",
+   "instructor": "Staff"
+  },
+  {
+   "term": "Spring 2027",
+   "code": "INSC 30833",
+   "classNumber": "10158",
+   "section": "010",
+   "component": "LEC",
+   "days": "MWF",
+   "start": "11:00",
+   "end": "11:50",
+   "session": "1",
+   "status": "Open",
+   "seats": {
+    "capacity": 40,
+    "enrolled": 33
+   },
+   "consent": null,
+   "mode": "In Person",
+   "instructor": "Staff"
+  },
+  {
+   "term": "Fall 2026",
+   "code": "INSC 30853",
+   "classNumber": "10159",
+   "section": "010",
+   "component": "LEC",
+   "days": "MWF",
+   "start": "14:00",
+   "end": "14:50",
+   "session": "1",
+   "status": "Open",
+   "seats": {
+    "capacity": 40,
+    "enrolled": 20
+   },
+   "consent": null,
+   "mode": "In Person",
+   "instructor": "Staff"
+  },
+  {
+   "term": "Spring 2027",
+   "code": "INSC 30853",
+   "classNumber": "10160",
+   "section": "010",
+   "component": "LEC",
+   "days": "TR",
+   "start": "12:30",
+   "end": "13:50",
+   "session": "1",
+   "status": "Open",
+   "seats": {
+    "capacity": 40,
+    "enrolled": 27
+   },
+   "consent": null,
+   "mode": "In Person",
+   "instructor": "Staff"
+  },
+  {
+   "term": "Spring 2027",
+   "code": "INSC 30853",
+   "classNumber": "10161",
+   "section": "020",
+   "component": "LEC",
+   "days": "MWF",
+   "start": "10:00",
+   "end": "10:50",
+   "session": "1",
+   "status": "Closed",
+   "seats": {
+    "capacity": 40,
+    "enrolled": 34
+   },
+   "consent": null,
+   "mode": "In Person",
+   "instructor": "Staff"
+  },
+  {
+   "term": "Fall 2026",
+   "code": "INSC 40843",
+   "classNumber": "10162",
+   "section": "010",
+   "component": "LEC",
+   "days": "TR",
+   "start": "14:00",
+   "end": "15:20",
+   "session": "1",
+   "status": "Open",
+   "seats": {
+    "capacity": 40,
+    "enrolled": 21
+   },
+   "consent": null,
+   "mode": "In Person",
+   "instructor": "Staff"
+  },
+  {
+   "term": "Spring 2027",
+   "code": "INSC 40843",
+   "classNumber": "10163",
+   "section": "010",
+   "component": "LEC",
+   "days": "MWF",
+   "start": "09:00",
+   "end": "09:50",
+   "session": "1",
+   "status": "Open",
+   "seats": {
+    "capacity": 40,
+    "enrolled": 28
+   },
+   "consent": null,
+   "mode": "In Person",
+   "instructor": "Staff"
+  },
+  {
+   "term": "Fall 2026",
+   "code": "INSC 40383",
+   "classNumber": "10164",
+   "section": "010",
+   "component": "LEC",
+   "days": "MWF",
+   "start": "10:00",
+   "end": "10:50",
+   "session": "1",
+   "status": "Open",
+   "seats": {
+    "capacity": 40,
+    "enrolled": 35
+   },
+   "consent": null,
+   "mode": "In Person",
+   "instructor": "Staff"
+  },
+  {
+   "term": "Spring 2027",
+   "code": "INSC 40383",
+   "classNumber": "10165",
+   "section": "010",
+   "component": "LEC",
+   "days": "TR",
+   "start": "15:30",
+   "end": "16:50",
+   "session": "1",
+   "status": "Open",
+   "seats": {
+    "capacity": 40,
+    "enrolled": 22
+   },
+   "consent": null,
+   "mode": "In Person",
+   "instructor": "Staff"
+  },
+  {
+   "term": "Spring 2027",
+   "code": "INSC 40813",
+   "classNumber": "10166",
+   "section": "010",
+   "component": "LEC",
+   "days": "TR",
+   "start": "09:30",
+   "end": "10:50",
+   "session": "1",
+   "status": "Open",
+   "seats": {
+    "capacity": 40,
+    "enrolled": 29
+   },
+   "consent": null,
+   "mode": "In Person",
+   "instructor": "Staff"
+  },
+  {
+   "term": "Spring 2027",
+   "code": "INSC 30263",
+   "classNumber": "10167",
+   "section": "010",
+   "component": "LEC",
+   "days": "MWF",
+   "start": "14:00",
+   "end": "14:50",
+   "session": "1",
+   "status": "Open",
+   "seats": {
+    "capacity": 40,
+    "enrolled": 36
+   },
+   "consent": null,
+   "mode": "In Person",
+   "instructor": "Staff"
+  },
+  {
+   "term": "Spring 2027",
+   "code": "INSC 30263",
+   "classNumber": "10168",
+   "section": "020",
+   "component": "LEC",
+   "days": "TR",
+   "start": "11:00",
+   "end": "12:20",
+   "session": "1",
+   "status": "Closed",
+   "seats": {
+    "capacity": 40,
+    "enrolled": 23
+   },
+   "consent": null,
+   "mode": "In Person",
+   "instructor": "Staff"
+  },
+  {
+   "term": "Fall 2026",
+   "code": "INSC 30283",
+   "classNumber": "10169",
+   "section": "010",
+   "component": "LEC",
+   "days": "TR",
+   "start": "12:30",
+   "end": "13:50",
+   "session": "1",
+   "status": "Open",
+   "seats": {
+    "capacity": 40,
+    "enrolled": 30
+   },
+   "consent": null,
+   "mode": "In Person",
+   "instructor": "Staff"
+  },
+  {
+   "term": "Spring 2027",
+   "code": "INSC 30283",
+   "classNumber": "10170",
+   "section": "010",
+   "component": "LEC",
+   "days": "TR",
+   "start": "11:00",
+   "end": "12:20",
+   "session": "1",
+   "status": "Open",
+   "seats": {
+    "capacity": 40,
+    "enrolled": 37
+   },
+   "consent": null,
+   "mode": "In Person",
+   "instructor": "Staff"
+  },
+  {
+   "term": "Spring 2027",
+   "code": "INSC 30283",
+   "classNumber": "10171",
+   "section": "020",
+   "component": "LEC",
+   "days": "MW",
+   "start": "15:30",
+   "end": "16:50",
+   "session": "1",
+   "status": "Open",
+   "seats": {
+    "capacity": 40,
+    "enrolled": 24
+   },
+   "consent": "Instr",
+   "mode": "In Person",
+   "instructor": "Staff"
+  },
+  {
+   "term": "Fall 2026",
+   "code": "INSC 30273",
+   "classNumber": "10172",
+   "section": "010",
+   "component": "LEC",
+   "days": "MWF",
+   "start": "11:00",
+   "end": "11:50",
+   "session": "1",
+   "status": "Open",
+   "seats": {
+    "capacity": 40,
+    "enrolled": 31
+   },
+   "consent": null,
+   "mode": "In Person",
+   "instructor": "Staff"
+  },
+  {
+   "term": "Spring 2027",
+   "code": "INSC 30273",
+   "classNumber": "10173",
+   "section": "010",
+   "component": "LEC",
+   "days": "TR",
+   "start": "15:30",
+   "end": "16:50",
+   "session": "1",
+   "status": "Open",
+   "seats": {
+    "capacity": 40,
+    "enrolled": 38
+   },
+   "consent": null,
+   "mode": "In Person",
+   "instructor": "Staff"
+  }
+ ]
+}

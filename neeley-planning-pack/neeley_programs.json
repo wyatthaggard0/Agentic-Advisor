@@ -1,0 +1,1608 @@
+{
+ "about": "TCU Neeley School of Business programs for degree planning. Built 2026-10-17 from the TCU undergraduate catalog (2026-2027, pages unlabeled), Neeley checklists (after summer 2025 and older), and Neeley program pages. Requirement types: all = every course; one = pick one option; hours = pick options until the hours are met. A course fills only one choice requirement per program.",
+ "cohorts": {
+  "new": {
+   "label": "Started summer 2025 or later",
+   "core_version": "new",
+   "total_hours": 120,
+   "total_hours_source": "https://tcu.edu/academics/advising/faq.php",
+   "upper_division_hours": 36,
+   "tcu_hours": 45,
+   "checklist_source": "https://www.neeley.tcu.edu/bba/fina-checklist-after-summer2025",
+   "bba_groups": [
+    {
+     "id": "req-business",
+     "label": "Required for business",
+     "courses": [
+      "MATH 10283",
+      "ECON 10223",
+      "ECON 10233",
+      "ENGL 10803",
+      "ENGL 20803"
+     ],
+     "source": "https://www.neeley.tcu.edu/bba/fina-checklist-after-summer2025",
+     "confidence": "confirmed"
+    },
+    {
+     "id": "foundation",
+     "label": "Business foundation",
+     "courses": [
+      "INSC 20153",
+      "ACCT 20353",
+      "INSC 20263"
+     ],
+     "source": "https://www.neeley.tcu.edu/bba/fina-checklist-after-summer2025",
+     "confidence": "confirmed"
+    },
+    {
+     "id": "business-core",
+     "label": "Business core (16 hours)",
+     "courses": [
+      "ENTR 20263",
+      "FINA 30153",
+      "INSC 30313",
+      "INSC 30801",
+      "MANA 30253",
+      "MARK 30153"
+     ],
+     "source": "https://www.neeley.tcu.edu/bba/fina-checklist-after-summer2025",
+     "confidence": "confirmed",
+     "notes": [
+      "The Neeley checklists list MANA 30250 + MANA 30350; the new four-year plans pair MANA 30250 with MANA 40250 instead. MANA 30350 is not in the TCU course export, and neither MANA 30250 nor MANA 40250 has a section in Fall 2026 or Spring 2027. What does run is MANA 30253 (OB and Strategy, 3 hours, 22 sections), so the plan uses it. An advisor must confirm it satisfies this requirement."
+     ]
+    }
+   ]
+  },
+  "old": {
+   "label": "Started before summer 2025",
+   "core_version": "old",
+   "total_hours": 120,
+   "total_hours_conflict": "The Neeley Graduation Checklist says 124 hours; the TCU Advising FAQ says 120 for students who began Fall 2021 or later.",
+   "total_hours_source": "https://www.neeley.tcu.edu/BBA/Graduation-Checklist",
+   "upper_division_hours": 42,
+   "tcu_hours": 58,
+   "checklist_source": "https://neeley.tcu.edu/bba/fina-checklist",
+   "bba_groups": [
+    {
+     "id": "req-business",
+     "label": "Required for business",
+     "courses": [
+      "MATH 10283",
+      "ECON 10223",
+      "ECON 10233",
+      "ENGL 10803",
+      "ENGL 20803"
+     ],
+     "source": "https://neeley.tcu.edu/bba/fina-checklist",
+     "confidence": "confirmed"
+    },
+    {
+     "id": "foundation",
+     "label": "Business foundation",
+     "courses": [
+      "BUSI 10153",
+      "BUSI 10151",
+      "INSC 20153",
+      "ACCT 20353",
+      "INSC 20263",
+      "ENTR 20153"
+     ],
+     "source": "https://neeley.tcu.edu/bba/acct-checklist",
+     "confidence": "confirmed",
+     "notes": [
+      "BUSI 10153 is on the older checklist and the official suggested four-year plans but is not in the current TCU course export. Students who already completed it are fine; anyone who still needs it should ask an advisor what replaces it."
+     ]
+    },
+    {
+     "id": "business-core",
+     "label": "Business core (19 hours)",
+     "courses": [
+      "FINA 30153",
+      "BUSI 30383",
+      "INSC 30313",
+      "INSC 30801",
+      "MANA 30153",
+      "MARK 30153",
+      "MANA 40153"
+     ],
+     "source": "https://neeley.tcu.edu/bba/acct-checklist",
+     "confidence": "confirmed"
+    }
+   ]
+  }
+ },
+ "core": {
+  "new": {
+   "label": "TCU Core (summer 2025 and later)",
+   "source": "https://undergraduate.catalog.tcu.edu/pages/M1TbuvPKvvRxtdUoaexi",
+   "slots": [
+    {
+     "code": "MTH",
+     "count": 1
+    },
+    {
+     "code": "NSC",
+     "count": 2
+    },
+    {
+     "code": "OCO",
+     "count": 1
+    },
+    {
+     "code": "WCO",
+     "count": 2
+    },
+    {
+     "code": "WEM",
+     "count": 2,
+     "overlay": true,
+     "upper_only": true
+    },
+    {
+     "code": "HUM",
+     "count": 3
+    },
+    {
+     "code": "SSC",
+     "count": 3
+    },
+    {
+     "code": "FAR",
+     "count": 1
+    },
+    {
+     "code": "HT",
+     "count": 1
+    },
+    {
+     "code": "LT",
+     "count": 1
+    },
+    {
+     "code": "RT",
+     "count": 1
+    },
+    {
+     "code": "CA",
+     "count": 1
+    },
+    {
+     "code": "GA",
+     "count": 1
+    },
+    {
+     "code": "CSV",
+     "count": 1
+    }
+   ],
+   "rules": [
+    "A course can count for at most 2 Core categories plus Writing Emphasis.",
+    "OCO and WCO courses count only for themselves.",
+    "No more than 4 Core requirements (not counting OCO and WCO) from one course prefix.",
+    "Writing Emphasis courses must be 30000-40000 level and taken at TCU."
+   ]
+  },
+  "old": {
+   "label": "TCU Core (before summer 2025)",
+   "source": "https://studentsuccess.tcu.edu/wp-content/uploads/2023/05/2023-Advising-Guide.pdf",
+   "slots": [
+    {
+     "code": "MTH",
+     "count": 1
+    },
+    {
+     "code": "OCO",
+     "count": 1
+    },
+    {
+     "code": "WCO",
+     "count": 2
+    },
+    {
+     "code": "WEM",
+     "count": 2,
+     "overlay": true
+    },
+    {
+     "code": "HUM",
+     "count": 3,
+     "group": "HEE"
+    },
+    {
+     "code": "SSC",
+     "count": 3,
+     "group": "HEE"
+    },
+    {
+     "code": "NSC",
+     "count": 2,
+     "group": "HEE"
+    },
+    {
+     "code": "FAR",
+     "count": 1,
+     "group": "HEE"
+    },
+    {
+     "code": "RT",
+     "count": 1,
+     "group": "HMVV"
+    },
+    {
+     "code": "HT",
+     "count": 1,
+     "group": "HMVV"
+    },
+    {
+     "code": "LT",
+     "count": 1,
+     "group": "HMVV"
+    },
+    {
+     "code": "CA",
+     "count": 1,
+     "group": "HMVV"
+    },
+    {
+     "code": "GA",
+     "count": 1,
+     "group": "HMVV"
+    },
+    {
+     "code": "CSV",
+     "count": 1,
+     "group": "HMVV"
+    }
+   ],
+   "rules": [
+    "No course fills two Heritage, Mission, Vision & Values categories.",
+    "At most 2 courses from one prefix within each group.",
+    "Humanities, Social Sciences and Natural Sciences each need at least two different prefixes.",
+    "Writing Emphasis can overlap with anything."
+   ]
+  },
+  "names": {
+   "MTH": "Mathematics",
+   "NSC": "Natural Sciences",
+   "OCO": "Oral Communication",
+   "WCO": "Written Communication",
+   "WEM": "Writing Emphasis",
+   "HUM": "Humanities",
+   "SSC": "Social Sciences",
+   "FAR": "Fine Arts",
+   "HT": "Historical Traditions",
+   "LT": "Literary Traditions",
+   "RT": "Religious Traditions",
+   "CA": "Cultural Awareness",
+   "GA": "Global Awareness",
+   "CSV": "Citizenship & Social Values"
+  }
+ },
+ "known_core_attrs": {
+  "MATH 10283": [
+   "MTH"
+  ],
+  "ECON 10223": [
+   "SSC"
+  ],
+  "ECON 10233": [
+   "SSC"
+  ],
+  "ENGL 10803": [
+   "WCO"
+  ],
+  "ENGL 20803": [
+   "WCO"
+  ],
+  "BUSI 30383": [
+   "CA"
+  ],
+  "FINA 40623": [
+   "GA"
+  ],
+  "FINA 30203": [
+   "WEM"
+  ],
+  "FINA 30213": [
+   "WEM"
+  ],
+  "ACCT 30273": [
+   "WEM"
+  ],
+  "ACCT 40253": [
+   "WEM"
+  ]
+ },
+ "known_offerings": {
+  "FINA 40623": {
+   "terms": [
+    "Fall"
+   ],
+   "source": "https://www.neeley.tcu.edu/bba/fina-checklist-after-summer2025",
+   "label": "Fall only (Neeley checklist)"
+  },
+  "FINA 40533": {
+   "terms": [
+    "Spring"
+   ],
+   "source": "https://www.neeley.tcu.edu/bba/fina-checklist-after-summer2025",
+   "label": "Spring only (Neeley checklist)"
+  },
+  "INSC 40353": {
+   "terms": [
+    "Fall"
+   ],
+   "source": "https://neeley.tcu.edu/bba/svcm-checklist-after-summer-2025",
+   "label": "Fall only (Neeley SVCM checklist; matches 2026-27 schedule)"
+  },
+  "INSC 40343": {
+   "terms": [
+    "Spring"
+   ],
+   "source": "https://neeley.tcu.edu/bba/svcm-checklist-after-summer-2025",
+   "label": "Spring only (Neeley SVCM checklist; matches 2026-27 schedule)"
+  }
+ },
+ "not_before": {
+  "_about": "Earliest semester a course appears in TCU's official four-year plans (0 = first fall, 1 = first spring, 2 = sophomore fall, ...). Source: neeley.tcu.edu/bba/*-4year-plan-after-summer-2025 and checklists. 'hard' rules block; 'soft' rules only push the course later when there is room.",
+  "source": "https://www.neeley.tcu.edu/bba/fina-4year-plan-after-summer-2025",
+  "hard": {
+   "ECON 10233": 1,
+   "INSC 20153": 1,
+   "ACCT 20353": 2,
+   "INSC 20263": 2,
+   "ENTR 20263": 3,
+   "FINA 30153": 3,
+   "INSC 30313": 3,
+   "MANA 30253": 3,
+   "MANA 30250": 3,
+   "ACCT 30153": 3,
+   "INSC 30801": 4
+  },
+  "soft": {
+   "ENGL 20803": 3,
+   "COMM 10123": 2,
+   "MARK 30153": 5,
+   "BUSI 30383": 5
+  },
+  "business_upper_default": 3,
+  "business_prefixes": [
+   "ACCT",
+   "FINA",
+   "INSC",
+   "MANA",
+   "MARK",
+   "ENTR",
+   "BUSI"
+  ]
+ },
+ "standing_hours": {
+  "sophomore": 24,
+  "junior": 54,
+  "senior": 84,
+  "confidence": "historical",
+  "note": "Sophomore 24, junior 54, senior 84 earned hours, from TCU catalogs 2003-04 through 2007-08; the 2019-20 and 2023-24 catalogs' 54-hour declared-major rule fits. Not confirmed for 2026-27, so the registrar should confirm."
+ },
+ "declare_major": {
+  "courses": [
+   "ENGL 10803",
+   "ECON 10223",
+   "MATH 10283",
+   "ACCT 20353",
+   "INSC 20153",
+   "INSC 20263"
+  ],
+  "gpa": 3.0,
+  "source": "https://www.neeley.tcu.edu/bba/first-year-admission-requirements"
+ },
+ "load": {
+  "max_without_approval": 18,
+  "summer_session_max": 7,
+  "source": "https://registrar.tcu.edu/current-students/enrollment/policies.php"
+ },
+ "programs": [
+  {
+   "id": "FINA",
+   "type": "major",
+   "name": "Finance",
+   "url": "https://undergraduate.catalog.tcu.edu/colleges/business/majors/financebba",
+   "hours_published": "30-31.5",
+   "requirements": [
+    {
+     "type": "all",
+     "label": "Finance required courses",
+     "courses": [
+      "FINA 30203",
+      "FINA 30213",
+      "FINA 30233",
+      "FINA 40153",
+      "ACCT 30153",
+      "ACCT 30253"
+     ]
+    },
+    {
+     "type": "hours",
+     "label": "Finance electives (6 hours)",
+     "hours": 6,
+     "options": [
+      "FINA 30223",
+      "FINA 30303",
+      "FINA 30623",
+      "FINA 40183",
+      "FINA 40193",
+      "FINA 40313",
+      "FINA 40533",
+      "FINA 40603",
+      "FINA 40613",
+      "FINA 40623",
+      "FINA 40970",
+      "ACCT 30303"
+     ],
+     "note": "FINA 40970 counts only for topics 'Alternative Asset Investments' and 'Equity Investments Practicum'. FINA 40533 Spring only; FINA 40623 Fall only. The after-summer-2025 checklist also lists FINA 30313 Real Estate Principles (not in catalog list): advisor confirm."
+    },
+    {
+     "type": "one",
+     "label": "Global content",
+     "options": [
+      "BUSI 30383",
+      "FINA 40623"
+     ],
+     "note": "If FINA 40623 but not BUSI 30383: add ACCT 55450/ACCT 30450 or ACCT 55460/ACCT 30460 (1.5 hours). Associated requirement ECON 10233 also applies."
+    }
+   ],
+   "match_tags": [
+    "finance",
+    "investing",
+    "banking",
+    "markets",
+    "valuation",
+    "wealth",
+    "corporate finance",
+    "private equity",
+    "numbers"
+   ]
+  },
+  {
+   "id": "ACCT",
+   "type": "major",
+   "name": "Accounting",
+   "url": "https://undergraduate.catalog.tcu.edu/colleges/business/majors/accountingbba",
+   "hours_published": "31.5-33 (conflict: 21 on the program page, 25.5 + 9-12 on the Neeley checklist)",
+   "requirements": [
+    {
+     "type": "all",
+     "label": "Accounting required courses",
+     "courses": [
+      "ACCT 30153",
+      "ACCT 30163",
+      "ACCT 30253",
+      "ACCT 30273",
+      "ACCT 30303",
+      "ACCT 40223",
+      "ACCT 40253"
+     ]
+    },
+    {
+     "type": "one",
+     "label": "Global content",
+     "options": [
+      "BUSI 30383",
+      "FINA 40623",
+      "ACCT 55260"
+     ],
+     "note": "Catalog: choose 1.5-3 hours; ACCT 55260 is 1.5 hours. Checklist lists ACCT 50970 'Global Perspective in Accounting' instead of ACCT 55260. FINA 40623 Fall only."
+    },
+    {
+     "type": "all",
+     "label": "Accounting ethics (3 hours)",
+     "courses": [
+      "ACCT 55450",
+      "ACCT 55460"
+     ],
+     "note": "Catalog lists ACCT 30450 / ACCT 55450 and ACCT 30460 / ACCT 55460 as alternatives (1.5 hours each). 55000-level requires ACCT 30253 + ACCT 30273."
+    },
+    {
+     "type": "hours",
+     "label": "Accounting career content (6 hours)",
+     "hours": 6,
+     "options": [
+      "ACCT 55153",
+      "ACCT 55253",
+      "ACCT 55303"
+     ],
+     "note": "Checklist adds ACCT 55200 (no 2026-27 sections; hours unstated). ACCT 55303 Fall only in 2026-27."
+    },
+    {
+     "type": "one",
+     "label": "Accounting elective (1.5 hours, checklist only)",
+     "options": [
+      "ACCT 55410",
+      "ACCT 55250",
+      "ACCT 55350",
+      "ACCT 55550"
+     ],
+     "note": "Checklist only, not in catalog; none have 2026-27 sections."
+    },
+    {
+     "type": "one",
+     "label": "Legal content (checklist only)",
+     "options": [
+      "BUSI 40970",
+      "FINA 40153"
+     ],
+     "note": "Checklist only, not in catalog. BUSI 40970 = Special Problems in Business, topic 'Business Law'."
+    }
+   ],
+   "advisor_flags": [
+    "Three official sources list different Accounting major hours (21, 31.5-33, and 25.5 plus 9-12 associated). The after-summer-2025 checklist adds graduate-numbered ethics courses ACCT 55450 and ACCT 55460. Confirm the current requirement with Neeley advising."
+   ],
+   "match_tags": [
+    "accounting",
+    "audit",
+    "tax",
+    "cpa",
+    "big 4",
+    "reporting",
+    "detail",
+    "numbers"
+   ]
+  },
+  {
+   "id": "BIS",
+   "type": "major",
+   "name": "Business Information Systems",
+   "url": "https://undergraduate.catalog.tcu.edu/colleges/business/majors/businessinformationsystemsbba",
+   "hours_published": "24",
+   "requirements": [
+    {
+     "type": "all",
+     "label": "BIS required courses",
+     "courses": [
+      "INSC 30723",
+      "INSC 30823",
+      "INSC 30833",
+      "INSC 30853",
+      "INSC 40813",
+      "INSC 40843",
+      "INSC 40383"
+     ]
+    },
+    {
+     "type": "all",
+     "label": "Associated requirements",
+     "courses": [
+      "BUSI 30383"
+     ]
+    }
+   ],
+   "match_tags": [
+    "technology",
+    "data",
+    "coding",
+    "python",
+    "analytics",
+    "cybersecurity",
+    "ai",
+    "systems"
+   ],
+   "substitutions": {
+    "INSC 40843": [
+     "INSC 30273"
+    ],
+    "INSC 30833": [
+     "INSC 30283"
+    ]
+   },
+   "advisor_flags": [
+    "Current catalog has NO BIS elective. Replace with: required INSC 40383 (add to BIS required list with INSC 30723, 30823, 30833, 30853, 40813, 40843); substitutions INSC 30273 for INSC 40843 and INSC 30283 for INSC 30833. INSC 30273 requires INSC 30283. Older checklist offered INSC 40383 or INSC 30863 (INSC 30863 not in export). Associated: BUSI 30383. Term pattern: 30723/30823/40813/40843 Fall; 30833/30853 Spring."
+   ]
+  },
+  {
+   "id": "MARK",
+   "type": "major",
+   "name": "Marketing",
+   "url": "https://undergraduate.catalog.tcu.edu/colleges/business/majors/marketingbba",
+   "hours_published": "27",
+   "requirements": [
+    {
+     "type": "all",
+     "label": "Marketing required courses",
+     "courses": [
+      "MARK 30113",
+      "MARK 30243",
+      "MARK 40203"
+     ]
+    },
+    {
+     "type": "hours",
+     "label": "Marketing electives (12 hours)",
+     "hours": 12,
+     "options": [
+      "MARK 30223",
+      "MARK 30233",
+      "MARK 30253",
+      "MARK 30303",
+      "MARK 40103",
+      "MARK 40113",
+      "MARK 40143",
+      "MARK 40213",
+      "MARK 40223",
+      "MARK 40233",
+      "MARK 40243",
+      "MARK 40253",
+      "MARK 40263",
+      "MARK 40273",
+      "MARK 40970",
+      "MARK 40030",
+      "INSC 40323"
+     ],
+     "note": "Required: MARK 30113, MARK 30243, MARK 40203; associated ACCT 40163, BUSI 30383. Checklist lists MARK 40033 (not in course export; catalog equivalent MARK 40030) and omits MARK 30223, MARK 40113, MARK 40253. MARK 40273 requires B in MARK 40263."
+    },
+    {
+     "type": "all",
+     "label": "Associated requirements",
+     "courses": [
+      "ACCT 40163",
+      "BUSI 30383"
+     ]
+    }
+   ],
+   "match_tags": [
+    "marketing",
+    "brand",
+    "social media",
+    "creative",
+    "sales",
+    "consumer",
+    "advertising",
+    "people"
+   ]
+  },
+  {
+   "id": "FINA-MIN",
+   "type": "minor",
+   "name": "Finance minor",
+   "url": "https://undergraduate.catalog.tcu.edu/colleges/business/minors/finance",
+   "hours_published": "18",
+   "blocked_for_majors": [
+    "FINA",
+    "FINA-RE",
+    "NON-BUSINESS-NON-ECON"
+   ],
+   "max_shared_hours": null,
+   "application": false,
+   "requirements": [
+    {
+     "type": "all",
+     "label": "Required finance minor courses (12 hrs)",
+     "courses": [
+      "ACCT 30153",
+      "FINA 30153",
+      "FINA 30203",
+      "FINA 30213"
+     ]
+    },
+    {
+     "type": "hours",
+     "label": "Finance electives",
+     "hours": 6,
+     "options": [
+      "FINA 30223",
+      "FINA 30233",
+      "FINA 40153",
+      "FINA 40183",
+      "FINA 40193",
+      "FINA 40533",
+      "FINA 40623"
+     ]
+    }
+   ],
+   "rules": [
+    "Catalog: 'Students majoring in business or economics may pursue a finance minor' (accounting, BIS, economics, E&I, management and leadership, marketing, SVCM)",
+    "Minimum 2.50 GPA in courses making up the minor",
+    "Once a student matriculates at TCU, all minor coursework must be completed at TCU",
+    "Implicit prerequisites: ACCT 20353, INSC 20153, ECON 10223, ECON 10233",
+    "FINA 40183/40193 (Educational Investment Fund) require dean approval / EIF admission"
+   ],
+   "advisor_flags": [
+    "Eligibility conflict: catalog allows economics majors; Neeley site says 'Only students majoring in another business major'"
+   ],
+   "match_tags": [
+    "finance",
+    "investments"
+   ]
+  },
+  {
+   "id": "ACCT-MIN",
+   "type": "minor",
+   "name": "Accounting minor",
+   "url": "https://undergraduate.catalog.tcu.edu/colleges/business/minors/minor",
+   "hours_published": "18",
+   "blocked_for_majors": [
+    "ACCT",
+    "NON-BUSINESS-NON-ECON"
+   ],
+   "max_shared_hours": null,
+   "application": false,
+   "requirements": [
+    {
+     "type": "all",
+     "label": "Required accounting minor courses (18 hrs)",
+     "courses": [
+      "ACCT 20353",
+      "ACCT 30153",
+      "ACCT 30163",
+      "ACCT 30253",
+      "ACCT 30303",
+      "FINA 30153"
+     ]
+    }
+   ],
+   "rules": [
+    "Catalog: 'Students majoring in business or economics may pursue an accounting minor' (BIS, economics, E&I, finance (real estate emphasis), management, marketing, SVCM)",
+    "Minimum 2.50 GPA in courses making up the minor",
+    "Once a student matriculates at TCU, all minor coursework must be completed at TCU",
+    "ACCT 30163, ACCT 30253, ACCT 30303 course prerequisites require a declared Business major"
+   ],
+   "advisor_flags": [
+    "Eligibility conflict: catalog allows economics majors; Neeley site says 'Only students majoring in another business major'",
+    "Economics majors blocked at course level by 'declared Business major' prerequisites on ACCT 30163/30253/30303 - override needed",
+    "'finance (real estate emphasis)' wording ambiguous; page says minor suits finance majors"
+   ],
+   "match_tags": [
+    "accounting",
+    "cpa-adjacent"
+   ]
+  },
+  {
+   "id": "LEAD-MIN",
+   "type": "minor",
+   "name": "Leadership minor",
+   "url": "https://undergraduate.catalog.tcu.edu/colleges/business/minors/leadership",
+   "hours_published": "18",
+   "blocked_for_majors": [
+    "NON-BUSINESS"
+   ],
+   "max_shared_hours": 6,
+   "application": false,
+   "requirements": [
+    {
+     "type": "all",
+     "label": "Required leadership courses - standard track (15 hrs)",
+     "courses": [
+      "MANA 30833",
+      "MANA 30843",
+      "MANA 40213",
+      "MANA 40343",
+      "MANA 40853"
+     ]
+    },
+    {
+     "type": "one",
+     "label": "Minor elective - standard track (choose 1)",
+     "options": [
+      "ADRN 20900",
+      "ECON 40123",
+      "ENTR 40243",
+      "ENTR 40313",
+      "HCOL 41023",
+      "MANA 40223",
+      "MANA 40633",
+      "MARK 40263",
+      "PHIL 20203",
+      "RELI 20203",
+      "POSC 39023",
+      "MANA 40970"
+     ]
+    }
+   ],
+   "rules": [
+    "Eligibility (catalog): 'Students majoring in business may pursue the leadership minor.'",
+    "All coursework at TCU after matriculation with grade of C or better",
+    "No more than 6 credit hours may double count with major(s), minor(s), and/or certificate",
+    "Alternate BNSF Neeley Leadership Program (NLP) track: BUSI 30833, BUSI 30843, BUSI 40843, BUSI 40853 + 1 elective from standard list minus MANA 40970 plus MANA 40343",
+    "MANA 30843/40213/40343 require junior standing and MANA 30153 with C; MANA 40853 requires senior standing and MANA 30833, 30843, 40343 with C (catalog page)",
+    "MANA 30833 requires declared Leadership minor; cannot take both MANA 30833 and MANA 30313",
+    "PHIL 20203 and RELI 20203 are cross-listed (take one)",
+    "ADRN 20900 is 1-3 variable credit; MANA 40970 is 1-6 variable credit",
+    "MANA 30833 and MANA 30843 Fall only (2026-27); MANA 40853 not scheduled in 2026-27 data"
+   ],
+   "advisor_flags": [
+    "NLP track lists only 12 hrs of required courses + 1 elective = 15 hrs vs 18 published",
+    "Neeley site says 'another business major' - Management & Leadership majors' eligibility unclear",
+    "Catalog residency text says 'finance minor' (copy error)",
+    "Catalog page mislabels ID 0041051 (MANA 40223) as 'Raising Entrepreneurial Capital' and lists 0094841 (ENTR 40313) twice",
+    "HCOL 41023 Empathy restricted to Honors College",
+    "MANA 40853 prerequisites differ between minor page and course record"
+   ],
+   "match_tags": [
+    "leadership",
+    "management"
+   ]
+  },
+  {
+   "id": "FINTECH",
+   "type": "certificate",
+   "name": "FinTech Certificate",
+   "application": true,
+   "url": "https://neeley.tcu.edu/Page/Fintech-Certificate/e5b843ce-0ab2-4ac6-af84-a2be06867005",
+   "hours_published": "9",
+   "requirements": [
+    {
+     "type": "all",
+     "label": "FinTech courses",
+     "courses": [
+      "INSC 30263",
+      "INSC 30273",
+      "INSC 30283"
+     ]
+    }
+   ],
+   "rules": [
+    "Acceptance required before enrolling",
+    "Minimum grade of C in all three courses"
+   ],
+   "match_tags": [
+    "fintech",
+    "ai",
+    "machine learning",
+    "crypto",
+    "blockchain",
+    "technology",
+    "finance",
+    "coding"
+   ]
+  },
+  {
+   "id": "SALES",
+   "type": "certificate",
+   "name": "Consultative Selling Certificate",
+   "application": true,
+   "url": "https://neeley.tcu.edu/degrees-programs/undergraduate/certificates.php",
+   "hours_published": "12",
+   "requirements": [
+    {
+     "type": "all",
+     "label": "Sales courses",
+     "courses": [
+      "MARK 30153",
+      "MARK 40263",
+      "MARK 40273",
+      "MARK 40770"
+     ]
+    }
+   ],
+   "rules": [
+    "2.5 GPA to apply",
+    "B or higher in sales classes",
+    "MARK 40770 is taken twice (1.5 hours each)"
+   ],
+   "match_tags": [
+    "sales",
+    "people",
+    "persuasion",
+    "communication",
+    "relationships",
+    "marketing"
+   ]
+  },
+  {
+   "id": "GENBUS-MIN",
+   "type": "minor",
+   "name": "General Business minor",
+   "blocked_reason": "Only for students outside Neeley.",
+   "blocked_all_bba": true,
+   "url": "https://undergraduate.catalog.tcu.edu/colleges/business/minors/generalbusiness",
+   "requirements": [],
+   "match_tags": []
+  },
+  {
+   "id": "EI-MIN",
+   "type": "minor",
+   "name": "Entrepreneurship & Innovation minor (non-business)",
+   "blocked_reason": "Business majors are not eligible.",
+   "blocked_all_bba": true,
+   "url": "https://undergraduate.catalog.tcu.edu/colleges/business/minors/entrepreneurshipnonbusinessmajors",
+   "requirements": [],
+   "match_tags": []
+  },
+  {
+   "id": "MANA",
+   "type": "major",
+   "name": "Management",
+   "url": "https://undergraduate.catalog.tcu.edu/colleges/business/majors/managementbba",
+   "hours_published": "27",
+   "requirements": [
+    {
+     "type": "all",
+     "label": "Management required courses",
+     "courses": [
+      "MANA 30323",
+      "MANA 40203",
+      "MANA 40213",
+      "MANA 40153",
+      "MANA 40633"
+     ]
+    },
+    {
+     "type": "hours",
+     "label": "Management electives (6 hours)",
+     "hours": 6,
+     "options": [
+      "MANA 40223",
+      "MANA 40343",
+      "MANA 40970",
+      "ENTR 30543",
+      "ENTR 40333",
+      "FINA 30223",
+      "INSC 30723",
+      "MARK 30303",
+      "COMM 30103",
+      "ECON 30223",
+      "ECON 40133",
+      "GEOG 30323"
+     ],
+     "note": "at least 3 hours MANA; no credit for both MARK 30303 and ENTR 30543; COMM 30103 needs a COMM department permit for non-COMM students; the checklist also allows MANA 40323 (not in catalog, unscheduled)"
+    },
+    {
+     "type": "all",
+     "label": "Associated requirements",
+     "courses": [
+      "ACCT 40163",
+      "BUSI 30383"
+     ]
+    }
+   ],
+   "advisor_flags": [
+    "Catalog requires MANA 40153 Strategic Management; the after-summer-2025 checklist instead requires MANA 30313 Leader Development. Confirm which applies.",
+    "Checklist adds MANA 40323 Organization Research & Consulting as an elective; the catalog does not list it, and it has no 2026-27 sections.",
+    "Checklist says MANA 40223 is Spring only; the 2026-27 schedule shows sections in both Fall 2026 and Spring 2027.",
+    "Business core on the MANA checklist is MANA 30250 + MANA 30350; MANA 30350 is not in the course export (the ENTR checklist pairs MANA 30250 with MANA 40250)."
+   ],
+   "match_tags": [
+    "management",
+    "leadership",
+    "people",
+    "human resources",
+    "consulting",
+    "teams",
+    "negotiation",
+    "strategy"
+   ]
+  },
+  {
+   "id": "ENTR",
+   "type": "major",
+   "name": "Entrepreneurship & Innovation",
+   "url": "https://undergraduate.catalog.tcu.edu/colleges/business/majors/entrepreneurshipbba",
+   "hours_published": "27",
+   "requirements": [
+    {
+     "type": "all",
+     "label": "Entrepreneurship required courses",
+     "courses": [
+      "ENTR 30303",
+      "ENTR 30533",
+      "ENTR 40143",
+      "ENTR 40243"
+     ]
+    },
+    {
+     "type": "hours",
+     "label": "Entrepreneurship electives (9 hours)",
+     "hours": 9,
+     "options": [
+      "ENTR 30113",
+      "ENTR 30123",
+      "ENTR 30483",
+      "ENTR 30543",
+      "ENTR 40123",
+      "ENTR 40163",
+      "ENTR 40233",
+      "ENTR 40313",
+      "ENTR 40333",
+      "ENTR 40010",
+      "ENTR 40970",
+      "FINA 30303",
+      "INSC 30723",
+      "INSC 40303",
+      "INSC 40323",
+      "INSC 40383",
+      "MANA 40203",
+      "MANA 40223",
+      "MANA 40633",
+      "MARK 30113",
+      "MARK 40223",
+      "MARK 40243"
+     ],
+     "note": "at least 3 hours ENTR; no more than 6 hours from another department (encode as: at most 6 hours non-ENTR prefix); checklist says 'choose 3, one must be ENTR' and omits ENTR 30483"
+    },
+    {
+     "type": "all",
+     "label": "Associated requirements",
+     "courses": [
+      "ACCT 40163",
+      "BUSI 30383"
+     ]
+    }
+   ],
+   "advisor_flags": [
+    "ENTR 30483 Introduction to Franchising is in the catalog elective list but not on the after-summer-2025 checklist, and it has no 2026-27 sections.",
+    "'No more than 6 hours from another department' is undefined: confirm whether MANA counts as outside the department.",
+    "ENTR 30543, ENTR 40123, ENTR 40163 and ENTR 40233 have no Fall 2026 or Spring 2027 sections; ENTR 40333 runs Spring 2027 only.",
+    "ENTR 30533 and ENTM 30773 cannot both be taken for credit."
+   ],
+   "match_tags": [
+    "entrepreneurship",
+    "startups",
+    "innovation",
+    "venture",
+    "small business",
+    "creative",
+    "founder",
+    "venture capital"
+   ]
+  },
+  {
+   "id": "SVCM",
+   "type": "major",
+   "name": "Supply & Value Chain Management",
+   "url": "https://undergraduate.catalog.tcu.edu/colleges/business/majors/supplychainbba",
+   "hours_published": "21 (+3 associated); checklist says 22 + 3",
+   "requirements": [
+    {
+     "type": "all",
+     "label": "Supply chain required courses",
+     "courses": [
+      "INSC 40313",
+      "INSC 40323",
+      "INSC 40343"
+     ]
+    },
+    {
+     "type": "hours",
+     "label": "Supply chain electives (12 hours)",
+     "hours": 12,
+     "options": [
+      "INSC 30513",
+      "INSC 30723",
+      "INSC 40303",
+      "INSC 40353",
+      "INSC 40383",
+      "INSC 40843",
+      "ACCT 40163",
+      "FAME 30213",
+      "FAME 40293",
+      "GEOG 30313",
+      "GEOG 30323",
+      "GEOG 40323",
+      "MANA 40633",
+      "MARK 30303",
+      "MARK 40223",
+      "MARK 40243"
+     ],
+     "note": "no more than 6 hours outside INSC"
+    },
+    {
+     "type": "all",
+     "label": "Associated requirements",
+     "courses": [
+      "BUSI 30383"
+     ]
+    }
+   ],
+   "advisor_flags": [
+    "MAJOR CONFLICT: the after-summer-2025 checklist requires 22 hours: INSC 30321, INSC 30723, INSC 40303, INSC 40313, INSC 40323, INSC 40343, INSC 40353, INSC 40383 (no electives). The catalog requires INSC 40313, INSC 40323, INSC 40343 plus 12 elective hours.",
+    "Checklist: INSC 30321 and INSC 30723 are Fall only; INSC 40353 is Fall only and requires INSC 30321/30723/40303/40313/40323; INSC 40343 is Spring only and requires INSC 40353 (the course export lists INSC 40313 + INSC 40323 as INSC 40343 prerequisites).",
+    "INSC 30321 (1 hour) has no 2026-27 sections.",
+    "ACCT 40163 is an elective here (not an associated requirement as in MANA/ENTR/MARK)."
+   ],
+   "match_tags": [
+    "supply chain",
+    "operations",
+    "logistics",
+    "procurement",
+    "analytics",
+    "global",
+    "systems",
+    "process"
+   ]
+  },
+  {
+   "id": "FINA-RE",
+   "type": "concentration",
+   "name": "Finance with Real Estate Concentration",
+   "url": "https://undergraduate.catalog.tcu.edu/colleges/business/majors/finabbarealestateconcentration",
+   "hours_published": "33-34.5",
+   "requirements": [
+    {
+     "type": "all",
+     "label": "Finance Real Estate required courses",
+     "courses": [
+      "FINA 30203",
+      "FINA 30213",
+      "FINA 30233",
+      "FINA 40153",
+      "FINA 30313",
+      "FINA 30623",
+      "FINA 40613",
+      "ACCT 30153"
+     ]
+    },
+    {
+     "type": "hours",
+     "label": "Finance Real Estate elective (3 hours)",
+     "hours": 3,
+     "options": [
+      "FINA 30223",
+      "FINA 30303",
+      "FINA 40183",
+      "FINA 40193",
+      "FINA 40313",
+      "FINA 40533",
+      "FINA 40603",
+      "FINA 40623",
+      "ACCT 30303"
+     ],
+     "note": "FINA 40533 Spring only; FINA 40623 Fall only; FINA 40183/40193 require EIF application"
+    },
+    {
+     "type": "all",
+     "label": "Associated requirements",
+     "courses": [
+      "ECON 10233"
+     ]
+    },
+    {
+     "type": "one",
+     "label": "Global content",
+     "options": [
+      "BUSI 30383",
+      "FINA 40623"
+     ],
+     "note": "If FINA 40623 is taken but not BUSI 30383, also take one 1.5-hour ethics course: ACCT 55450 (or ACCT 30450) Moral Reasoning, or ACCT 55460 (or ACCT 30460) Ethics for Accounting Professionals. FINA 40623 is Fall only."
+    }
+   ],
+   "advisor_flags": [
+    "No after-summer-2025 Finance Real Estate checklist was found; the only checklist (neeley.tcu.edu/bba/fire-checklist) is pre-2025 core and lists 27 major hours plus FINA 40703 (abroad) as an elective option.",
+    "Whether FINA 40623 can count as both the elective and the global choice is not stated.",
+    "The ACCT 55450/55460 ethics alternatives require ACCT 30253 and ACCT 30273, which FINA-RE does not require; ACCT 30450/30460 have no 2026-27 sections. BUSI 30383 is the practical route.",
+    "ACCT 30253 Financial Reporting II is NOT required for FINA-RE (it is for plain Finance)."
+   ],
+   "match_tags": [
+    "real estate",
+    "finance",
+    "property",
+    "development",
+    "valuation",
+    "investing",
+    "commercial real estate",
+    "numbers"
+   ]
+  },
+  {
+   "id": "BIS-MIN",
+   "type": "minor",
+   "name": "Business Information Systems minor",
+   "url": "https://undergraduate.catalog.tcu.edu/colleges/business/minors/bis",
+   "hours_published": "18",
+   "blocked_for_majors": [
+    "BIS"
+   ],
+   "max_shared_hours": null,
+   "application": false,
+   "requirements": [
+    {
+     "type": "all",
+     "label": "Required BIS courses (12 hrs)",
+     "courses": [
+      "INSC 30723",
+      "INSC 30823",
+      "INSC 30833",
+      "INSC 30853"
+     ]
+    },
+    {
+     "type": "hours",
+     "label": "OR block: 6 hrs (interpretation: 2 courses) from Digital Asset/Deep Learning/BI & Analytics/Intro ML",
+     "hours": 6,
+     "options": [
+      "INSC 30263",
+      "INSC 30283",
+      "INSC 40843",
+      "INSC 30273"
+     ]
+    }
+   ],
+   "rules": [
+    "Eligibility: 'Students majoring in a Neeley degree may pursue a BIS minor.'",
+    "Minor = BIS major classes except capstone INSC 40813 (per catalog text; actual list differs)",
+    "INSC 30833 requires INSC 30823 with C; INSC 30273 requires INSC 30283 with C; INSC 30723/30823/30853/30283/40843 require INSC 20263 with C",
+    "2026-27 offerings: INSC 30723, 30823, 40843 Fall only; INSC 30833, 30853, 30273 Spring only"
+   ],
+   "advisor_flags": [
+    "Catalog OR-grouping of INSC 30263 / (30283, 40843) / 30273 does not state how many to choose; 6-hr pick-two is an interpretation",
+    "Catalog says minor = major minus INSC 40813, but list omits INSC 40383 and adds INSC 30263",
+    "No minor GPA/grade/residency rule published",
+    "BIS majors not explicitly blocked; blocked here because the minor is a subset of the major"
+   ],
+   "match_tags": [
+    "information-systems",
+    "technology",
+    "analytics",
+    "fintech-adjacent"
+   ]
+  },
+  {
+   "id": "GLOBAL-MIN",
+   "type": "minor",
+   "name": "Global Business minor",
+   "url": "https://undergraduate.catalog.tcu.edu/colleges/business/minors/globalbusiness",
+   "hours_published": "18 (minimum)",
+   "blocked_for_majors": [
+    "NON-NEELEY"
+   ],
+   "max_shared_hours": null,
+   "application": false,
+   "requirements": [
+    {
+     "type": "hours",
+     "label": "Part I: Neeley international courses",
+     "hours": 9,
+     "options": [
+      "FINA 40623",
+      "MANA 40223",
+      "MANA 40343",
+      "MARK 40213",
+      "INSC 40353"
+     ]
+    },
+    {
+     "type": "hours",
+     "label": "Part II: non-business, non-foreign-language international courses with Global Awareness designation (or approved by Neeley Director of International Programs), in addition to TCU Core",
+     "hours": 6,
+     "options": [
+      "UNCONFIRMED: any course with Global Awareness designation"
+     ]
+    },
+    {
+     "type": "hours",
+     "label": "Part III: Language familiarity - native English speakers complete 3 hrs of a foreign language class taught at TCU (non-native English speakers: TCU Core English + primary-language proficiency via department chair)",
+     "hours": 3,
+     "options": [
+      "UNCONFIRMED: any TCU foreign-language course"
+     ]
+    },
+    {
+     "type": "hours",
+     "label": "Part IV: Experiential - Neeley-approved Study Abroad course",
+     "hours": 6,
+     "options": [
+      "STUDY-ABROAD (Neeley-approved)"
+     ]
+    }
+   ],
+   "rules": [
+    "Open only to Neeley majors: accounting, BIS, E&I, finance (incl. real estate), management, marketing, SVCM",
+    "'The global business minor may not be added to majors outside the Neeley School.'",
+    "Catalog page labels MANA 40343 as 'Leading a Diverse Workforce' and INSC 40353 as 'Global Supply Chain Management' (stale titles)",
+    "FINA 40623 Fall only; MARK 40213 Spring only; INSC 40353 Fall only (2026-27)"
+   ],
+   "advisor_flags": [
+    "Published minimum 18 hrs vs component sum 24 hrs (9+6+3+6); overlap between parts not explained",
+    "Part II approved course list not published on minor page",
+    "Study abroad course approval required from Neeley",
+    "MANA 40343 also required in Leadership minor (6-hr Leadership double-count cap)"
+   ],
+   "match_tags": [
+    "international",
+    "study-abroad",
+    "language"
+   ]
+  },
+  {
+   "id": "ENERGY-MIN",
+   "type": "minor",
+   "name": "Energy & Business minor (Ralph Lowe Energy Institute)",
+   "url": "https://undergraduate.catalog.tcu.edu/colleges/business/minors/energy",
+   "hours_published": "18",
+   "blocked_for_majors": [],
+   "max_shared_hours": null,
+   "application": false,
+   "requirements": [
+    {
+     "type": "all",
+     "label": "Required energy business courses",
+     "courses": [
+      "BUSI 30703",
+      "BUSI 40723"
+     ]
+    },
+    {
+     "type": "hours",
+     "label": "Energy electives from approved list",
+     "hours": 12,
+     "options": [
+      "BUSI 40733",
+      "BUSI 40703",
+      "ENTM 30773",
+      "ENSC 30143",
+      "ENGR 30113",
+      "ENGR 40213",
+      "ECON 30523",
+      "GEOL 10113",
+      "GEOL 50563",
+      "PHYS 10503",
+      "ENTM 40970",
+      "ENTM 40903",
+      "POSC 33133",
+      "POSC 35903"
+     ]
+    }
+   ],
+   "rules": [
+    "Grade of C or better in each class",
+    "Open to any major; no special admission requirements",
+    "GEOL 10113 is a prerequisite for GEOL 50563",
+    "ENTM 40903 requires 2.5 GPA in major, 3 approved energy minor courses, advisor approval",
+    "ENTM 40970 is 1-3 variable credit; requires C+ in 9 hrs of minor courses and permissions",
+    "BUSI 30703 and BUSI 40723 Fall only; BUSI 40733 and BUSI 40703 Spring only (2026-27)"
+   ],
+   "advisor_flags": [
+    "Older SmartCatalog version adds: 9 hrs upper-level (30000+), max two courses per department, one 10000-level course limit; current catalog silent",
+    "Catalog row ID 0085581 labeled 'Alternative & Renewable Energy' resolves to ENTM 30773 Entrepreneurship and Energy",
+    "ENGR 40213 requires engineering prerequisites (PHYS 20484, MATH 30524/30613, ENGR 30704); impractical for BBA students",
+    "Relationship to Energy Technology and Management minor (ENTMMIN) unclear"
+   ],
+   "match_tags": [
+    "energy",
+    "industry",
+    "open-to-all-majors"
+   ]
+  },
+  {
+   "id": "SUSTAIN-CERT",
+   "type": "certificate",
+   "name": "Certificate in Sustainable Business",
+   "url": "https://undergraduate.catalog.tcu.edu/colleges/business/specialprograms/list#certificate-in-sustainable-business1",
+   "hours_published": "UNCONFIRMED",
+   "blocked_for_majors": [],
+   "max_shared_hours": null,
+   "application": null,
+   "requirements": [
+    {
+     "type": "all",
+     "label": "Courses confirmed as tied to the certificate (complete list UNCONFIRMED)",
+     "courses": [
+      "INSC 30523",
+      "INSC 30513"
+     ]
+    }
+   ],
+   "rules": [
+    "Open to all TCU students (Neeley certificates page)",
+    "INSC 30523 and INSC 30513 require junior/senior standing and enrollment in the Certificate in Sustainable Business program or department permission",
+    "INSC 30523 Fall only; INSC 30513 Spring only (2026-27)"
+   ],
+   "advisor_flags": [
+    "Total hours and full requirement list not retrievable (catalog special programs content did not render); do not mark complete",
+    "Certificate enrollment/declaration process unconfirmed (course prerequisites imply prior enrollment)"
+   ],
+   "match_tags": [
+    "sustainability",
+    "supply-chain",
+    "open-to-all-majors"
+   ]
+  },
+  {
+   "id": "ENERGY-CERT",
+   "type": "certificate",
+   "name": "Energy Certificate (Ralph Lowe Energy Institute) - GRADUATE",
+   "url": "https://graduate.catalog.tcu.edu/colleges/business/certs/energycert",
+   "hours_published": "9",
+   "blocked_for_majors": [
+    "ALL-UNDERGRADUATE"
+   ],
+   "max_shared_hours": null,
+   "application": true,
+   "requirements": [
+    {
+     "type": "all",
+     "label": "Required graduate energy courses (1.5 hrs each)",
+     "courses": [
+      "BUSI 70700",
+      "BUSI 70970",
+      "FINA 70610",
+      "MANA 70650"
+     ]
+    },
+    {
+     "type": "hours",
+     "label": "Approved graduate energy electives (list not published)",
+     "hours": 3,
+     "options": [
+      "UNCONFIRMED"
+     ]
+    }
+   ],
+   "rules": [
+    "Graduate business certificate for 'Bachelor's Graduates'",
+    "Credits may apply toward a TCU MBA",
+    "None of BUSI 70700, BUSI 70970, FINA 70610, MANA 70650 exist in the undergraduate course export"
+   ],
+   "advisor_flags": [
+    "Not an undergraduate BBA credential; present only as post-graduation/MBA option",
+    "Format conflict: graduate catalog says evening; Energy Institute says three four-day residency weekends",
+    "Admission process not published"
+   ],
+   "match_tags": [
+    "energy",
+    "graduate-only",
+    "not-for-undergraduates"
+   ]
+  },
+  {
+   "id": "FINTECH-SCHOLAR",
+   "type": "certificate",
+   "name": "Fintech Scholar Certificate (FTKSCERT)",
+   "url": "https://undergraduate.catalog.tcu.edu/programs/FTKSCERT",
+   "hours_published": "UNCONFIRMED",
+   "blocked_for_majors": [
+    "NON-NEELEY"
+   ],
+   "max_shared_hours": null,
+   "application": null,
+   "requirements": [],
+   "rules": [
+    "Exists in Program Search: undergraduate, ISSCM, CRT, CIP 30.7104; overview is empty",
+    "Distinct from FinTech Certificate FNTKCERT (https://undergraduate.catalog.tcu.edu/programs/FNTKCERT): INSC 30263 + INSC 30283 + INSC 30273, each with at least C, 9 hrs, Neeley majors, application/acceptance required to enroll in fintech classes",
+    "FNTKCERT sequence: INSC 30273 requires INSC 30283 with C; INSC 30273 Spring only (2026-27)"
+   ],
+   "advisor_flags": [
+    "FTKSCERT requirements not published anywhere reachable; difference from FNTKCERT UNCONFIRMED",
+    "Possible link to INSC 30293 Advanced Fintech / INSC 40293 fintech practicum is speculation only - do not encode",
+    "Treat FinTech Certificate FNTKCERT as the plannable fintech credential"
+   ],
+   "match_tags": [
+    "fintech",
+    "technology",
+    "unconfirmed"
+   ]
+  }
+ ],
+ "opportunities": [
+  {
+   "id": "FELLOWS",
+   "name": "Neeley Fellows",
+   "tags": [
+    "leadership",
+    "honors",
+    "ambitious",
+    "cohort"
+   ],
+   "when": "Apply in your first year",
+   "deadline_year": 1,
+   "gate": "3.5 GPA; about 30 students per year. Applicants must not have taken courses from the Fellows curriculum.",
+   "url": "https://neeley.tcu.edu/degrees-programs/undergraduate/student-experience/neeley-fellows/apply.php",
+   "plan_effect": "Hold business core courses until Fellows decisions, since Fellows take them in the cohort."
+  },
+  {
+   "id": "TIP",
+   "name": "TIP Board (Transaction & Investment Professionals)",
+   "tags": [
+    "investment banking",
+    "private equity",
+    "finance",
+    "valuation",
+    "banking"
+   ],
+   "when": "Apply early, usually sophomore year",
+   "deadline_year": 2,
+   "gate": "Application; FINA 20203 requires TIP Board admission and a permission number.",
+   "url": "https://undergraduate.catalog.tcu.edu/courses/0103321",
+   "course": "FINA 20203"
+  },
+  {
+   "id": "EIF",
+   "name": "Educational Investment Fund",
+   "tags": [
+    "investing",
+    "stocks",
+    "portfolio",
+    "markets",
+    "finance"
+   ],
+   "when": "Apply as a junior",
+   "deadline_year": 3,
+   "gate": "FINA 30213 completed or in progress; two consecutive semesters (FINA 40183, FINA 40193); interview.",
+   "url": "https://neeley.tcu.edu/degrees-programs/undergraduate/student-experience/educational-investment-fund.php",
+   "course": "FINA 40183"
+  },
+  {
+   "id": "CONSULT",
+   "name": "Consulting Career Preparation Course",
+   "tags": [
+    "consulting",
+    "strategy",
+    "problem solving",
+    "case"
+   ],
+   "when": "Sophomore or junior year",
+   "deadline_year": 2,
+   "gate": "Application; one graded 3-hour course.",
+   "url": "https://neeley.tcu.edu/degrees-programs/undergraduate/student-experience/index.php"
+  },
+  {
+   "id": "PPA",
+   "name": "Professional Program in Accounting (BBA + MAc in 5 years)",
+   "tags": [
+    "cpa",
+    "accounting",
+    "big 4",
+    "audit",
+    "tax"
+   ],
+   "when": "Junior year",
+   "deadline_year": 3,
+   "gate": "3.0 GPA; starts with ACCT 30101 seminar; GMAT waiver for the MAc.",
+   "url": "https://neeley.tcu.edu/degrees-programs/undergraduate/student-experience/professional-program-in-accounting.php",
+   "course": "ACCT 30101"
+  },
+  {
+   "id": "NLP",
+   "name": "BNSF Neeley Leadership Program",
+   "tags": [
+    "leadership",
+    "teams",
+    "management"
+   ],
+   "when": "Three-year cohort, apply early",
+   "deadline_year": 1,
+   "gate": "Selective cohort; its classes also count toward the Leadership minor.",
+   "url": "https://neeley.tcu.edu/degrees-programs/undergraduate/student-experience/index.php"
+  },
+  {
+   "id": "ABROAD",
+   "name": "Study abroad / International field seminars",
+   "tags": [
+    "travel",
+    "global",
+    "languages",
+    "culture",
+    "international"
+   ],
+   "when": "Plan a year ahead",
+   "deadline_year": 2,
+   "gate": "Approved program coursework; WEM and some Core rules apply.",
+   "url": "https://neeley.tcu.edu/degrees-programs/undergraduate/student-experience/index.php",
+   "plan_effect": "Keep fall-only courses (such as FINA 40623) out of the semester you go abroad."
+  }
+ ],
+ "advisor_items": [
+  {
+   "id": "C1",
+   "text": "Total hours: 120 (TCU Advising FAQ) vs 124 (Neeley Graduation Checklist).",
+   "cohort": "old"
+  },
+  {
+   "id": "C2",
+   "text": "Residency and upper-division hours: 45 TCU / 36 upper-level (new checklists) vs 58 / 42 (Graduation Checklist).",
+   "cohort": "any"
+  },
+  {
+   "id": "C5",
+   "text": "Whether CA, GA and CSV must be taken at TCU, or only Writing Emphasis.",
+   "cohort": "old"
+  },
+  {
+   "id": "MANA",
+   "text": "Business core: checklist says MANA 30250 + MANA 30350; MANA 30350 does not exist and neither half-course is scheduled. Plan uses MANA 30253.",
+   "cohort": "new"
+  },
+  {
+   "id": "STANDING",
+   "text": "Class-standing hour thresholds used for prerequisites (24 / 54 / 84) are assumed.",
+   "cohort": "any"
+  }
+ ]
+}

@@ -1,0 +1,9 @@
+node_modules/
+.next/
+.env*.local
+data/runtime/
+next-env.d.ts
+*.tsbuildinfo
+
+# Contains a real student's name, ID and GPA: keep out of the repo
+Example Download Excel Sheet.xlsx

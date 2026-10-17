@@ -1,0 +1,15 @@
+{
+  "meta": {
+    "note": "Hand corrections that always beat the auto-parsed prerequisites. Add the team's 34 pending corrections from the verification notes here.",
+    "source": "Team verification notes"
+  },
+  "overrides": {
+    "MANA 30250": { "credits": 1.5, "note": "Catalog lists 1.5 hours; the export's catalog number ends in 0 (variable credit)", "source": "TCU 2026-27 catalog: BBA Business Core" },
+    "MANA 40250": { "credits": 1.5, "note": "Catalog lists 1.5 hours", "source": "TCU 2026-27 catalog: BBA Business Core" },
+    "INSC 30823": {
+      "prereqs": [[{ "code": "INSC 20263", "minGrade": "C" }]],
+      "note": "Description starts with the prerequisite sentence but has no 'Prerequisite:' label; treated as the prerequisite (team to confirm)",
+      "source": "courses-report export, description text"
+    }
+  }
+}

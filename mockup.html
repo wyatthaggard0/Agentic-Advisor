@@ -1,0 +1,761 @@
+<title>Graduation Blueprint</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Montserrat:wght@400;500;600;700;800;900&display=swap">
+<style>
+/* Layout: purple gradient masthead + violet tab band (university web style); Tab 1 = sidebar + chat column; Tab 2 = heavy display headline, audit/validator rail, semester grid */
+:root {
+  --bg: #FFFFFF;
+  --surface: #FFFFFF;
+  --sunken: #F4F1F8;
+  --ink: #2A1640;
+  --muted: #6B607A;
+  --line: #E3DCEC;
+  --accent: #4D1979;
+  --accent-ink: #FFFFFF;
+  --accent-soft: #EFE7F7;
+  --head: #4D1979;
+  --band1: #3F1868;
+  --band2: #6B27A9;
+  --band3: #6826A5;
+  --on-band: #FFFFFF;
+  --teal: #A3CED6;
+  --ok: #23774A;
+  --ok-soft: #E3F2E9;
+  --warn: #9A5B00;
+  --warn-soft: #FCEFD9;
+  --err: #B3261E;
+  --err-soft: #FBE5E3;
+  --font-ui: "Montserrat", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, Consolas, monospace;
+}
+/* Single light look by design: white page in every viewer theme */
+:root { color-scheme: light; }
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--ink); font: 14px/1.55 var(--font-ui); }
+button { font: inherit; color: inherit; cursor: pointer; }
+button:focus-visible, input:focus-visible { outline: 2px solid var(--teal); outline-offset: 2px; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--band1); }
+.caps { text-transform: uppercase; letter-spacing: .08em; }
+
+/* Masthead */
+.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; }
+.bar { background: linear-gradient(90deg, var(--band1), var(--band2)); color: var(--on-band);
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 14px; }
+.bar-in, .band-in { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 22px; max-width: 1280px; margin: 0 auto; }
+.brand { display: flex; align-items: center; gap: 14px; margin-right: auto; }
+.logo { height: 44px; width: auto; display: block; padding-right: 16px; border-right: 1px solid rgba(255,255,255,.35); }
+.mark { font: 900 26px/1 var(--font-ui); letter-spacing: -.04em; color: var(--on-band); }
+.brand b { display: block; font: 800 14px var(--font-ui); letter-spacing: .24em; text-transform: uppercase; color: var(--on-band); }
+.brand small { display: block; font-size: 11.5px; letter-spacing: .04em; color: var(--on-band); opacity: .78; }
+.seg { display: inline-flex; gap: 2px; }
+.bar .seg button { border: 1px solid transparent; background: transparent; color: var(--on-band); padding: 6px 12px; font-size: 12.5px; font-weight: 500; text-transform: uppercase; letter-spacing: .06em; white-space: nowrap; }
+.bar .seg button[aria-pressed="true"] { background: var(--on-band); color: #4D1979; font-weight: 600; }
+.bar .seg button:hover:not([aria-pressed="true"]) { border-color: rgba(255,255,255,.5); }
+.sample { font-size: 10.5px; letter-spacing: .1em; text-transform: uppercase; font-weight: 700; color: #2A1640; background: var(--teal); padding: 4px 9px; white-space: nowrap; }
+.band { background: var(--band3); padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 8px; }
+.band-in { justify-content: flex-end; gap: 4px; }
+.tabs button { border: 0; background: none; color: var(--on-band); padding: 9px 18px; font-size: 14px; font-weight: 500; text-transform: uppercase; letter-spacing: .05em; }
+.tabs button + button::before { content: "/"; margin: 0 18px 0 -10px; opacity: .8; font-weight: 400; }
+.tabs button[aria-selected="true"] { background: var(--on-band); color: #4D1979; }
+.tabs button[aria-selected="true"]::before { display: none; }
+.tabs { display: flex; align-items: center; }
+
+.wrap { padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 26px 40px; }
+
+/* Tab 1: chat */
+.chat-grid { display: grid; grid-template-columns: 250px minmax(0, 1fr); gap: 32px; max-width: 1280px; margin: 0 auto; }
+.side { display: flex; flex-direction: column; gap: 20px; position: sticky; top: calc(env(safe-area-inset-top, 0px) + 140px); align-self: start; }
+.newchat { border: 2px solid var(--accent); color: var(--accent); background: var(--surface); padding: 9px 12px; text-align: left; font-weight: 700; font-size: 12.5px; text-transform: uppercase; letter-spacing: .06em; }
+.newchat:hover { background: var(--accent-soft); }
+.side h4 { margin: 0 0 6px; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); font-weight: 700; }
+.side ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 2px; }
+.side li { padding: 7px 10px; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; border-left: 3px solid transparent; }
+.side li.on { background: var(--accent-soft); color: var(--ink); border-left-color: var(--accent); font-weight: 500; }
+.pcard { border-top: 4px solid var(--accent); background: var(--sunken); padding: 14px; display: grid; gap: 6px; font-size: 12.5px; }
+.pcard > b { font-weight: 800; text-transform: uppercase; letter-spacing: .04em; color: var(--head); font-size: 13.5px; }
+.pcard .row { display: flex; justify-content: space-between; gap: 8px; }
+.pcard .row span:first-child { color: var(--muted); }
+.pcard .row span:last-child { text-align: right; }
+.linkbtn { border: 0; background: none; padding: 0; color: var(--accent); font-weight: 700; text-align: left; text-decoration: underline; text-underline-offset: 3px; }
+
+.chatcol { min-width: 0; display: flex; flex-direction: column; min-height: calc(100vh - 210px); min-height: calc(100dvh - 210px); }
+.thread { flex: 1; max-width: 760px; width: 100%; margin: 0 auto; display: flex; flex-direction: column; gap: 24px; min-width: 0; }
+.msg { display: flex; gap: 14px; min-width: 0; }
+.msg .av { flex: none; width: 30px; height: 30px; display: grid; place-items: center; font: 900 13px var(--font-ui); }
+.msg.ai .av { background: var(--accent); color: var(--accent-ink); }
+.msg.ai .body { font-size: 15px; line-height: 1.65; min-width: 0; flex: 1; }
+.msg.ai .body p { margin: 0 0 10px; }
+.msg.ai .body ul { margin: 0 0 10px; padding-left: 20px; }
+.msg.ai .body b { font-weight: 700; }
+.msg.user { justify-content: flex-end; }
+.msg.user .bubble { background: var(--sunken); border-right: 3px solid var(--teal); padding: 10px 14px; max-width: 80%; font-weight: 500; }
+.attach { display: inline-flex; align-items: center; gap: 8px; border: 1px solid var(--line); background: var(--surface); padding: 8px 10px; margin-bottom: 6px; font-size: 13px; }
+.attach i { font-style: normal; font: 600 10px var(--font-mono); background: var(--err-soft); color: var(--err); padding: 3px 5px; }
+.src { display: inline-flex; align-items: center; gap: 6px; font: 600 11px var(--font-ui); letter-spacing: .02em; color: var(--accent); background: var(--accent-soft); padding: 2px 9px; margin: 2px 4px 2px 0; vertical-align: 1px; white-space: nowrap; }
+.src::before { content: ""; width: 3px; height: 11px; background: var(--teal); }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 6px; }
+.chip { border: 2px solid var(--accent); color: var(--accent); background: var(--surface); padding: 8px 14px; font-size: 12.5px; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; }
+.chip.primary { background: var(--accent); color: var(--accent-ink); }
+.chip:hover { background: var(--accent-soft); }
+.chip.primary:hover { background: var(--accent); filter: brightness(1.12); }
+.chip:disabled { opacity: .4; cursor: not-allowed; }
+.typing { display: inline-flex; gap: 5px; padding-top: 10px; }
+.typing span { width: 7px; height: 7px; background: var(--accent); animation: blink 1s infinite; }
+.typing span:nth-child(2) { animation-delay: .15s; } .typing span:nth-child(3) { animation-delay: .3s; }
+@keyframes blink { 50% { opacity: .2; } }
+@media (prefers-reduced-motion: reduce) { .typing span { animation: none; } }
+
+.card { border: 1px solid var(--line); border-top: 4px solid var(--accent); background: var(--surface); padding: 16px; margin: 6px 0 12px; font-size: 14px; line-height: 1.5; }
+.card h5 { margin: 0 0 12px; font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: .08em; color: var(--head); }
+.kv { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr) auto; gap: 8px 12px; align-items: center; }
+.kv > span:nth-child(3n+1) { color: var(--muted); font-size: 13px; }
+.kv > span:nth-child(3n+2) { font-weight: 600; }
+.kv .edit { border: 0; background: none; color: var(--accent); font-size: 12px; font-weight: 600; text-decoration: underline; }
+.flagline { grid-column: 1 / -1; background: var(--warn-soft); padding: 9px 11px; font-size: 13px; }
+.flagline b { color: var(--warn); }
+.survey { display: grid; gap: 16px; }
+.survey .q { font-weight: 700; margin-bottom: 7px; }
+.opts { display: flex; flex-wrap: wrap; gap: 6px; }
+.opt { border: 1px solid var(--line); background: var(--surface); padding: 7px 11px; font-size: 13px; }
+.opt:hover { border-color: var(--accent); }
+.opt[aria-pressed="true"] { border-color: var(--accent); background: var(--accent); color: var(--accent-ink); font-weight: 600; }
+.paths { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 10px; margin: 6px 0 12px; }
+.path { border: 1px solid var(--line); border-top: 4px solid var(--accent); padding: 13px; background: var(--surface); display: grid; gap: 6px; align-content: start; font-size: 13px; line-height: 1.45; }
+.path b { font-size: 14px; font-weight: 800; text-transform: uppercase; letter-spacing: .03em; color: var(--head); }
+.path .fit { font-size: 10.5px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: #2A1640; background: var(--teal); padding: 2px 8px; justify-self: start; }
+.path .fit.lo { background: var(--sunken); color: var(--muted); }
+.path .muted { color: var(--muted); }
+.cmp { width: 100%; border-collapse: collapse; font-size: 13px; font-variant-numeric: tabular-nums; }
+.cmp th, .cmp td { text-align: left; padding: 8px; border-bottom: 1px solid var(--line); vertical-align: top; }
+.cmp th { font-weight: 800; color: var(--head); font-size: 11px; text-transform: uppercase; letter-spacing: .08em; }
+.cmp td { font-weight: 600; }
+.cmp td:first-child { color: var(--muted); font-weight: 500; }
+.scroll { overflow-x: auto; }
+
+.composer { position: sticky; bottom: 12px; max-width: 760px; width: 100%; margin: 28px auto 0; background: var(--surface); border: 2px solid var(--accent); padding: 8px 8px 8px 14px; display: flex; align-items: center; gap: 8px; box-shadow: 0 8px 26px rgba(63,24,104,.14); }
+.composer input { flex: 1; min-width: 0; border: 0; background: transparent; font: 500 15px var(--font-ui); color: var(--ink); padding: 6px 0; }
+.composer input:focus { outline: none; }
+.iconbtn { border: 1px solid var(--line); background: var(--surface); width: 36px; height: 36px; display: grid; place-items: center; flex: none; }
+.send { background: var(--accent); color: var(--accent-ink); border: 0; }
+.disclaim { text-align: center; color: var(--muted); font-size: 11.5px; margin-top: 10px; }
+
+/* Tab 2: blueprint */
+.bp { max-width: 1280px; margin: 0 auto; display: grid; gap: 22px; }
+.strip { display: flex; flex-wrap: wrap; gap: 18px 32px; align-items: flex-end; justify-content: space-between; }
+.strip h1 { margin: 0; font: 900 clamp(30px, 5.2vw, 58px)/.92 var(--font-ui); letter-spacing: -.02em; text-transform: uppercase; color: var(--head); text-wrap: balance; }
+.strip h1::after { content: ""; display: block; width: 110px; height: 9px; background: var(--teal); margin-top: 14px; }
+.strip .meta { color: var(--muted); margin-top: 12px; font-size: 14px; display: flex; flex-wrap: wrap; gap: 6px 10px; align-items: center; }
+.facts { display: flex; flex-wrap: wrap; gap: 10px 30px; font-variant-numeric: tabular-nums; }
+.fact span { display: block; font-size: 10.5px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+.fact b { font: 900 24px var(--font-ui); color: var(--head); letter-spacing: -.01em; }
+.fact b.risk { color: var(--err); }
+.controls { display: flex; flex-wrap: wrap; gap: 12px 16px; align-items: center; justify-content: space-between; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 12px 0; }
+.controls .seg { border: 2px solid var(--accent); }
+.controls .seg button { border: 0; background: transparent; padding: 7px 14px; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--accent); }
+.controls .seg button[aria-pressed="true"] { background: var(--accent); color: var(--accent-ink); }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: 12px; color: var(--muted); }
+.legend > span:first-child { font-weight: 700; text-transform: uppercase; letter-spacing: .08em; font-size: 10.5px; }
+.conf { display: inline-flex; align-items: center; gap: 6px; }
+.conf::before { content: ""; width: 9px; height: 9px; border-radius: 50%; flex: none; }
+.conf.confirmed::before { background: var(--ok); }
+.conf.historical::before { background: var(--warn); }
+.conf.assumed::before { background: transparent; border: 1.5px dashed var(--muted); width: 7px; height: 7px; }
+
+.bp-grid { display: grid; grid-template-columns: minmax(0, 1fr) 340px; gap: 24px; align-items: start; }
+.terms { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 14px; }
+.term { background: var(--surface); border: 1px solid var(--line); border-top: 4px solid var(--accent); padding: 12px; display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.term header { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; margin-bottom: 2px; }
+.term header b { font: 800 13.5px var(--font-ui); text-transform: uppercase; letter-spacing: .06em; color: var(--head); }
+.term header span { color: var(--muted); font-size: 12px; font-weight: 600; font-variant-numeric: tabular-nums; }
+.term .st { font-size: 10.5px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: #2A1640; background: var(--teal); padding: 2px 7px; align-self: flex-start; }
+.term.prog { background: var(--sunken); border-top-color: var(--teal); }
+.cc { border: 1px solid var(--line); background: var(--surface); padding: 8px 10px; text-align: left; display: grid; gap: 2px; position: relative; }
+.cc:hover { border-color: var(--accent); }
+.cc .top { display: flex; justify-content: space-between; align-items: center; gap: 6px; }
+.cc .code { font: 500 12px var(--font-mono); color: var(--accent); }
+.cc .t { font-size: 12.5px; font-weight: 600; line-height: 1.3; }
+.cc .req { font-size: 11px; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.cc.slot { border-style: dashed; background: transparent; }
+.cc.slot .t { font-weight: 500; }
+.cc.bad { border-color: var(--err); background: var(--err-soft); }
+.cc.new { box-shadow: inset 4px 0 0 var(--teal); }
+.cc .conf { font-size: 0; }
+
+.rail { display: grid; gap: 16px; position: sticky; top: calc(env(safe-area-inset-top, 0px) + 140px); }
+.panel { background: var(--surface); border: 1px solid var(--line); padding: 16px; display: grid; gap: 10px; }
+.panel h3 { margin: 0; font-size: 11.5px; letter-spacing: .12em; text-transform: uppercase; color: var(--head); font-weight: 800; display: flex; justify-content: space-between; gap: 8px; }
+.panel h3 span:last-child { color: var(--muted); font-weight: 600; letter-spacing: .04em; }
+.audit { display: grid; gap: 10px; }
+.ar .lab { display: flex; justify-content: space-between; font-size: 12.5px; font-weight: 500; font-variant-numeric: tabular-nums; }
+.ar .lab span:last-child { color: var(--muted); }
+.track { height: 8px; background: var(--sunken); overflow: hidden; display: flex; }
+.track i { display: block; height: 100%; }
+.track .d { background: var(--accent); }
+.track .p { background: var(--teal); }
+.flag { padding: 11px 12px; display: grid; gap: 4px; font-size: 13px; border-left: 4px solid transparent; }
+.flag .k { font-size: 10.5px; letter-spacing: .1em; text-transform: uppercase; font-weight: 800; }
+.flag.error { background: var(--err-soft); border-left-color: var(--err); } .flag.error .k { color: var(--err); }
+.flag.review { background: var(--accent-soft); border-left-color: var(--accent); } .flag.review .k { color: var(--accent); }
+.flag.info { background: var(--sunken); border-left-color: var(--muted); } .flag.info .k { color: var(--muted); }
+.flag.okf { background: var(--ok-soft); border-left-color: var(--ok); } .flag.okf .k { color: var(--ok); }
+.flag b { font-weight: 700; }
+.flag .fixbtn { justify-self: start; margin-top: 6px; border: 2px solid var(--ink); background: var(--surface); padding: 5px 11px; font-size: 11.5px; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; }
+.flag .fixbtn:hover { background: var(--ink); color: var(--bg); }
+.cta { background: var(--accent); color: var(--accent-ink); border: 0; padding: 13px 16px; font-weight: 800; font-size: 13px; text-transform: uppercase; letter-spacing: .08em; width: 100%; }
+.cta:hover:not(:disabled) { filter: brightness(1.12); }
+.cta:disabled { opacity: .4; cursor: not-allowed; }
+.status { padding: 11px 12px; font-size: 13px; display: grid; gap: 5px; border-left: 4px solid transparent; }
+.status.sent { background: var(--warn-soft); border-left-color: var(--warn); }
+.status.done { background: var(--ok-soft); border-left-color: var(--ok); }
+.status b { font-size: 12.5px; font-weight: 800; text-transform: uppercase; letter-spacing: .06em; }
+.ghost { border: 2px solid var(--line); background: var(--surface); padding: 7px 11px; font-size: 11.5px; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; justify-self: start; }
+.ghost:hover { border-color: var(--accent); color: var(--accent); }
+
+/* Drawer + modal */
+.scrim { position: fixed; inset: 0; background: rgba(26,10,42,.5); z-index: 20; display: flex; justify-content: flex-end; }
+.drawer { background: var(--surface); width: min(460px, 100%); height: 100%; overflow-y: auto; display: grid; gap: 16px; align-content: start; border-left: 6px solid var(--accent);
+  padding: calc(22px + env(safe-area-inset-top, 0px)) max(22px, env(safe-area-inset-right, 0px)) calc(22px + env(safe-area-inset-bottom, 0px)) 22px; }
+.drawer h2 { margin: 6px 0 0; font: 900 26px/1 var(--font-ui); text-transform: uppercase; letter-spacing: -.01em; color: var(--head); text-wrap: balance; }
+.drawer h2::after { content: ""; display: block; width: 70px; height: 6px; background: var(--teal); margin-top: 12px; }
+.drawer .code { font: 500 13px var(--font-mono); color: var(--muted); }
+.dl { display: grid; gap: 14px; }
+.dl div span:first-child { display: block; font-size: 10.5px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin-bottom: 3px; }
+.close { justify-self: end; border: 2px solid var(--line); background: var(--surface); padding: 5px 11px; font-size: 11.5px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; }
+.modal-scrim { justify-content: center; align-items: center; padding: 16px; }
+.modal { background: var(--surface); border-top: 6px solid var(--accent); width: min(540px, 100%); max-height: 90%; overflow-y: auto; padding: 22px; display: grid; gap: 14px; }
+.modal h2 { margin: 0; font: 900 24px/1.05 var(--font-ui); text-transform: uppercase; color: var(--head); }
+.modal ul { margin: 0; padding-left: 18px; display: grid; gap: 7px; }
+.modal .acts { display: flex; gap: 8px; justify-content: flex-end; flex-wrap: wrap; }
+.toast { position: fixed; left: 50%; transform: translateX(-50%); bottom: calc(20px + env(safe-area-inset-bottom, 0px)); background: var(--band1); color: var(--on-band); border-left: 4px solid var(--teal); padding: 11px 15px; font-size: 13px; font-weight: 500; z-index: 30; max-width: calc(100% - 32px); }
+
+@media (max-width: 980px) {
+  .bp-grid { grid-template-columns: minmax(0, 1fr); }
+  .rail { position: static; }
+}
+@media (max-width: 760px) {
+  .chat-grid { grid-template-columns: minmax(0, 1fr); }
+  .side { display: none; }
+  .brand small { display: none; }
+  .brand b { letter-spacing: .16em; font-size: 12.5px; }
+  .band-in { justify-content: flex-start; }
+  .tabs button { padding: 8px 12px; font-size: 12.5px; }
+  .tabs button + button::before { margin: 0 12px 0 -6px; }
+  .kv { grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr); }
+  .kv .edit { display: none; }
+}
+</style>
+
+<div class="top">
+  <div class="bar">
+    <div class="bar-in">
+      <div class="brand"><img class="logo" src="tcu-logo.png" alt="TCU" onload="this.nextElementSibling.hidden=true" onerror="this.remove()"><span class="mark">GB</span><div><b>Graduation Blueprint</b><small>Neeley School of Business · planning assistant concept</small></div></div>
+      <div class="seg" role="group" aria-label="Demo student">
+        <button id="p-maya" data-persona="maya">Maya · first-year</button>
+        <button id="p-jordan" data-persona="jordan">Jordan · junior</button>
+      </div>
+      <span class="sample">Sample data</span>
+    </div>
+  </div>
+  <div class="band">
+    <div class="band-in">
+      <div class="tabs" role="tablist">
+        <button id="t-chat" role="tab" data-tab="chat">Advisor Chat</button>
+        <button id="t-plan" role="tab" data-tab="plan">Graduation Blueprint</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<main class="wrap" id="view"></main>
+<div id="layer"></div>
+
+<script>
+/* ---------- Course data (sample, structured like the catalog; verify every number before real use) ---------- */
+const SRC = {
+  cat26: 'TCU Undergraduate Catalog 2026–27',
+  cat24: 'TCU Undergraduate Catalog 2024–25',
+  neeley: 'Neeley BBA degree requirements',
+  fin: 'Finance major requirements',
+  bis: 'BIS major requirements',
+  ftc: 'FinTech certificate requirements',
+  sched27: 'TCU Class Search · Spring 2027',
+  hist: 'Offering history 2023–2026',
+};
+const C = {
+  'ECON 10223': {t:'Introductory Microeconomics', h:3, req:'Pre-business requirement', why:'Required for admission to a Neeley major and a prerequisite for upper-level finance.', off:'FS', conf:'confirmed', src:[SRC.cat26, SRC.neeley]},
+  'MATH 10043': {t:'Elementary Statistics', h:3, req:'Pre-business requirement', why:'Opens INSC 20153. Taking it in year one keeps the business core on schedule.', off:'FS', conf:'confirmed', src:[SRC.cat26, SRC.neeley]},
+  'ENGL 10803': {t:'Introductory Composition', h:3, req:'TCU Core · Written Communication', why:'First of two required writing courses.', off:'FS', conf:'confirmed', src:[SRC.cat26]},
+  'BUSI 10153': {t:'Business Foundations', h:3, req:'Pre-business requirement', why:'Introduces every Neeley major. Useful while you are still deciding.', off:'FS', conf:'confirmed', src:[SRC.cat26, SRC.neeley]},
+  'BUSI 10101': {t:'Neeley First-Year Seminar', h:1, req:'Neeley professional development', why:'First of the Neeley professional development courses.', off:'F', conf:'confirmed', src:[SRC.neeley]},
+  'CORE-RT': {t:'Religious Traditions (choose one)', h:3, req:'TCU Core · Religious Traditions', why:'Any approved course fills this. Pick by interest.', off:'FS', conf:'confirmed', slot:1, src:[SRC.cat26]},
+  'ECON 10233': {t:'Introductory Macroeconomics', h:3, req:'Pre-business requirement', why:'Completes the economics pair required before the business core.', off:'FS', conf:'confirmed', pre:['ECON 10223'], src:[SRC.cat26, SRC.neeley]},
+  'MATH 10283': {t:'Applied Calculus', h:3, req:'Pre-business requirement', why:'Required math for every BBA major.', off:'FS', conf:'confirmed', src:[SRC.cat26, SRC.neeley]},
+  'INSC 20153': {t:'Statistical Analysis', h:3, req:'Business core', why:'Requires MATH 10043. It gates several junior-level courses, so it sits early.', off:'FS', conf:'historical', pre:['MATH 10043'], src:[SRC.cat26, SRC.hist]},
+  'ENGL 20803': {t:'Intermediate Composition', h:3, req:'TCU Core · Written Communication', why:'Second required writing course.', off:'FS', conf:'historical', pre:['ENGL 10803'], src:[SRC.cat26]},
+  'BUSI 20101': {t:'Professional Development I', h:1, req:'Neeley professional development', why:'Neeley requirement for career readiness.', off:'FS', conf:'historical', src:[SRC.neeley]},
+  'CORE-HUM': {t:'Humanities (choose one)', h:3, req:'TCU Core · Humanities', why:'Any approved humanities course.', off:'FS', conf:'confirmed', slot:1, src:[SRC.cat26]},
+  'ACCT 20353': {t:'Fundamentals of Financial Accounting', h:3, req:'Business core', why:'Bottleneck: it opens ACCT 20363 and FINA 30153. A late start delays the whole upper-level core by a semester.', off:'FS', conf:'historical', src:[SRC.cat26, SRC.neeley]},
+  'INSC 20263': {t:'Business Information Systems', h:3, req:'Business core', why:'Required core course. It is also your first look at the BIS major.', off:'FS', conf:'historical', src:[SRC.cat26, SRC.neeley]},
+  'CORE-NSC': {t:'Natural Science with lab (choose one)', h:4, req:'TCU Core · Natural Sciences', why:'Any approved lab science.', off:'FS', conf:'confirmed', slot:1, src:[SRC.cat26]},
+  'CORE-SSC': {t:'Social Science (choose one)', h:3, req:'TCU Core · Social Sciences', why:'Any approved course outside economics.', off:'FS', conf:'confirmed', slot:1, src:[SRC.cat26]},
+  'COMM 10123': {t:'Communicating in Human Relations', h:3, req:'TCU Core · Oral Communication', why:'Fills the oral communication requirement.', off:'FS', conf:'historical', src:[SRC.cat26]},
+  'ACCT 20363': {t:'Managerial Accounting', h:3, req:'Business core', why:'Second accounting course. Needs ACCT 20353 first.', off:'FS', conf:'historical', pre:['ACCT 20353'], src:[SRC.cat26, SRC.neeley]},
+  'CORE-CA': {t:'Cultural Awareness (choose one)', h:3, req:'TCU Core · Cultural Awareness', why:'Can double-count with another Core category. Advisor confirms which.', off:'FS', conf:'confirmed', slot:1, src:[SRC.cat26]},
+  'CORE-HTA': {t:'Historical Traditions (choose one)', h:3, req:'TCU Core · Historical Traditions', why:'Any approved course.', off:'FS', conf:'confirmed', slot:1, src:[SRC.cat26]},
+  'ELEC': {t:'Free elective', h:3, req:'General elective hours', why:'Counts toward the 124-hour minimum. Use it to explore a major.', off:'FS', conf:'assumed', slot:1, src:[SRC.cat26]},
+  'FINA 30153': {t:'Financial Management', h:3, req:'Business core', why:'Upper-level core. Needs ACCT 20353 and ECON 10223.', off:'FS', conf:'historical', pre:['ACCT 20353','ECON 10223'], src:[SRC.cat26, SRC.neeley]},
+  'MARK 30653': {t:'Marketing Management', h:3, req:'Business core', why:'Required upper-level core course.', off:'FS', conf:'historical', src:[SRC.cat26, SRC.neeley]},
+  'MANA 30653': {t:'Management of Organizations', h:3, req:'Business core', why:'Required upper-level core course.', off:'FS', conf:'historical', src:[SRC.cat26, SRC.neeley]},
+  'MAJOR': {t:'Major course (after declaring)', h:3, req:'Major requirement', why:'Filled once you declare. The plan holds the space so the timeline stays honest.', off:'FS', conf:'assumed', slot:1, src:[SRC.neeley]},
+  'CORE-WEM': {t:'Writing Emphasis (choose one)', h:3, req:'TCU Core · Writing Emphasis', why:'Upper-level writing-intensive course.', off:'FS', conf:'confirmed', slot:1, src:[SRC.cat26]},
+  'SCMA 30353': {t:'Operations Management', h:3, req:'Business core', why:'Required upper-level core course.', off:'FS', conf:'confirmed', src:[SRC.cat26, SRC.sched27]},
+  'CORE-GA': {t:'Global Awareness (choose one)', h:3, req:'TCU Core · Global Awareness', why:'Study abroad courses often fill this.', off:'FS', conf:'confirmed', slot:1, src:[SRC.cat26]},
+  'MANA 40883': {t:'Strategic Management', h:3, req:'Business core capstone', why:'Senior capstone. Must be one of your final two semesters.', off:'FS', conf:'historical', pre:['FINA 30153','MARK 30653','MANA 30653'], src:[SRC.cat26, SRC.neeley]},
+  'BUSI 40101': {t:'Career Launch', h:1, req:'Neeley professional development', why:'Final professional development requirement.', off:'FS', conf:'assumed', src:[SRC.neeley]},
+  'FINA 30163': {t:'Investments', h:3, req:'Finance major', why:'First required finance major course. It unlocks the 40000-level finance electives.', off:'FS', conf:'confirmed', pre:['FINA 30153'], sec:{n:'010', d:'TR', s:660, e:740}, src:[SRC.fin, SRC.sched27]},
+  'FINA 30183': {t:'Intermediate Financial Management', h:3, req:'Finance major', why:'Required for the Finance major.', off:'FS', conf:'confirmed', pre:['FINA 30153'], sec:{n:'020', d:'MW', s:600, e:680}, src:[SRC.fin, SRC.sched27]},
+  'INSC 30833': {t:'Database Management', h:3, req:'BIS major', why:'Foundation for the rest of the BIS major.', off:'FS', conf:'historical', src:[SRC.bis]},
+  'INSC 30843': {t:'Systems Analysis and Design', h:3, req:'BIS major', why:'Required for BIS. Needs INSC 30833.', off:'FS', conf:'confirmed', pre:['INSC 30833'], sec:{n:'020', d:'TR', s:660, e:740}, alt:{n:'040', d:'MW', s:840, e:920}, src:[SRC.bis, SRC.sched27]},
+  'FINA 40313': {t:'Financial Modeling', h:3, req:'Finance major', why:'Core analytical skill for finance roles. Needs FINA 30163.', off:'FS', conf:'historical', pre:['FINA 30163'], src:[SRC.fin, SRC.hist]},
+  'INSC 40353': {t:'Business Intelligence & Analytics', h:3, req:'BIS major', why:'Required for BIS. Needs INSC 30833.', off:'FS', conf:'historical', pre:['INSC 30833'], src:[SRC.bis, SRC.hist]},
+  'FINA-EL': {t:'Finance elective (choose one)', h:3, req:'Finance major elective', why:'Any approved 40000-level FINA course.', off:'FS', conf:'assumed', slot:1, src:[SRC.fin]},
+  'INSC-EL': {t:'BIS elective (choose one)', h:3, req:'BIS major elective', why:'Any approved 40000-level INSC course.', off:'FS', conf:'assumed', slot:1, src:[SRC.bis]},
+  'INSC 40883': {t:'BIS Capstone', h:3, req:'BIS major capstone', why:'Final BIS requirement. Needs INSC 30843.', off:'FS', conf:'historical', pre:['INSC 30843'], src:[SRC.bis, SRC.hist]},
+  'ELEC-1': {t:'Free elective', h:3, req:'General elective hours', why:'Open hours. Your plan already meets the 124-hour minimum, so these are flexible.', off:'FS', conf:'assumed', slot:1, src:[SRC.cat24]},
+  'ELEC-2': {t:'Free elective', h:3, req:'General elective hours', why:'Open hours.', off:'FS', conf:'assumed', slot:1, src:[SRC.cat24]},
+  'ELEC-3': {t:'Free elective', h:3, req:'General elective hours', why:'Open hours.', off:'FS', conf:'assumed', slot:1, src:[SRC.cat24]},
+  'ELEC-4': {t:'Free elective', h:3, req:'General elective hours', why:'Open hours.', off:'FS', conf:'assumed', slot:1, src:[SRC.cat24]},
+  'FINA 40463': {t:'FinTech & Digital Finance', h:3, req:'FinTech certificate', why:'Entry course for the certificate and prerequisite for the FinTech Practicum. It has only run in spring.', off:'S', conf:'historical', pre:['FINA 30153'], fresh:1, src:[SRC.ftc, SRC.cat26, SRC.hist]},
+  'INSC 40463': {t:'Blockchain & Digital Assets', h:3, req:'FinTech certificate + BIS elective', why:'Counts toward both FinTech and your BIS elective, if the double-count is approved.', off:'FS', conf:'historical', pre:['INSC 30833'], fresh:1, src:[SRC.ftc, SRC.bis]},
+  'FINA 40473': {t:'FinTech Practicum', h:3, req:'FinTech certificate', why:'Applied project course. Needs FINA 40463 completed first.', off:'FS', conf:'assumed', pre:['FINA 40463'], fresh:1, src:[SRC.ftc]},
+};
+
+/* ---------- Students ---------- */
+const T = (n, s, c, st) => ({n, s, c, st});
+const P = {
+  maya: {
+    name: 'Maya Ortiz', initials: 'MO', tag: 'First-year · undeclared', program: 'Pre-business (undeclared)', catalog: '2026–27',
+    earned: 0, inprog: 16, need: 124, completed: [],
+    baseLabel: 'Keep options open', altLabel: 'Lean toward Finance',
+    terms: {
+      base: [
+        T('Fall 2026','F',['ECON 10223','MATH 10043','ENGL 10803','BUSI 10153','CORE-RT','BUSI 10101'],'In progress'),
+        T('Spring 2027','S',['ECON 10233','MATH 10283','INSC 20153','ENGL 20803','COMM 10123','BUSI 20101']),
+        T('Fall 2027','F',['ACCT 20353','INSC 20263','CORE-NSC','CORE-SSC','CORE-HUM']),
+        T('Spring 2028','S',['ACCT 20363','CORE-CA','CORE-HTA','ELEC','ELEC']),
+        T('Fall 2028','F',['FINA 30153','MARK 30653','MANA 30653','MAJOR','CORE-WEM']),
+        T('Spring 2029','S',['SCMA 30353','MAJOR','MAJOR','CORE-GA','ELEC']),
+        T('Fall 2029','F',['MAJOR','MAJOR','ELEC','ELEC','ELEC']),
+        T('Spring 2030','S',['MANA 40883','MAJOR','ELEC','ELEC','ELEC','BUSI 40101']),
+      ],
+      alt: [
+        T('Fall 2026','F',['ECON 10223','MATH 10043','ENGL 10803','BUSI 10153','CORE-RT','BUSI 10101'],'In progress'),
+        T('Spring 2027','S',['ECON 10233','MATH 10283','INSC 20153','ENGL 20803','COMM 10123','BUSI 20101']),
+        T('Fall 2027','F',['ACCT 20353','INSC 20263','CORE-NSC','CORE-SSC','CORE-HUM']),
+        T('Spring 2028','S',['ACCT 20363','CORE-CA','CORE-HTA','ELEC','ELEC']),
+        T('Fall 2028','F',['FINA 30153','MARK 30653','MANA 30653','ELEC','CORE-WEM']),
+        T('Spring 2029','S',['SCMA 30353','FINA 30163','FINA 30183','CORE-GA','ELEC']),
+        T('Fall 2029','F',['FINA 40313','FINA-EL','ELEC','ELEC','ELEC']),
+        T('Spring 2030','S',['MANA 40883','FINA-EL','FINA-EL','ELEC','ELEC','BUSI 40101']),
+      ],
+    },
+    audit: {
+      base: [['TCU Core Curriculum',0,6,39],['Pre-business requirements',0,9,21],['Business core',0,0,30],['Major (undeclared)',0,0,24],['Total hours',0,16,124]],
+      alt: [['TCU Core Curriculum',0,6,39],['Pre-business requirements',0,9,21],['Business core',0,0,30],['Finance major',0,0,24],['Total hours',0,16,124]],
+    },
+    staticFlags: () => [
+      {sev:'info', k:'Assumption', title:'Fall 2027 onward is not scheduled yet', body:'Those semesters use offering history and are labeled. I’ll re-check them each registration cycle.'},
+      {sev:'info', k:'Watch', title:'ACCT 20353 in Fall 2027 is your first bottleneck', body:'It opens ACCT 20363 and FINA 30153. Missing it pushes the whole upper-level business core back one semester.'},
+      {sev:'review', k:'Advisor', title:'Major not declared', body:'Years 3–4 are provisional. An advisor should confirm your declaration timeline before Spring 2028.'},
+    ],
+    grad: () => 'May 2030',
+    sidebar: ['Am I on the right track?','Career survey results','Spring 2027 registration'],
+  },
+  jordan: {
+    name: 'Jordan Kim', initials: 'JK', tag: 'Junior · Finance + BIS', program: 'BBA Finance + BBA Business Information Systems', catalog: '2024–25',
+    earned: 78, inprog: 15, need: 124,
+    completed: ['ECON 10223','ECON 10233','MATH 10043','MATH 10283','INSC 20153','INSC 20263','ACCT 20353','ACCT 20363','ENGL 10803','ENGL 20803'],
+    baseLabel: 'Finance + BIS', altLabel: '+ FinTech certificate',
+    terms: {
+      base: [
+        T('Fall 2026','F',['FINA 30153','INSC 30833','MARK 30653','MANA 30653','CORE-WEM'],'In progress'),
+        T('Spring 2027','S',['FINA 30163','INSC 30843','FINA 30183','SCMA 30353','ELEC-1']),
+        T('Fall 2027','F',['FINA 40313','INSC 40353','FINA-EL','INSC-EL','ELEC-2']),
+        T('Spring 2028','S',['MANA 40883','FINA-EL','INSC 40883','ELEC-3','ELEC-4']),
+      ],
+      alt: [
+        T('Fall 2026','F',['FINA 30153','INSC 30833','MARK 30653','MANA 30653','CORE-WEM'],'In progress'),
+        T('Spring 2027','S',['FINA 30163','INSC 30843','FINA 30183','SCMA 30353','ELEC-1']),
+        T('Fall 2027','F',['FINA 40313','INSC 40353','FINA 40463','INSC 40463','FINA-EL']),
+        T('Spring 2028','S',['MANA 40883','FINA-EL','INSC 40883','FINA 40473','ELEC-3']),
+      ],
+    },
+    swapFix: {code:'FINA 40463', with:'ELEC-1'},
+    audit: {
+      base: [['TCU Core Curriculum',36,3,39],['Business core',21,12,36],['Finance major',0,15,24],['BIS major',0,15,24],['Total hours',78,60,124]],
+      alt: [['TCU Core Curriculum',36,3,39],['Business core',21,12,36],['Finance major',0,15,24],['BIS major',0,15,24],['FinTech certificate',0,9,9],['Total hours',78,60,124]],
+    },
+    staticFlags: (alt) => {
+      const f = [{sev:'review', k:'Advisor', title:'Transfer credit not verified', body:'MATH 10283 from Tarrant County College is not in the equivalency data I have. I won’t treat it as complete until the registrar confirms it.'}];
+      if (alt) {
+        f.push({sev:'review', k:'Advisor', title:'Catalog year mismatch', body:'You are on the 2024–25 catalog. The FinTech requirements I have come from 2026–27. The rules for your catalog year may differ.'});
+        f.push({sev:'review', k:'Advisor', title:'Double-count needs approval', body:'INSC 40463 is planned for both the FinTech certificate and your BIS elective. If that is denied, you add 3 hours.'});
+      }
+      return f;
+    },
+    grad: (alt, errs) => (alt && errs.some(e => e.type === 'offer')) ? 'Dec 2028' : 'May 2028',
+    sidebar: ['How does FinTech fit?','Spring 2027 sections','Transcript upload'],
+  },
+};
+
+/* ---------- State ---------- */
+const S = { persona: 'jordan', tab: 'chat',
+  maya: {alt:false, swap:false, sec:{}, review:'none', msgs:[], step:null},
+  jordan: {alt:false, swap:false, sec:{}, review:'none', msgs:[], step:null} };
+const ps = () => S[S.persona];
+const per = () => P[S.persona];
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const src = s => `<span class="src">${esc(s)}</span>`;
+const hrs = codes => codes.reduce((a, c) => a + C[c].h, 0);
+const fmtT = m => `${Math.floor(m/60) > 12 ? Math.floor(m/60) - 12 : Math.floor(m/60)}:${String(m%60).padStart(2,'0')}${m >= 720 ? 'pm' : 'am'}`;
+const SCHED = 'Spring 2027'; // the only published future schedule in the sample data
+const secOf = (code, t) => (t && t.n !== SCHED) ? null : (ps().sec[code] ? C[code].alt : C[code].sec);
+const confOf = (code, t) => { const c = C[code];
+  if (c.slot) return 'assumed';
+  if (t.st) return 'confirmed';
+  if (c.conf === 'confirmed' && t.n !== SCHED) return 'historical';
+  return c.conf; };
+
+/* ---------- Plan engine (mini validator) ---------- */
+function planTerms() {
+  const p = per(), st = ps();
+  const terms = p.terms[st.alt ? 'alt' : 'base'].map(t => ({...t, c:[...t.c]}));
+  if (st.alt && st.swap && p.swapFix) {
+    const a = terms.findIndex(t => t.c.includes(p.swapFix.code)), b = terms.findIndex(t => t.c.includes(p.swapFix.with));
+    if (a > -1 && b > -1) {
+      terms[a].c[terms[a].c.indexOf(p.swapFix.code)] = p.swapFix.with;
+      terms[b].c[terms[b].c.indexOf(p.swapFix.with)] = p.swapFix.code;
+    }
+  }
+  return terms;
+}
+function validate(terms) {
+  const p = per(), errs = [], done = new Set(p.completed), bad = new Set();
+  terms.forEach(t => {
+    t.c.forEach(code => {
+      const c = C[code];
+      if (!c.off.includes(t.s)) {
+        bad.add(code);
+        errs.push({type:'offer', sev:'error', k:'Bottleneck', code,
+          title:`${code} is placed in ${t.n}, but it has only run in spring`,
+          body:`${c.t} ran Spring 2024, 2025 and 2026 and no fall section is on record. FINA 40473 needs it first, so missing it pushes the practicum and your graduation to Dec 2028.`,
+          fix:'Move it to Spring 2027 (prerequisite FINA 30153 done this fall)', act:'swap'});
+      }
+      (c.pre || []).forEach(pr => {
+        if (!done.has(pr)) { bad.add(code); errs.push({type:'pre', sev:'error', k:'Prerequisite', title:`${code} needs ${pr} first`, body:`${pr} is not completed or planned in an earlier semester.`}); }
+      });
+    });
+    for (let i = 0; i < t.c.length; i++) for (let j = i + 1; j < t.c.length; j++) {
+      const a = secOf(t.c[i], t), b = secOf(t.c[j], t);
+      if (a && b && [...a.d].some(d => b.d.includes(d)) && a.s < b.e && b.s < a.e) {
+        bad.add(t.c[i]); bad.add(t.c[j]);
+        const alt = C[t.c[j]].alt;
+        errs.push({type:'time', sev:'error', k:'Time conflict', code:t.c[j],
+          title:`${t.n}: ${t.c[i]} and ${t.c[j]} meet at the same time`,
+          body:`Section ${a.n} (${a.d} ${fmtT(a.s)}–${fmtT(a.e)}) overlaps section ${b.n}. ${alt ? `Section ${alt.n} of ${t.c[j]} meets ${alt.d} ${fmtT(alt.s)}–${fmtT(alt.e)} with open seats.` : ''}`,
+          fix: alt ? `Switch ${t.c[j]} to section ${alt.n}` : null, act:'sec'});
+      }
+    }
+    t.c.forEach(code => done.add(code));
+  });
+  return {errs, bad};
+}
+
+/* ---------- Chat scripts ---------- */
+const STEPS = {
+  maya: {
+    start: () => ({html:`<p>Hi Maya. I’ve loaded your planning profile: first semester, catalog year 2026–27, 16 hours in progress, no major declared yet.</p>
+      <p>Ask me anything about your degree, or pick a starting point.</p>`,
+      chips:[{l:'Am I on the right track?', go:'track'},{l:'I’m not sure what career I want', go:'unsure'}]}),
+    track: () => ({html:`<p>Yes. All five of your fall courses count toward graduation, and three of them are pre-business requirements every Neeley major needs. ${src('Catalog 2026–27 · Neeley BBA')}</p>
+      <p>One thing to plan around now: <b>MATH 10043</b> this fall opens <b>INSC 20153</b> in the spring. That course gates junior-level work in several majors, so keeping it in Spring 2027 protects your timeline.</p>`,
+      chips:[{l:'I’m not sure what career I want', go:'unsure'},{l:'Show my 4-year plan', tab:'plan'}]}),
+    unsure: () => ({html:`<p>That’s normal in your first semester, and you have time. Neeley students declare later, and your first three semesters look almost the same for every major.</p>
+      <p>A short survey helps me suggest paths to explore. It takes about a minute, and it doesn’t change anything on your record.</p>`,
+      chips:[{l:'Take Career Planning Survey', go:'survey', primary:1}]}),
+    survey: () => ({html:`<div class="card survey" id="survey">
+        <h5>Career Planning Survey</h5>
+        ${[['q1','Which sounds like a good afternoon?',['Building a model in a spreadsheet','Designing how a system works','Pitching an idea to a room']],
+           ['q2','What do you most want to get better at?',['Analyzing numbers','Working with technology','Leading people']],
+           ['q3','After graduation, you’re thinking about…',['A job in industry','Graduate school','Not sure yet']]]
+          .map(([id,q,o]) => `<div><div class="q">${q}</div><div class="opts">${o.map((x,i)=>`<button class="opt" id="${id}-${i}" data-q="${id}" aria-pressed="false">${x}</button>`).join('')}</div></div>`).join('')}
+        <div><button class="chip primary" id="survey-go" data-go="paths" data-say="Here are my survey answers." disabled>See paths to explore</button></div>
+      </div>`, chips:[]}),
+    paths: () => ({html:`<p>Based on your answers, here are three paths worth exploring. These are possibilities, not predictions. No major guarantees a particular job.</p>
+      <div class="paths">
+        <div class="path"><span class="fit">Matches 2 answers</span><b>Finance & analysis</b><span class="muted">Corporate finance, investment analysis, banking</span><span>Majors: Finance, Accounting</span></div>
+        <div class="path"><span class="fit">Matches 2 answers</span><b>Business analytics & tech</b><span class="muted">Business analyst, data analytics, product roles</span><span>Majors: BIS, Supply Chain</span></div>
+        <div class="path"><span class="fit lo">Matches 1 answer</span><b>Marketing & management</b><span class="muted">Brand, sales leadership, consulting</span><span>Majors: Marketing, Management</span></div>
+      </div>
+      <p>The good news: all three share the same first three semesters. You can try <b>INSC 20263</b> (information systems) and <b>ACCT 20353</b> (accounting) before you choose, and neither costs you time. ${src('Neeley BBA requirements')}</p>`,
+      chips:[{l:'Build my plan and keep options open', go:'plan'},{l:'What if I lean toward Finance?', go:'plan', alt:true}]}),
+    plan: () => ({html:`<p>Done. I built an 8-semester plan to <b>May 2030</b> with 124 hours. I checked every prerequisite and found no conflicts.</p>
+      <ul><li>Fall 2026 is your current schedule, and Spring 2027 uses the published sections.</li><li>Fall 2027 onward is based on <b>offering history</b>, since those schedules aren’t out yet. Each course is labeled.</li><li>Your plan has one item for an advisor: confirming when to declare a major.</li></ul>`,
+      chips:[{l:'Open Graduation Blueprint', tab:'plan', primary:1}]}),
+  },
+  jordan: {
+    start: () => ({html:`<p>Hi Jordan. To plan accurately, I need your course history. Upload an unofficial transcript or degree audit, or a screenshot works too.</p>
+      <p>I’ll show you what I read so you can correct it before I use it.</p>`,
+      chips:[{l:'Upload transcript', go:'parsed', attach:'Jordan_unofficial_transcript.pdf', primary:1}]}),
+    parsed: () => ({html:`<p>Here’s what I read. Check it before I plan anything.</p>
+      <div class="card"><h5>Your profile (draft)</h5><div class="kv">
+        <span>Majors</span><span>Finance (BBA), Business Information Systems (BBA)</span><button class="edit" data-toast="edit">Edit</button>
+        <span>Catalog year</span><span>2024–25</span><button class="edit" data-toast="edit">Edit</button>
+        <span>Hours earned</span><span>78</span><button class="edit" data-toast="edit">Edit</button>
+        <span>In progress</span><span>15 hours · Fall 2026</span><button class="edit" data-toast="edit">Edit</button>
+        <span>Lower-division core</span><span>Complete (10 courses)</span><button class="edit" data-toast="edit">Edit</button>
+        <span>Target graduation</span><span>May 2028</span><button class="edit" data-toast="edit">Edit</button>
+        <div class="flagline"><b>Can’t verify:</b> MATH 10283 shows as transfer credit from Tarrant County College. It isn’t in the equivalency data I have, so I’ll flag it for advisor review and won’t assume it counts.</div>
+      </div></div>`,
+      chips:[{l:'Looks right, confirm profile', go:'confirmed', primary:1},{l:'Something’s wrong', toast:'edit'}]}),
+    confirmed: () => ({html:`<p>Profile saved to your planning sandbox. Nothing here changes your official TCU record.</p>
+      <p>To finish both majors by <b>May 2028</b> you need 45 more hours across three semesters after this fall. I checked prerequisites and the published Spring 2027 sections. ${src('Catalog 2024–25')} ${src('Class Search · Spring 2027')}</p>
+      <p>One thing to fix: <b>FINA 30163</b> and <b>INSC 30843</b> both meet Tuesday/Thursday at 11:00. Another section of INSC 30843 is open.</p>`,
+      chips:[{l:'How does FinTech fit into my timeline?', go:'fintech'},{l:'Show my plan', tab:'plan'}]}),
+    fintech: () => ({html:`<p>It fits, if you take one course in the right semester. The certificate is 9 hours: 6 replace free electives and 3 can double-count as a BIS elective. Your graduation date stays the same.</p>
+      <div class="card scroll"><table class="cmp">
+        <tr><th></th><th>Finance + BIS</th><th>+ FinTech certificate</th></tr>
+        <tr><td>Graduation</td><td>May 2028</td><td>May 2028</td></tr>
+        <tr><td>Total hours</td><td>138</td><td>138</td></tr>
+        <tr><td>Heaviest semester</td><td>15 hours</td><td>15 hours</td></tr>
+        <tr><td>Free electives left</td><td>4</td><td>2</td></tr>
+        <tr><td>Needs approval</td><td>1 item</td><td>3 items</td></tr>
+      </table></div>
+      <p><b>Timing risk:</b> FINA 40463 (FinTech & Digital Finance) has only run in spring. It has to come before the Practicum, so it belongs in <b>Spring 2027</b>. If it slips to Spring 2028, you finish in December 2028. ${src('FinTech certificate requirements')} ${src('Offering history 2023–2026')}</p>`,
+      chips:[{l:'Open plan with FinTech', tab:'plan', alt:true, primary:1},{l:'What needs advisor sign-off?', go:'advisor'}]}),
+    advisor: () => ({html:`<p>Three things I can’t decide for you, so they go to your advisor:</p>
+      <ul><li><b>Transfer credit.</b> MATH 10283 from Tarrant County College needs registrar confirmation.</li>
+      <li><b>Catalog year.</b> You’re on 2024–25, but my FinTech requirements come from 2026–27. Your rules may differ.</li>
+      <li><b>Double-counting.</b> INSC 40463 counting for both FinTech and BIS needs program approval.</li></ul>
+      <p>When you send your plan, these go with it so your advisor can start with what matters.</p>`,
+      chips:[{l:'Open plan with FinTech', tab:'plan', alt:true, primary:1}]}),
+  },
+};
+function go(step, say, attach) {
+  const st = ps();
+  if (say || attach) st.msgs.push({role:'user', text: say || '', attach});
+  st.msgs.push({role:'typing'});
+  st.step = step;
+  render();
+  setTimeout(() => {
+    st.msgs = st.msgs.filter(m => m.role !== 'typing');
+    st.msgs.push({role:'ai', step});
+    render();
+    if (S.tab === 'chat') window.scrollTo({top: document.body.scrollHeight});
+  }, matchMedia('(prefers-reduced-motion: reduce)').matches ? 50 : 650);
+}
+
+/* ---------- Render ---------- */
+function render() {
+  document.querySelectorAll('[data-persona]').forEach(b => b.setAttribute('aria-pressed', b.dataset.persona === S.persona));
+  document.querySelectorAll('[data-tab]').forEach(b => b.setAttribute('aria-selected', b.dataset.tab === S.tab));
+  document.getElementById('view').innerHTML = S.tab === 'chat' ? renderChat() : renderPlan();
+}
+function renderChat() {
+  const p = per(), st = ps();
+  let last = -1; st.msgs.forEach((m, i) => { if (m.role === 'ai' && m.step) last = i; });
+  if (st.msgs.some(m => m.role === 'typing')) last = -1;
+  const msgs = st.msgs.map((m, i) => {
+    if (m.role === 'user') return `<div class="msg user"><div class="bubble">${m.attach ? `<div class="attach"><i>PDF</i>${esc(m.attach)}</div>` : ''}${m.text ? esc(m.text) : ''}</div></div>`;
+    if (m.role === 'typing') return `<div class="msg ai"><div class="av">GB</div><div class="body"><div class="typing"><span></span><span></span><span></span></div></div></div>`;
+    const s = m.raw ? {html:`<p>${esc(m.raw)}</p>`, chips:[]} : STEPS[S.persona][m.step]();
+    const chips = i === last && s.chips.length ? `<div class="chips">${s.chips.map((c, k) => `<button class="chip${c.primary ? ' primary' : ''}" data-chip="${m.step}:${k}">${esc(c.l)}</button>`).join('')}</div>` : '';
+    return `<div class="msg ai"><div class="av">GB</div><div class="body">${s.html}${chips}</div></div>`;
+  }).join('');
+  return `<div class="chat-grid">
+    <aside class="side">
+      <button class="newchat" data-toast="new">+ New planning chat</button>
+      <div><h4>Recent</h4><ul>${p.sidebar.map((x, i) => `<li class="${i ? '' : 'on'}">${esc(x)}</li>`).join('')}</ul></div>
+      <div class="pcard">
+        <b>${esc(p.name)}</b>
+        <div class="row"><span>Program</span><span>${esc(p.program)}</span></div>
+        <div class="row"><span>Catalog</span><span>${p.catalog}</span></div>
+        <div class="row"><span>Hours</span><span>${p.earned} earned · ${p.inprog} in progress</span></div>
+        <button class="linkbtn" data-toast="edit">Correct my profile</button>
+      </div>
+    </aside>
+    <section class="chatcol">
+      <div class="thread">${msgs}</div>
+      <div class="composer">
+        <button class="iconbtn" id="attach" aria-label="Upload transcript or screenshot" title="Upload transcript or screenshot">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.5 12.6 21a5.5 5.5 0 0 1-7.8-7.8l8.9-8.9a3.7 3.7 0 0 1 5.2 5.2l-8.9 8.9a1.8 1.8 0 0 1-2.6-2.6L15.6 7.6"/></svg>
+        </button>
+        <input id="ask" placeholder="Ask about your degree, a major, or a class…" autocomplete="off">
+        <button class="iconbtn send" id="sendbtn" aria-label="Send">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+        </button>
+      </div>
+      <div class="disclaim">Plans are built from catalog data and cite their sources. Official approval comes from your advisor and the registrar.</div>
+    </section>
+  </div>`;
+}
+function renderPlan() {
+  const p = per(), st = ps();
+  const terms = planTerms();
+  const {errs, bad} = validate(terms);
+  const flags = [...errs, ...p.staticFlags(st.alt)];
+  const total = p.earned + terms.reduce((a, t) => a + hrs(t.c), 0);
+  const maxLoad = Math.max(...terms.map(t => hrs(t.c)));
+  const grad = p.grad(st.alt, errs);
+  const nErr = errs.length, nRev = flags.filter(f => f.sev === 'review').length;
+  const audit = p.audit[st.alt ? 'alt' : 'base'];
+
+  const termHtml = terms.map((t, ti) => `<div class="term${t.st ? ' prog' : ''}">
+      <header><b>${t.n}</b><span>${hrs(t.c)} hrs</span></header>
+      ${t.st ? `<div class="st">${t.st} · from transcript</div>` : ''}
+      ${t.c.map(code => { const c = C[code]; const s = secOf(code, t); const cf = confOf(code, t);
+        return `<button class="cc${c.slot ? ' slot' : ''}${bad.has(code) ? ' bad' : ''}${c.fresh ? ' new' : ''}" data-course="${esc(code)}" data-term="${ti}">
+          <div class="top"><span class="code">${c.slot ? (c.h + ' hrs') : esc(code)}</span><span class="conf ${cf}" title="${cf}">${cf}</span></div>
+          <div class="t">${esc(c.t)}</div>
+          <div class="req">${esc(c.req)}${s ? ` · ${s.d} ${fmtT(s.s)}` : ''}</div>
+        </button>`; }).join('')}
+    </div>`).join('');
+
+  const flagHtml = (nErr ? '' : `<div class="flag okf"><span class="k">Validated</span><b>No prerequisite, timing or availability conflicts</b><span>${terms.length} semesters · ${terms.reduce((a,t)=>a+t.c.length,0)} courses checked</span></div>`) +
+    flags.map((f, i) => `<div class="flag ${f.sev}"><span class="k">${f.k}</span><b>${esc(f.title)}</b><span>${esc(f.body)}</span>${f.fix ? `<button class="fixbtn" data-fix="${i}">${esc(f.fix)}</button>` : ''}</div>`).join('');
+
+  let reviewHtml;
+  if (st.review === 'none') reviewHtml = `<button class="cta" id="send-review" ${nErr ? 'disabled' : ''}>Send plan for advisor review</button>
+      <span style="font-size:12.5px;color:var(--muted)">${nErr ? `Resolve ${nErr} conflict${nErr > 1 ? 's' : ''} first so your advisor reviews a plan that works.` : `${nRev} item${nRev === 1 ? '' : 's'} will be sent for your advisor to decide.`}</span>`;
+  else if (st.review === 'sent') reviewHtml = `<div class="status sent"><b>Sent to your Neeley academic advisor</b><span>Waiting for review. Your plan is locked as submitted. You can keep exploring changes in a copy.</span></div>
+      <button class="ghost" id="sim-approve">Simulate advisor response (demo)</button>`;
+  else reviewHtml = `<div class="status done"><b>Advisor-reviewed plan</b><span>Notes: transfer credit confirmed with the registrar${st.alt && S.persona === 'jordan' ? '; double-count approved; FinTech rules confirmed for your catalog year' : ''}.</span>
+      <span>Next step: register for Spring 2027 on my.tcu.edu during your window. Registration isn’t automatic, and this review doesn’t clear you for graduation.</span></div>`;
+
+  return `<div class="bp">
+    <div class="strip">
+      <div><h1>${esc(p.name)}’s Graduation Blueprint</h1><div class="meta">${esc(p.program)} · Catalog ${p.catalog} · <span class="sample">Sample student</span></div></div>
+      <div class="facts">
+        <div class="fact"><span>Graduation</span><b class="${grad.startsWith('Dec') ? 'risk' : ''}">${grad}</b></div>
+        <div class="fact"><span>Total hours</span><b>${total}</b></div>
+        <div class="fact"><span>Heaviest term</span><b>${maxLoad} hrs</b></div>
+        <div class="fact"><span>Status</span><b class="${nErr ? 'risk' : ''}">${nErr ? nErr + ' to fix' : 'Valid'}</b></div>
+      </div>
+    </div>
+    <div class="controls">
+      <div class="seg" role="group" aria-label="Plan version">
+        <button id="v-base" data-alt="0" aria-pressed="${!st.alt}">${esc(p.baseLabel)}</button>
+        <button id="v-alt" data-alt="1" aria-pressed="${st.alt}">${esc(p.altLabel)}</button>
+      </div>
+      <div class="legend"><span>Course offering:</span><span class="conf confirmed">Confirmed section</span><span class="conf historical">Historical pattern</span><span class="conf assumed">Assumed</span></div>
+    </div>
+    <div class="bp-grid">
+      <div class="terms">${termHtml}</div>
+      <aside class="rail">
+        <div class="panel"><h3><span>Plan check</span><span>${nErr} conflicts · ${nRev} advisor</span></h3>${flagHtml}</div>
+        <div class="panel"><h3>Advisor review</h3>${reviewHtml}</div>
+        <div class="panel"><h3><span>Degree audit</span><span>earned / planned</span></h3><div class="audit">${audit.map(([n,d,pl,tot]) => `<div class="ar"><div class="lab"><span>${n}</span><span>${d} + ${pl} / ${tot}</span></div><div class="track"><i class="d" style="width:${Math.min(100,d/tot*100)}%"></i><i class="p" style="width:${Math.min(100-Math.min(100,d/tot*100),pl/tot*100)}%"></i></div></div>`).join('')}</div></div>
+      </aside>
+    </div>
+  </div>`;
+}
+
+/* ---------- Overlays ---------- */
+const layer = document.getElementById('layer');
+function closeLayer() { layer.innerHTML = ''; }
+function openCourse(code, ti) {
+  const t = planTerms()[ti], c = C[code], s = secOf(code, t), cf = confOf(code, t);
+  const pre = (c.pre || []).map(x => `${x}${per().completed.includes(x) ? ' (completed)' : ' (planned earlier)'}`).join(', ') || 'None';
+  const confText = {confirmed: t.st ? 'Confirmed: you’re enrolled this term.' : 'Confirmed: in the published schedule for this term.', historical:'Historical pattern: has run in this term before, but the schedule isn’t published yet. Not guaranteed.', assumed:'Assumed: you still choose a course here, or the term isn’t scheduled. Re-checked when schedules are released.'}[cf];
+  layer.innerHTML = `<div class="scrim" data-close="1"><div class="drawer" role="dialog" aria-label="${esc(c.t)}">
+    <button class="close" data-close="1">Close</button>
+    <div><div class="code">${c.slot ? 'Requirement slot' : esc(code)} · ${c.h} hrs · ${t.n}</div><h2>${esc(c.t)}</h2></div>
+    <div class="dl">
+      <div><span>Why it’s here</span>${esc(c.why)}</div>
+      <div><span>Requirement it satisfies</span>${esc(c.req)}</div>
+      <div><span>Prerequisites</span>${esc(pre)}</div>
+      <div><span>Offered</span>${c.off === 'S' ? 'Spring only' : 'Fall and spring'}</div>
+      <div><span>Availability</span><span class="conf ${cf}" style="display:inline-flex;text-transform:none;letter-spacing:0;font-size:14px;color:var(--ink)">${confText}</span></div>
+      ${s ? `<div><span>Section</span>${s.n} · ${s.d} ${fmtT(s.s)}–${fmtT(s.e)}</div>` : ''}
+      <div><span>Sources</span>${c.src.map(src).join(' ')}</div>
+    </div>
+    <button class="ghost" data-toast="swap">Find an alternative course</button>
+  </div></div>`;
+}
+function openReview() {
+  const p = per(), st = ps();
+  const items = p.staticFlags(st.alt).filter(f => f.sev === 'review');
+  layer.innerHTML = `<div class="scrim modal-scrim" data-close="1"><div class="modal" role="dialog" aria-label="Send for advisor review">
+    <h2>Send plan for advisor review</h2>
+    <p style="margin:0">Your Neeley academic advisor gets the full plan, its sources, and these open questions:</p>
+    <ul>${items.map(f => `<li><b>${esc(f.title)}.</b> ${esc(f.body)}</li>`).join('')}</ul>
+    <p style="margin:0;color:var(--muted);font-size:13px">Sending doesn’t register you for classes or change your major. You’ll get a notice when your advisor responds.</p>
+    <div class="acts"><button class="ghost" data-close="1">Cancel</button><button class="cta" style="width:auto" id="confirm-send">Send to advisor</button></div>
+  </div></div>`;
+}
+function toast(msg) {
+  const el = document.createElement('div'); el.className = 'toast'; el.textContent = msg; document.body.appendChild(el);
+  setTimeout(() => el.remove(), 2600);
+}
+const TOASTS = {
+  edit: 'Edits stay in your planning sandbox. They never change your official TCU record.',
+  new: 'Demo: this mockup keeps one scripted chat per student.',
+  swap: 'Demo: would list other courses that fill the same requirement, with sources.',
+};
+
+/* ---------- Events ---------- */
+document.addEventListener('click', e => {
+  const b = e.target.closest('button, .scrim');
+  if (!b) return;
+  if (b.dataset.close && (e.target === b || e.target.dataset.close)) return closeLayer();
+  if (b.dataset.persona) { S.persona = b.dataset.persona; return render(); }
+  if (b.dataset.tab) { S.tab = b.dataset.tab; return render(); }
+  if (b.dataset.toast) return toast(TOASTS[b.dataset.toast]);
+  if (b.dataset.chip) {
+    const [step, k] = b.dataset.chip.split(':'); const c = STEPS[S.persona][step]().chips[+k];
+    if (c.toast) return toast(TOASTS[c.toast]);
+    if (c.alt) ps().alt = true;
+    if (c.tab) { S.tab = c.tab; window.scrollTo({top:0}); return render(); }
+    return go(c.go, c.attach ? '' : c.l, c.attach);
+  }
+  if (b.dataset.q) {
+    b.parentElement.querySelectorAll('.opt').forEach(o => o.setAttribute('aria-pressed', o === b));
+    const answered = new Set([...document.querySelectorAll('#survey .opt[aria-pressed="true"]')].map(o => o.dataset.q));
+    document.getElementById('survey-go').disabled = answered.size < 3;
+    return;
+  }
+  if (b.dataset.go) return go(b.dataset.go, b.dataset.say);
+  if (b.dataset.alt) { ps().alt = b.dataset.alt === '1'; return render(); }
+  if (b.dataset.course) return openCourse(b.dataset.course, +b.dataset.term);
+  if (b.dataset.fix) {
+    const st = ps(), terms = planTerms(), {errs} = validate(terms), f = errs[+b.dataset.fix];
+    if (f.act === 'swap') st.swap = true;
+    if (f.act === 'sec') st.sec[f.code] = true;
+    render(); return toast('Fix applied. Plan re-checked.');
+  }
+  if (b.id === 'send-review') return openReview();
+  if (b.id === 'confirm-send') { ps().review = 'sent'; closeLayer(); render(); return toast('Sent to your advisor.'); }
+  if (b.id === 'sim-approve') { ps().review = 'done'; return render(); }
+  if (b.id === 'attach') {
+    if (S.persona === 'jordan' && ps().step === 'start') return go('parsed', '', 'Jordan_unofficial_transcript.pdf');
+    return toast('Demo: upload is scripted on Jordan’s first step.');
+  }
+  if (b.id === 'sendbtn') return ask();
+});
+document.addEventListener('keydown', e => {
+  if (e.key === 'Enter' && e.target.id === 'ask') ask();
+  if (e.key === 'Escape') closeLayer();
+});
+function ask() {
+  const i = document.getElementById('ask'); const v = i && i.value.trim(); if (!v) return;
+  const st = ps(); st.msgs.push({role:'user', text:v});
+  st.msgs.push({role:'ai', raw:'In this mockup, replies are scripted. Try one of the suggested actions above. In the full build, I’d answer from the catalog data and cite the source.'});
+  render();
+}
+
+/* ---------- Boot ---------- */
+['maya','jordan'].forEach(id => { S[id].msgs.push({role:'ai', step:'start'}); S[id].step = 'start'; });
+render();
+</script>
