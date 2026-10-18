@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useState } from "react";
 import type { Plan, PlanLine } from "@/lib/engine/types";
+import { compareTerms } from "@/lib/engine/terms";
 import type { PlanComparison } from "@/lib/engine/compare";
 import type { Review } from "@/lib/store";
 import { patchOf, type StudentState } from "./types";
@@ -145,9 +146,16 @@ export function BlueprintTab(props: {
           <div className="fact"><span>Graduation</span><b className={plan.onTime ? "" : "risk"}>{plan.gradTerm}</b></div>
           {plan.lateCost ? (
             <div className="fact" title={`${plan.lateCost.note}. Source: ${plan.lateCost.source}`}>
-              <span>Added cost</span>
-              <b className="risk">+${plan.lateCost.amount.toLocaleString("en-US")}</b>
-              <small>{plan.lateCost.semesters} extra semester{plan.lateCost.semesters === 1 ? "" : "s"}</small>
+              <span>Extra semesters cost</span>
+              <b className="risk">+{money(plan.lateCost.amount)}</b>
+              <small>{plan.lateCost.semesters} semester{plan.lateCost.semesters === 1 ? "" : "s"} past {plan.targetGradTerm}</small>
+            </div>
+          ) : null}
+          {plan.cost ? (
+            <div className="fact" title={`Remaining planned terms: ${money(plan.cost.tuition)} tuition + ${money(plan.cost.differential)} Neeley differential + ${money(plan.cost.housing)} housing and food. ${plan.cost.notes[1]}`}>
+              <span>Est. remaining cost</span>
+              <b>{money(plan.cost.total)}</b>
+              <small>before aid</small>
             </div>
           ) : null}
           <div className="fact"><span>Hours</span><b>{plan.totals.hours}/{plan.totals.required}</b></div>
@@ -305,6 +313,32 @@ export function BlueprintTab(props: {
             </div>
           ) : null}
 
+          {plan.cost ? (
+            <div className="panel">
+              <h3><span>Cost estimate</span><span>{money(plan.cost.total)}</span></h3>
+              <div className="scroll">
+                <table className="cost-t">
+                  <thead><tr><th>Term</th><th>Hrs</th><th>Tuition</th><th>Neeley</th><th>Total</th></tr></thead>
+                  <tbody>
+                    {plan.cost.terms.map((t) => (
+                      <tr key={t.term} className={compareTerms(t.term, plan.targetGradTerm) > 0 ? "late" : ""}>
+                        <td>{t.term}</td>
+                        <td>{t.hours}{t.neeleyHours ? <small> ({t.neeleyHours} Neeley)</small> : null}</td>
+                        <td>{money(t.tuition)}{t.overload ? <small> incl. {money(t.overload)} over 18 hrs</small> : null}</td>
+                        <td>{money(t.differential)}</td>
+                        <td><b>{money(t.total)}</b></td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+              <small className="hint">
+                12–18 hours is one flat rate, so Core and other non-Neeley classes add nothing until a term passes 18 hours ($1,735 per extra hour). Neeley courses (ACCT, BUSI, ENTR, FINA, INSC, MANA, MARK) add $270 per credit hour. Totals include {money(plan.cost.terms.find((t) => t.housing)?.housing ?? 0)} housing and food per fall and spring term. {plan.cost.notes.filter((n) => !n.startsWith("Housing")).join(" ")}{" "}
+                <a href={plan.cost.source} target="_blank" rel="noreferrer">TCU tuition rates</a>
+              </small>
+            </div>
+          ) : null}
+
           <div className="panel">
             <h3><span>Plan checks</span><span>{plan.checks.length - fails.length} of {plan.checks.length} pass</span></h3>
             {plan.checks.map((c) => (
@@ -455,3 +489,5 @@ function TermCard({ t, onOpen, added, summer }: { t: PlanTermT; onOpen: (l: Plan
     </div>
   );
 }
+
+const money = (n: number) => `$${Math.round(n).toLocaleString("en-US")}`;

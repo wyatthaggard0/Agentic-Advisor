@@ -1,5 +1,6 @@
 import type { Plan, ProgramsFile } from "./types";
 import { regularTermsBetween } from "./terms";
+import { usd } from "./cost";
 
 export interface PlanComparison {
   a: string;
@@ -12,7 +13,6 @@ export interface PlanComparison {
 }
 
 const courseSet = (p: Plan) => new Set(p.terms.flatMap((t) => t.lines.filter((l) => !l.slot).map((l) => l.code)));
-const usd = (n: number) => `$${Math.round(n).toLocaleString("en-US")}`;
 const TERM = /^(Spring|Fall) \d{4}$/;
 
 export function comparePlans(a: Plan, b: Plan, labelA: string, labelB: string, cost?: ProgramsFile["cost"]): PlanComparison {
@@ -33,29 +33,40 @@ export function comparePlans(a: Plan, b: Plan, labelA: string, labelB: string, c
     row("Failed checks", String(fails(a)), String(fails(b))),
   ];
 
-  // Cost of graduating later: whole extra semesters of tuition plus housing and food (TCU 2026-27)
+  // Cost: each plan's remaining terms priced from TCU's tuition table (flat 12-18 hours, per hour outside it,
+  // Neeley differential per Neeley credit hour, housing per fall/spring term). Falls back to whole extra semesters.
   let costInfo: PlanComparison["cost"];
-  if (cost && TERM.test(a.gradTerm) && TERM.test(b.gradTerm)) {
-    const later = regularTermsBetween(a.gradTerm, b.gradTerm).length;
-    const earlier = regularTermsBetween(b.gradTerm, a.gradTerm).length;
-    const extra = later - earlier;
+  const extra = TERM.test(a.gradTerm) && TERM.test(b.gradTerm) ? regularTermsBetween(a.gradTerm, b.gradTerm).length - regularTermsBetween(b.gradTerm, a.gradTerm).length : 0;
+  if (a.cost && b.cost) {
+    const diff = b.cost.total - a.cost.total;
+    const part = (label: string, x: number) => (x ? `${x > 0 ? "+" : "−"}${usd(Math.abs(x))} ${label}` : "");
+    const parts = [
+      part("tuition", b.cost.tuition - b.cost.overload - (a.cost.tuition - a.cost.overload)),
+      part("over-18-hour tuition", b.cost.overload - a.cost.overload),
+      part("Neeley differential", b.cost.differential - a.cost.differential),
+      part("housing and food", b.cost.housing - a.cost.housing),
+    ].filter(Boolean);
+    costInfo = {
+      extraSemesters: extra,
+      studentCost: diff,
+      note: `${parts.length ? parts.join(", ") : "No change"}. ${b.cost.notes[0]} ${b.cost.notes[1]}`,
+      source: b.cost.source,
+    };
+    rows.push(row("Est. cost of remaining terms", usd(a.cost.total), usd(b.cost.total)));
+    rows.push(row("Added cost to you", "$0", diff > 0 ? `+${usd(diff)}` : diff < 0 ? `Saves ${usd(-diff)}` : "$0"));
+  } else if (cost && TERM.test(a.gradTerm) && TERM.test(b.gradTerm)) {
     const perSemester = cost.tuitionPerSemester + cost.housingFoodPerSemester;
-    const usesSummer = summer(b) !== "None" && summer(a) === "None";
     costInfo = {
       extraSemesters: extra,
       studentCost: extra * perSemester,
-      note:
-        (extra === 0
-          ? "No extra semester."
-          : `${extra > 0 ? "+" : ""}${extra} semester${Math.abs(extra) === 1 ? "" : "s"} × ${usd(perSemester)} (${usd(cost.tuitionPerSemester)} tuition + ${usd(cost.housingFoodPerSemester)} housing and food), plus a later start to full-time pay.`) +
-        (usesSummer ? " Summer tuition is extra; TCU's summer per-hour rate isn't in our data." : ""),
+      note: extra === 0 ? "No extra semester." : `${extra} semester${Math.abs(extra) === 1 ? "" : "s"} × ${usd(perSemester)} (${usd(cost.tuitionPerSemester)} tuition + ${usd(cost.housingFoodPerSemester)} housing and food).`,
       source: cost.source,
     };
-    rows.push(row("Added cost to you", "$0", extra > 0 ? `${usd(extra * perSemester)}${usesSummer ? " + summer tuition" : ""}` : usesSummer ? "Summer tuition" : extra < 0 ? `Saves ${usd(-extra * perSemester)}` : "$0"));
+    rows.push(row("Added cost to you", "$0", extra > 0 ? usd(extra * perSemester) : extra < 0 ? `Saves ${usd(-extra * perSemester)}` : "$0"));
   }
 
   const gradChange = a.gradTerm === b.gradTerm ? `Graduation stays ${b.gradTerm}` : `Graduation moves from ${a.gradTerm} to ${b.gradTerm}`;
   const hours = b.totals.hours - a.totals.hours;
-  const summary = `${gradChange}. ${hours === 0 ? "Same total hours" : `${hours > 0 ? "+" : ""}${hours} hours`}${added.length ? `; adds ${added.join(", ")}` : ""}${removed.length ? `; drops ${removed.join(", ")}` : ""}.${costInfo && costInfo.extraSemesters > 0 ? ` Estimated added cost: ${usd(costInfo.studentCost)}.` : ""}`;
+  const summary = `${gradChange}. ${hours === 0 ? "Same total hours" : `${hours > 0 ? "+" : ""}${hours} hours`}${added.length ? `; adds ${added.join(", ")}` : ""}${removed.length ? `; drops ${removed.join(", ")}` : ""}.${costInfo && costInfo.studentCost > 0 ? ` Estimated added cost: ${usd(costInfo.studentCost)} (${costInfo.note.split(". ")[0]}).` : ""}`;
   return { a: labelA, b: labelB, rows, added, removed, summary, ...(costInfo ? { cost: costInfo } : {}) };
 }

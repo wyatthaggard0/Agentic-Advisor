@@ -298,6 +298,30 @@ function programsFromPack(courses: Map<string, Course>): ProgramsFile {
     year: "2026-27",
     source: "https://financialaid.tcu.edu/cost/cost-of-attendance/undergraduate.php",
     note: "Tuition is half of TCU's $66,520 annual rate; housing and food are on-campus estimates. An extra semester also delays full-time pay. TCU gains the tuition, so the student's cost and the university's revenue are separate.",
+
+    // TCU tuition rate table: flat 12-18 hours, per-hour outside it, Neeley differential per Neeley credit hour
+    tuition: {
+      "year": "2026-27",
+      "flatMinHours": 12,
+      "flatMaxHours": 18,
+      "flatRate": 33260,
+      "perHour1to8": 2315,
+      "perHour9to11": 2825,
+      "perHourOver18": 1735,
+      "summerPerHour": 2315,
+      "neeleyPerHour": 270,
+      "neeleySubjects": [
+        "ACCT",
+        "BUSI",
+        "ENTR",
+        "FINA",
+        "INSC",
+        "MANA",
+        "MARK"
+      ],
+      "source": "https://finance.tcu.edu/accounting-financial-services/student-financial-services/tuition-rates.php",
+      "note": "TCU 2026-27 undergraduate tuition: 1-8 hours $2,315/hr, 9-11 hours $2,825/hr, 12-18 hours $33,260 flat, over 18 hours $1,735/hr; Neeley differential $270 per credit hour of Neeley courses; summer $2,315/hr plus the Neeley differential. Later years will likely cost more."
+    },
   };
 
   // Titles for the few referenced courses missing from the CSV are left out; courses carry their own titles now.

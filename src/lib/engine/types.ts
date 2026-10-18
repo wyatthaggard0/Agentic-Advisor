@@ -205,7 +205,23 @@ export interface ProgramsFile {
   contradictions: Contradiction[];
   opportunities: { id: string; name: string; text: string; source: string; when?: string; tags?: string[]; planEffect?: string }[];
   /** Cost of an extra semester, for trade-off comparisons */
-  cost?: { tuitionPerSemester: number; housingFoodPerSemester: number; year: string; source: string; note: string };
+  cost?: { tuitionPerSemester: number; housingFoodPerSemester: number; year: string; source: string; note: string; tuition?: TuitionRates };
+}
+
+/** TCU undergraduate tuition rate table (finance.tcu.edu) */
+export interface TuitionRates {
+  year: string;
+  flatMinHours: number;
+  flatMaxHours: number;
+  flatRate: number;
+  perHour1to8: number;
+  perHour9to11: number;
+  perHourOver18: number;
+  summerPerHour: number;
+  neeleyPerHour: number;
+  neeleySubjects: string[];
+  source: string;
+  note: string;
 }
 
 export interface CompletedCourse {
@@ -333,6 +349,8 @@ export interface Plan {
   onTime: boolean;
   /** Semesters past the student's target and what they cost (TCU tuition + housing and food per semester) */
   lateCost?: { semesters: number; amount: number; note: string; source: string };
+  /** Estimated cost of the planned (not yet billed) terms */
+  cost?: PlanCost;
   totals: { hours: number; required: number; upper: number; upperRequired: number; maxLoad: number };
   unplaced: { code: string; credits: number; reason: string }[];
   swaps: { from: string; to: string; reason: string }[];
@@ -353,4 +371,27 @@ export interface CoreAssignment {
   title?: string;
   source: "audit" | "completed" | "in-progress" | "planned" | "open";
   term?: string;
+}
+
+export interface TermCost {
+  term: string;
+  hours: number;
+  neeleyHours: number;
+  tuition: number;
+  /** Part of tuition above the 18-hour flat band */
+  overload: number;
+  differential: number;
+  housing: number;
+  total: number;
+}
+
+export interface PlanCost {
+  terms: TermCost[];
+  tuition: number;
+  overload: number;
+  differential: number;
+  housing: number;
+  total: number;
+  notes: string[];
+  source: string;
 }

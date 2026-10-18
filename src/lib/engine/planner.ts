@@ -4,6 +4,7 @@ import type { Dataset } from "./load";
 import { courseTitle } from "./load";
 import { checkEligibility, offering, semesterIndex, type Offer, type PlanState } from "./eligibility";
 import { assignCore, CORE_NAMES } from "./core";
+import { planCost, usd } from "./cost";
 import { compareTerms, nextRegularTerm, regularTermsBetween } from "./terms";
 import type {
   AdvisorItem,
@@ -1054,5 +1055,17 @@ export function buildPlan(ds: Dataset, student: Student, opts: PlanOptions = {})
   };
   void allLines;
   plan.checks = validatePlan(ds, student, plan);
+  plan.cost = planCost(plan, P.cost);
+  // Graduating late: what the terms after the target actually cost, from the tuition table
+  if (plan.lateCost && plan.cost) {
+    const late = plan.cost.terms.filter((t) => compareTerms(t.term, student.targetGradTerm) > 0);
+    const amount = late.reduce((n, t) => n + t.total, 0);
+    plan.lateCost = {
+      ...plan.lateCost,
+      amount,
+      note: `${late.map((t) => `${t.term}: ${t.hours} hrs, ${usd(t.tuition)} tuition${t.differential ? ` + ${usd(t.differential)} Neeley differential` : ""}${t.housing ? ` + ${usd(t.housing)} housing and food` : ""}`).join("; ")}`,
+      source: plan.cost.source,
+    };
+  }
   return plan;
 }

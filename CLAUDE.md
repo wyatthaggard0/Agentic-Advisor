@@ -65,7 +65,7 @@ Parsing rules that matter:
   - "declared business major" only after the six declare courses and 24 hours
   - program admission via `usedBy`
 - **Scheduling priority:** longest chain of dependents, then fewest remaining terms that offer the course (fall-only capstones first), then requirements before suggested Core picks.
-- **Comparisons** include the cost of extra semesters (`programs.json` `cost`, TCU 2026-27).
+- **Cost** (`src/lib/engine/cost.ts`, rates in `programs.json` `cost.tuition` from TCU's 2026-27 tuition page): each planned term is priced at $33,260 flat for 12-18 hours, $1,735 per hour over 18, per-hour rates under 12, summer per hour, plus the $270 Neeley differential per credit hour of ACCT/BUSI/ENTR/FINA/INSC/MANA/MARK courses and housing and food per fall/spring term. So a Core class inside 18 hours adds $0 and a Neeley class adds $270 per hour. The Blueprint shows the remaining cost, a per-term table and the cost of semesters past the target; comparisons show the difference between two plans.
 
 ## Product surface
 
