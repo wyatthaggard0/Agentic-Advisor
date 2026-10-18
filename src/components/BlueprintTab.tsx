@@ -417,6 +417,26 @@ function CourseDrawer({ studentId, line, term, onClose, onSwap }: { studentId: s
               {info?.prerequisiteText ? <div><span>Catalog text</span><em>{String(info.prerequisiteText)}</em></div> : null}
             </>
           )}
+          {line.suggestions?.length ? (
+            <div>
+              <span>Recommended for you</span>
+              <ul className="alts">
+                {line.suggestions.map((g, i) => (
+                  <li key={g.code}>
+                    <div>
+                      <b>{i === 0 ? <span className="rec-tag">Top pick</span> : null} <span className="mono">{g.code}</span> {g.title}</b>
+                      <small>
+                        Matches your interest in {g.matches.join(", ")} · {g.credits} hr{g.credits === 1 ? "" : "s"}
+                        {g.credits < line.credits ? ` (add ${line.credits - g.credits} more hour${line.credits - g.credits === 1 ? "" : "s"} to fill this slot)` : ""} ·{" "}
+                        {g.offered === "confirmed" ? "Section posted" : g.offered === "historical" ? "Offered that season before" : "Offering not verified"}
+                      </small>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+              <small className="hint">Picked from TCU&rsquo;s course list using your survey interests. Any course works here; check prerequisites and seats in Class Search.</small>
+            </div>
+          ) : null}
           {line.core?.alternatives.length ? (
             <div>
               <span>Other courses that fill this slot</span>
@@ -479,7 +499,13 @@ function TermCard({ t, onOpen, added, summer }: { t: PlanTermT; onOpen: (l: Plan
             <span className="cl-code">{l.slot ? "Choose" : l.code}</span>
             <span className="cl-main">
               <span className="cl-title">{l.title}</span>
-              {l.requirement !== l.title && <span className="cl-req">{l.requirement}</span>}
+              {l.suggestions?.length ? (
+                <span className="cl-req cl-rec">
+                  <span className="rec-tag">Recommended</span> {l.suggestions[0].code} {l.suggestions[0].title}
+                </span>
+              ) : (
+                l.requirement !== l.title && <span className="cl-req">{l.requirement}</span>
+              )}
             </span>
             <span className="cl-hrs">{l.credits}</span>
             <span className={`conf ${l.confidence}`} title={`${CONF_LABEL[l.confidence] ?? l.confidence}: ${l.confidenceNote}`} />

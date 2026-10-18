@@ -941,6 +941,69 @@ export function buildPlan(ds: Dataset, student: Student, opts: PlanOptions = {})
       }),
     });
   }
+  // ---------- Recommended courses for free-elective slots, from the survey's interests (e.g. "golf" -> PEAC 10771) ----------
+  const electiveSlots = [...allTerms(), ...summerUsed]
+    .sort(compareTerms)
+    .flatMap((t) => (plannedLines.get(t) ?? []).filter((l) => l.slot && (l.requirementId === "elective" || l.requirementId === "upper-division")).map((l) => ({ t, l })));
+  if (electiveSlots.length && interests.length) {
+    const inPlan = new Set([...completedCodes, ...student.inProgress.map((c) => c.code), ...needs.keys()]);
+    const esc = (k: string) => k.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    // Words the student typed themselves ("golf") count more than an interest area's keyword list
+    const typed = new Set((student.survey?.interestText ?? "").toLowerCase().split(/[,;\n]+/).map((w) => w.trim()));
+    const words = interests.filter((k) => k.length > 2).map((k) => ({ k, re: new RegExp(`\\b${esc(k.toLowerCase())}`), w: typed.has(k.toLowerCase()) ? 4 : 1 }));
+    const pool = [...ds.courses.values()]
+      .filter(
+        (c) =>
+          !inPlan.has(c.code) &&
+          !!c.title &&
+          c.level >= 1 &&
+          c.level <= 4 &&
+          (c.credits ?? 0) >= 1 &&
+          !c.conditions.some((k) => k.kind === "permission" || k.kind === "program") &&
+          !programGated(c) &&
+          c.prereqs.every((g) => g.some((r) => inPlan.has(r.code))),
+      )
+      .map((c) => {
+        const title = courseTitle(c, c.code).toLowerCase();
+        const desc = c.description.toLowerCase();
+        const matches = words.filter((w) => w.re.test(title) || w.re.test(desc)).map((w) => w.k);
+        const score = words.reduce((n, w) => n + w.w * (w.re.test(title) ? 3 : w.re.test(desc) ? 1 : 0), 0);
+        // A real match: the interest is in the title, two interests are in the description, or it's a word the student typed
+        const strong = words.some((w) => w.re.test(title) || (w.w > 1 && w.re.test(desc))) || matches.length >= 2;
+        return { c, matches, score, strong };
+      })
+      .filter((x) => x.strong)
+      .sort((a, b) => {
+        // men's / women's sections after the general course (e.g. Beginning Golf before Golf - Men's)
+        const gendered = (x: (typeof a)["c"]) => (/\b(men|women)'?s\b/i.test(courseTitle(x, x.code)) ? 1 : 0);
+        return b.score - a.score || gendered(a.c) - gendered(b.c) || (a.c.credits === 3 ? 0 : 1) - (b.c.credits === 3 ? 0 : 1) || a.c.code.localeCompare(b.c.code);
+      });
+    // Each slot leads with a different course; its backups skip courses leading another slot
+    const fitsFor = (t: string, l: PlanLine) => pool.filter((x) => (!l.upper || x.c.level >= 3) && !["not-offered", "other-season"].includes(offerFor(x.c.code, t).status));
+    const leads = new Map<PlanLine, (typeof pool)[number]>();
+    for (const { t, l } of electiveSlots) {
+      const lead = fitsFor(t, l).find((x) => ![...leads.values()].includes(x));
+      if (lead) leads.set(l, lead);
+    }
+    const leading = new Set(leads.values());
+    for (const { t, l } of electiveSlots) {
+      const lead = leads.get(l);
+      if (!lead) continue;
+      const rest = fitsFor(t, l).filter((x) => x !== lead);
+      const backups = [...rest.filter((x) => !leading.has(x)), ...rest.filter((x) => leading.has(x))].slice(0, 3);
+      l.suggestions = [lead, ...backups].map((x) => {
+        const st = offerFor(x.c.code, t).status;
+        return {
+          code: x.c.code,
+          title: courseTitle(x.c, x.c.code),
+          credits: x.c.credits ?? 3,
+          matches: x.matches,
+          offered: st === "confirmed" ? "confirmed" : st === "historical" ? "historical" : "assumed",
+        };
+      });
+    }
+  }
+
   for (const t of [...allTerms(), ...summerUsed].sort(compareTerms)) {
     const lines = plannedLines.get(t) ?? [];
     const hold = holds.get(t);

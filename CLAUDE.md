@@ -86,6 +86,7 @@ Parsing rules that matter:
     - Match % is an explainable formula in `src/lib/careers.ts`: picked interest areas, free-text words, location fit, and company focus. It isn't AI output and isn't a hiring prediction.
 - **Graduation Blueprint:**
   - Semester grid with a drawer per course. Suggested Core courses list other courses that fill the same categories; "Use this" swaps one in (`student.coreChoices`).
+  - Free-elective slots show a **Recommended** course matched to the survey's interests (picked areas plus typed words, e.g. "golf" -> PEAC 10771 Beginning Golf), with backups in the drawer (`PlanLine.suggestions`). Typed words outrank area keywords; only courses with no unmet prerequisites or program/permission gates are suggested.
   - Program what-ifs: each row shows only the student's programs, with Change / Add opening the full list. Comparison table.
   - The 10 checks and advisor items (collapsed to their titles).
   - Send for advisor review.

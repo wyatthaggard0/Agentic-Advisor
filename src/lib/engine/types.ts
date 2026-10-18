@@ -306,6 +306,18 @@ export interface PlanLine {
   added?: "prereq" | "coreq" | "requirement" | "elective" | "swap";
   /** Suggested TCU Core pick: the categories it fills and other courses that fill the same ones */
   core?: { categories: string[]; alternatives: CoreAlternative[] };
+  /** Free-elective slot: real courses that match the student's survey interests */
+  suggestions?: ElectiveSuggestion[];
+}
+
+export interface ElectiveSuggestion {
+  code: string;
+  title: string;
+  credits: number;
+  /** Survey interests this course matches */
+  matches: string[];
+  /** Offering label for the slot's term */
+  offered: "confirmed" | "historical" | "assumed";
 }
 
 export interface CoreAlternative {
