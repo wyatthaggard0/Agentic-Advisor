@@ -15,7 +15,8 @@
     "db:seed": "tsx scripts/db-seed.ts",
     "db:ping": "node scripts/db-ping.mjs",
     "db:rls": "node scripts/rls-check.mjs",
-    "data:pack": "tsx scripts/import-pack.ts"
+    "data:pack": "tsx scripts/import-pack.ts",
+    "data:sections": "tsx scripts/import-class-search.ts"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "0.131.0",

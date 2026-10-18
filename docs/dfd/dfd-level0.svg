@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+     xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+     width="1680" height="860" viewBox="0 0 1680 860">
+<sodipodi:namedview pagecolor="#ffffff" inkscape:document-units="px"/>
+<defs>
+  <marker id="arrow" viewBox="0 0 10 10" refX="9.5" refY="5" markerWidth="9" markerHeight="9" orient="auto-start-reverse">
+    <path d="M0,0 L10,5 L0,10 z" fill="#4D1979"/>
+  </marker>
+</defs>
+<g inkscape:groupmode="layer" id="layer-frame" inkscape:label="Frame">
+<rect x="0" y="0" width="1680" height="860" fill="#ffffff"/>
+<rect x="0" y="0" width="1680" height="8" fill="#4D1979"/>
+<text x="40.0" y="52.0" font-family="Segoe UI, Montserrat, Arial, sans-serif" font-size="26" font-weight="800" fill="#4D1979" text-anchor="start">Graduation Blueprint · Data Flow Diagram, Level 0 (Context)</text>
+<text x="40.0" y="78.0" font-family="Segoe UI, Montserrat, Arial, sans-serif" font-size="14" font-weight="400" fill="#6B607A" text-anchor="start">The whole system as one process and everything outside it that sends or receives data.</text>
+<g id="legend" inkscape:label="Legend">
+<rect x="1160" y="28" width="490" height="62" fill="#fff" stroke="#E3DCEC"/>
+<rect x="1172" y="42" width="34" height="22" fill="#4D1979"/>
+<text x="1212.0" y="58.0" font-family="Segoe UI, Montserrat, Arial, sans-serif" font-size="11.5" font-weight="600" fill="#2A1640" text-anchor="start">External entity</text>
+<rect x="1320" y="40" width="38" height="26" rx="7" fill="#fff" stroke="#4D1979" stroke-width="2"/>
+<rect x="1320" y="40" width="38" height="8" rx="4" fill="#4D1979"/>
+<text x="1364.0" y="58.0" font-family="Segoe UI, Montserrat, Arial, sans-serif" font-size="11.5" font-weight="600" fill="#2A1640" text-anchor="start">Process</text>
+<path d="M1470,42 H1430 V64 H1470" fill="#F4F1F8" stroke="#4D1979" stroke-width="2"/>
+<text x="1476.0" y="58.0" font-family="Segoe UI, Montserrat, Arial, sans-serif" font-size="11.5" font-weight="600" fill="#2A1640" text-anchor="start">Data store</text>
+<line x1="1552" y1="48" x2="1590" y2="48" stroke="#4D1979" stroke-width="1.8" marker-end="url(#arrow)"/>
+<text x="1596.0" y="52.0" font-family="Segoe UI, Montserrat, Arial, sans-serif" font-size="11.5" font-weight="600" fill="#2A1640" text-anchor="start">Flow</text>
+<line x1="1552" y1="72" x2="1590" y2="72" stroke="#4D1979" stroke-width="1.8" stroke-dasharray="6,4" marker-end="url(#arrow)"/>
+<text x="1596.0" y="76.0" font-family="Segoe UI, Montserrat, Arial, sans-serif" font-size="11.5" font-weight="600" fill="#6B607A" text-anchor="start">Planned</text>
+</g>
+<text x="40.0" y="838.0" font-family="Segoe UI, Montserrat, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#6B607A" text-anchor="start">Gane-Sarson notation. Dashed = planned: course records come from labeled sample data today; an authorized degree-audit export replaces it.</text>
+</g>
+<g inkscape:groupmode="layer" id="layer-flows" inkscape:label="Data flows">
+<g id="flow0" inkscape:label="flow: profile, transcript, survey answers, questions, what-if choices">
+<path d="M310.2,407.7 L640.2,413.0" fill="none" stroke="#4D1979" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="383.3" y="347.8" width="183.9" height="49.1" rx="3" fill="#fff" opacity="0.94"/>
+<text x="475.2" y="360.8" font-family="Segoe UI, Montserrat, Arial, sans-serif" font-size="11.5" font-weight="600" fill="#2A1640" text-anchor="middle">profile, transcript, survey</text>
+<text x="475.2" y="375.2" font-family="Segoe UI, Montserrat, Arial, sans-serif" font-size="11.5" font-weight="600" fill="#2A1640" text-anchor="middle">answers, questions, what-if</text>
+<text x="475.2" y="389.6" font-family="Segoe UI, Montserrat, Arial, sans-serif" font-size="11.5" font-weight="600" fill="#2A1640" text-anchor="middle">choices</text>
+</g>
+<g id="flow1" inkscape:label="flow: Graduation Blueprint, costs, recommendations, explanations, weekly schedule, Excel plan">
+<path d="M639.8,441.0 L309.8,435.7" fill="none" stroke="#4D1979" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="373.2" y="457.8" width="203.2" height="49.1" rx="3" fill="#fff" opacity="0.94"/>
+<text x="474.8" y="470.8" font-family="Segoe UI, Montserrat, Arial, sans-serif" font-size="11.5" font-weight="600" fill="#2A1640" text-anchor="middle">Graduation Blueprint, costs,</text>
+<text x="474.8" y="485.2" font-family="Segoe UI, Montserrat, Arial, sans-serif" font-size="11.5" font-weight="600" fill="#2A1640" text-anchor="middle">recommendations, explanations,</text>
+<text x="474.8" y="499.6" font-family="Segoe UI, Montserrat, Arial, sans-serif" font-size="11.5" font-weight="600" fill="#2A1640" text-anchor="middle">weekly schedule, Excel plan</text>
+</g>
+<g id="flow2" inkscape:label="flow: courses, prerequisites, program rules, tuition">
+<path d="M830.0,230.0 L830.0,330.0" fill="none" stroke="#4D1979" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="870.9" y="262.6" width="158.1" height="34.8" rx="3" fill="#fff" opacity="0.94"/>
+<text x="950.0" y="275.6" font-family="Segoe UI, Montserrat, Arial, sans-serif" font-size="11.5" font-weight="600" fill="#2A1640" text-anchor="middle">courses, prerequisites,</text>
+<text x="950.0" y="290.0" font-family="Segoe UI, Montserrat, Arial, sans-serif" font-size="11.5" font-weight="600" fill="#2A1640" text-anchor="middle">program rules, tuition</text>
+</g>
+<g id="flow3" inkscape:label="flow: conversation + engine tool results">
+<path d="M1016.3,357.2 L1346.3,250.7" fill="none" stroke="#4D1979" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="1019.2" y="268.6" width="145.2" height="34.8" rx="3" fill="#fff" opacity="0.94"/>
+<text x="1091.8" y="281.6" font-family="Segoe UI, Montserrat, Arial, sans-serif" font-size="11.5" font-weight="600" fill="#2A1640" text-anchor="middle">conversation + engine</text>
+<text x="1091.8" y="296.0" font-family="Segoe UI, Montserrat, Arial, sans-serif" font-size="11.5" font-weight="600" fill="#2A1640" text-anchor="middle">tool results</text>
+</g>
+<g id="flow4" inkscape:label="flow: replies, tool requests">
+<path d="M1353.7,273.5 L1023.7,380.1" fill="none" stroke="#4D1979" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="1109.8" y="357.3" width="151.7" height="20.4" rx="3" fill="#fff" opacity="0.94"/>
+<text x="1185.7" y="370.3" font-family="Segoe UI, Montserrat, Arial, sans-serif" font-size="11.5" font-weight="600" fill="#2A1640" text-anchor="middle">replies, tool requests</text>
+</g>
+<g id="flow5" inkscape:label="flow: checked plan + flagged questions">
+<path d="M1024.2,489.1 L1354.2,611.2" fill="none" stroke="#4D1979" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="1113.3" y="506.7" width="151.7" height="34.8" rx="3" fill="#fff" opacity="0.94"/>
+<text x="1189.2" y="519.7" font-family="Segoe UI, Montserrat, Arial, sans-serif" font-size="11.5" font-weight="600" fill="#2A1640" text-anchor="middle">checked plan + flagged</text>
+<text x="1189.2" y="534.1" font-family="Segoe UI, Montserrat, Arial, sans-serif" font-size="11.5" font-weight="600" fill="#2A1640" text-anchor="middle">questions</text>
+</g>
+<g id="flow6" inkscape:label="flow: approve / request changes">
+<path d="M1345.8,633.7 L1015.8,511.6" fill="none" stroke="#4D1979" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="1121.1" y="581.3" width="119.5" height="34.8" rx="3" fill="#fff" opacity="0.94"/>
+<text x="1180.8" y="594.3" font-family="Segoe UI, Montserrat, Arial, sans-serif" font-size="11.5" font-weight="600" fill="#2A1640" text-anchor="middle">approve / request</text>
+<text x="1180.8" y="608.6" font-family="Segoe UI, Montserrat, Arial, sans-serif" font-size="11.5" font-weight="600" fill="#2A1640" text-anchor="middle">changes</text>
+</g>
+<g id="flow7" inkscape:label="flow: course records (sample now; authorized export later)">
+<path d="M830.0,690.0 L830.0,530.0" fill="none" stroke="#4D1979" stroke-width="1.8" stroke-dasharray="7,5" marker-end="url(#arrow)"/>
+<rect x="888.1" y="592.6" width="183.9" height="34.8" rx="3" fill="#fff" opacity="0.94"/>
+<text x="980.0" y="605.6" font-family="Segoe UI, Montserrat, Arial, sans-serif" font-size="11.5" font-weight="500" fill="#6B607A" text-anchor="middle">course records (sample now;</text>
+<text x="980.0" y="620.0" font-family="Segoe UI, Montserrat, Arial, sans-serif" font-size="11.5" font-weight="500" fill="#6B607A" text-anchor="middle">authorized export later)</text>
+</g>
+</g>
+<g inkscape:groupmode="layer" id="layer-nodes" inkscape:label="Entities, processes, stores">
+<g id="sys" inkscape:label="0 Graduation Blueprint">
+<rect x="640" y="330" width="380" height="200" rx="16" fill="#fff" stroke="#4D1979" stroke-width="2.5"/>
+<path d="M640,346 a16,16 0 0 1 16,-16 h348 a16,16 0 0 1 16,16 v12 h-380 z" fill="#4D1979"/>
+<text x="830.0" y="352.0" font-family="Segoe UI, Montserrat, Arial, sans-serif" font-size="12" font-weight="800" fill="#fff" text-anchor="middle">0</text>
+<text x="830.0" y="433.5" font-family="Segoe UI, Montserrat, Arial, sans-serif" font-size="14" font-weight="700" fill="#2A1640" text-anchor="middle">Graduation Blueprint</text>
+<text x="830.0" y="452.5" font-family="Segoe UI, Montserrat, Arial, sans-serif" font-size="11" font-weight="400" fill="#6B607A" text-anchor="middle">Planning engine + Claude</text>
+<text x="830.0" y="466.2" font-family="Segoe UI, Montserrat, Arial, sans-serif" font-size="11" font-weight="400" fill="#6B607A" text-anchor="middle">explanations + advisor review</text>
+</g>
+<g id="stu" inkscape:label="Student">
+<rect x="96" y="366" width="220" height="120" fill="#2A1640" opacity="0.18"/>
+<rect x="90" y="360" width="220" height="120" fill="#4D1979" stroke="#2A1640" stroke-width="2"/>
+<text x="200.0" y="418.0" font-family="Segoe UI, Montserrat, Arial, sans-serif" font-size="16" font-weight="700" fill="#fff" text-anchor="middle">Student</text>
+<text x="200.0" y="438.0" font-family="Segoe UI, Montserrat, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#E9DDF5" text-anchor="middle">Neeley undergraduate</text>
+</g>
+<g id="adv" inkscape:label="Academic Advisor">
+<rect x="1356" y="616" width="230" height="110" fill="#2A1640" opacity="0.18"/>
+<rect x="1350" y="610" width="230" height="110" fill="#4D1979" stroke="#2A1640" stroke-width="2"/>
+<text x="1465.0" y="663.0" font-family="Segoe UI, Montserrat, Arial, sans-serif" font-size="16" font-weight="700" fill="#fff" text-anchor="middle">Academic Advisor</text>
+<text x="1465.0" y="683.0" font-family="Segoe UI, Montserrat, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#E9DDF5" text-anchor="middle">Neeley advising</text>
+</g>
+<g id="tcu" inkscape:label="TCU Official Sources">
+<rect x="686" y="136" width="300" height="100" fill="#2A1640" opacity="0.18"/>
+<rect x="680" y="130" width="300" height="100" fill="#4D1979" stroke="#2A1640" stroke-width="2"/>
+<text x="830.0" y="162.0" font-family="Segoe UI, Montserrat, Arial, sans-serif" font-size="16" font-weight="700" fill="#fff" text-anchor="middle">TCU Official</text>
+<text x="830.0" y="182.0" font-family="Segoe UI, Montserrat, Arial, sans-serif" font-size="16" font-weight="700" fill="#fff" text-anchor="middle">Sources</text>
+<text x="830.0" y="202.0" font-family="Segoe UI, Montserrat, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#E9DDF5" text-anchor="middle">Catalog · Neeley checklists ·</text>
+<text x="830.0" y="216.4" font-family="Segoe UI, Montserrat, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#E9DDF5" text-anchor="middle">course export · tuition rates</text>
+</g>
+<g id="ai" inkscape:label="Anthropic Claude API">
+<rect x="1356" y="176" width="230" height="110" fill="#2A1640" opacity="0.18"/>
+<rect x="1350" y="170" width="230" height="110" fill="#4D1979" stroke="#2A1640" stroke-width="2"/>
+<text x="1465.0" y="214.0" font-family="Segoe UI, Montserrat, Arial, sans-serif" font-size="16" font-weight="700" fill="#fff" text-anchor="middle">Anthropic Claude</text>
+<text x="1465.0" y="234.0" font-family="Segoe UI, Montserrat, Arial, sans-serif" font-size="16" font-weight="700" fill="#fff" text-anchor="middle">API</text>
+<text x="1465.0" y="254.0" font-family="Segoe UI, Montserrat, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#E9DDF5" text-anchor="middle">claude-opus-5-5</text>
+</g>
+<g id="reg" inkscape:label="Registrar / my.tcu.edu">
+<rect x="686" y="696" width="300" height="100" fill="#2A1640" opacity="0.18"/>
+<rect x="680" y="690" width="300" height="100" fill="#4D1979" stroke="#2A1640" stroke-width="2"/>
+<text x="830.0" y="729.0" font-family="Segoe UI, Montserrat, Arial, sans-serif" font-size="16" font-weight="700" fill="#fff" text-anchor="middle">Registrar /</text>
+<text x="830.0" y="749.0" font-family="Segoe UI, Montserrat, Arial, sans-serif" font-size="16" font-weight="700" fill="#fff" text-anchor="middle">my.tcu.edu</text>
+<text x="830.0" y="769.0" font-family="Segoe UI, Montserrat, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#E9DDF5" text-anchor="middle">degree audit · registration</text>
+</g>
+</g>
+</svg>

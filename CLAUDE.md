@@ -8,6 +8,12 @@ Prototype for the **Neeley AI Forward competition (Advanced Track)**, case "The 
 - Claude (`src/lib/ai/`) handles conversation only: intake, the Planning Survey, transcript reading, career guidance, and explaining plans. It reaches the engine through tools in `tools.ts`.
 - Every course, requirement, prerequisite, offering, date or employer Claude mentions must come from a tool result. Never let the model place courses or state academic facts from memory.
 - `offline.ts` is a rule-based fallback that answers from the same tools when there's no API key, so a live demo never depends on the network.
+- `chat.ts` enforces grounding in code, not just in the prompt:
+  - A reply written without any tool call is sent back once to use the tools. Opus 5.5 rejects a forced `tool_choice`, so this check replaces it.
+  - Every course code in a reply must appear in a tool result or the conversation.
+  - Every dean, department, instructor or registrar approval must appear in a tool result.
+  - If either check fails, the reply is sent back once to verify or remove the claim; anything still unverified shows as a notice under the reply.
+  - Text from every step of the turn is kept, since Claude often writes its answer alongside its tool calls.
 
 ## Non-negotiables (from the case)
 
@@ -24,7 +30,7 @@ Prototype for the **Neeley AI Forward competition (Advanced Track)**, case "The 
 |---|---|---|
 | `courses.json` | **From `neeley-planning-pack/courses.csv`** (`npm run data:pack`) | Titles, prerequisites (AND of OR-groups; 151 Neeley courses hand-verified), same-term allowances, min grades, Core tags, season rules, earliest-semester rules, which programs use each course. `npm run data:courses` is the older fallback that parses the raw export |
 | `prereq_overrides.json` | Few entries | Always beats the course data. Add hand corrections here |
-| `sections.json` | **SAMPLE (invented)** | Replace with the TCU Class Search pull. Shape is in README.md. Every class time and fall/spring-only pattern in the demo comes from this file |
+| `sections.json` | **From TCU Class Search** (`npm run data:sections`, reads `tcu_class_search_2026-27.csv`) | 7,577 real sections for Fall 2026 and Spring 2027 (complete pulls: a course missing from a term isn't offered then). Winter Session rows are skipped. Later terms are projected from the season a course ran in |
 | `programs.json` | **From `neeley-planning-pack/neeley_programs.json`** (`npm run data:pack`) | Both rulebooks (old = started before summer 2025, new = summer 2025+), TCU Core slots and rules per version, all 7 majors + Real Estate concentration, minors, certificates, combination rules, declare-major courses, earliest-semester defaults, 21 known TCU data problems, opportunities, cost of an extra semester. Edit the pack and re-run the importer; don't hand-edit this file |
 | `neeley_rules.md` | Copy of the pack's `NEELEY_RULES.md` | Sent to Claude as cached reference text for explanations; the engine still decides |
 | `careers.json` | Team-curated | Interest areas mapped to industries, majors, roles and programs. Example employers by region. Recruiting timing |
@@ -128,7 +134,6 @@ Set `ANTHROPIC_API_KEY` for Claude (`claude-opus-5-5`), or `BLUEPRINT_OFFLINE=1`
 
 ## Open items
 
-- **Class Search pull** for `sections.json` (real times and offerings).
 - **Pack follow-ups:** AP credit and math placement questions in the survey (NEELEY_RULES §4), subjects to avoid for Core picks, Neeley Fellows hold on business core.
 - **Pick-lists:** the survey's "first semester at TCU" picks the rulebook for students without a record.
 - **Claude API key** on the demo machine.
